@@ -16,7 +16,7 @@
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item active {{ Route::is('home') ? 'active' : '' }}">
-                                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                                    <a href="{{ route('home') }}" class="nav-link">Početna</a>
                                 </li>
                                 <li class="nav-item {{ Route::is('about') ? 'active' : '' }}">
                                     <a href="{{ route('about') }}" class="nav-link">O nama</a>
@@ -37,7 +37,7 @@
                                     <a href="blog.html" class="nav-link">Blog</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="contact.html" class="nav-link">Contact</a>
+                                    <a href="contact.html" class="nav-link">Kontakt</a>
                                 </li>
                             </ul>
                         </div>

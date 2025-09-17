@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="{{ asset('dist/css/iziToast.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/spacing.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('dist/css/iziToast.min.css') }}">
         
         <!-- All Javascripts -->
         <script src="{{ asset('dist-front/js/jquery-3.6.1.min.js') }}"></script>
@@ -32,6 +33,7 @@
         <script src="{{ asset('dist-front/js/jquery.waypoints.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/moment.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/counterup.min.js') }}"></script>
+        <script src="{{ asset('dist/js/iziToast.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/multi-countdown.js') }}"></script>
         <script src="{{ asset('dist-front/js/jquery.meanmenu.js') }}"></script>
         <script src="{{ asset('dist/js/iziToast.min.js') }}"></script>
@@ -44,17 +46,17 @@
                 <div class="row">
                     <div class="col-md-6 left-side">
                         <ul>
-                            <li class="phone-text"><i class="fas fa-phone"></i> 111-222-3333</li>
-                            <li class="email-text"><i class="fas fa-envelope"></i> contact@example.com</li>
+                            <li class="phone-text"><i class="fas fa-phone"></i> +11 110011</li>
+                            <li class="email-text"><i class="fas fa-envelope"></i> ilovenyc@gmail.com</li>
                         </ul>
                     </div>
                     <div class="col-md-6 right-side">
                         <ul class="right">
                             <li class="menu">
-                                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
                             </li>
                             <li class="menu">
-                                <a href="register.html"><i class="fas fa-user"></i> Sign Up</a>
+                                <a href="{{ route('registration') }}"><i class="fas fa-user"></i> Registuj se</a>
                             </li>
                         </ul>
                     </div>
@@ -70,7 +72,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="copyright">
-                            Copyright &copy; 2024, TripSummit. All Rights Reserved.
+                            Copyright &copy; 2025, DVA. All Rights Reserved.
                         </div>
                     </div>
                 </div>
@@ -83,5 +85,37 @@
 
        
         <script src="{{ asset('dist-front/js/custom.js') }}"></script>
+     
+                @if($errors->any())
+            @foreach ($errors->all() as $error)
+                <script>
+                    iziToast.show({
+                        message: '{{ $error }}',
+                        color: 'red',
+                        position: 'topRight',
+                    });
+                </script>
+            @endforeach
+        @endif
+        @if(session('success'))
+            <script>
+                iziToast.show({
+                    message: '{{ session("success") }}',
+                    color: 'green',
+                    position: 'topRight',
+                });
+            </script>
+        @endif
+
+        @if(session('error'))
+            <script>
+                iziToast.show({
+                    message: '{{ session("error") }}',
+                    color: 'red',
+                    position: 'topRight',
+                });
+            </script>
+        @endif
+
     </body>
 </html>
