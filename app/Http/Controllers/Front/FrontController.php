@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\Websitemail;
 use Hash;
+use Auth;
 
 class FrontController extends Controller
 {
@@ -65,7 +66,84 @@ class FrontController extends Controller
     public function login(){
         return view('front.login');
     }
-     public function forget_password(){
+        public function login_submit(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+    
+        $check = $request->all();
+        $data = [
+            'email' => $check['email'],
+            'password' => $check['password'],
+            'status' => 1,
+        ];
+    
+        if(Auth::guard('web')->attempt($data)) {
+            return redirect()->route('user_dashboard')->with('success','Login is successful!');
+        } else {
+            return redirect()->route('login')->with('error','The information you entered is incorrect! Please try again!')->withInput();
+        }
+    }
+   
+      public function logout(){
+        Auth::guard('web')->logout();
+        return redirect()->route('login')->with('succes','Logout is succeful!');
+    }
+    
+    public function forget_password()
+    {
         return view('front.forget_password');
     }
+
+    public function forget_password_submit(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+        ]);
+
+        $user = User::where('email',$request->email)->first();
+        if(!$user) {
+            return redirect()->back()->with('error','Email is not found!');
+        }
+
+        $token = hash('sha256',time());
+        $user->token = $token;
+        $user->update();
+
+        $reset_link = route('reset_password',['token'=>$token,'email'=>$request->email]);
+        $subject = "Password Reset";
+        $message = "To reset password, please click on the link below:<br>";
+        $message .= "<a href='".$reset_link."'>Click Here</a>";
+
+        \Mail::to($request->email)->send(new Websitemail($subject,$message));
+
+        return redirect()->back()->with('success','We have sent a password reset link to your email');
+    }
+
+    public function reset_password($token,$email)
+    {
+        $user = User::where('email',$email)->where('token',$token)->first();
+        if(!$user) {
+            return redirect()->route('login')->with('error','Token or email is not correct!');
+        }
+        return view('front.reset_password', compact('token','email'));
+    }
+
+    public function reset_password_submit(Request $request, $token, $email)
+    {
+        $request->validate([
+            'password' => ['required'],
+            'retype_password' => ['required','same:password'],
+        ]);
+
+        $user = User::where('email',$request->email)->where('token',$request->token)->first();
+        $user->password = Hash::make($request->password);
+        $user->token = "";
+        $user->update();
+
+        return redirect()->route('login')->with('success','Password reset is successful. You can login now.');
+    }
+
 }

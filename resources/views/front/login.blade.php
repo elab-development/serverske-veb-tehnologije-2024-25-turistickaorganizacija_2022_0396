@@ -23,15 +23,15 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
                         <div class="login-form">
-                            <form action="" method="post">
+                            <form action="{{ route('login_submit') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="" class="form-label">Email adresa</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="email">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Lozinka</label>
-                                    <input type="password" class="form-control">
+                                    <input type="password" class="form-control" name="password">
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary bg-website">
