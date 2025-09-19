@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 use App\Mail\Websitemail;
 use Hash;
 use Auth;
+use App\Models\Slider;
 
 class FrontController extends Controller
 {
     public function home(){
-        return view('front.home');
+        $sliders = Slider::get();
+        return view('front.home',  compact('sliders'));
     }
     public function about(){
         return view('front.about');
