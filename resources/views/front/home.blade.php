@@ -33,40 +33,38 @@
     </div>
 </div>
 
-
-        <div class="special pt_70 pb_70">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="full-section">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="left-side">
-                                        <div class="inner">
-                                            <h3>Welcome to TripSummit</h3>
-                                            <p>
-                                                At TripSummit, our mission is to turn travel dreams into reality by providing personalized and memorable experiences. We leverage our expertise and trusted partners to ensure every trip is seamless and enjoyable.
-                                            </p>
-                                            <p>
-                                                We believe travel fosters personal growth and cultural understanding. Our goal is to help clients explore new destinations and connect with diverse cultures. We promote sustainable travel to positively impact communities and preserve our planet’s beauty.
-                                            </p>
-                                            <div class="button-style-1 mt_20">
-                                                <a href="">Read More</a>
-                                            </div>
-                                        </div>
+@if($welcome_item->status == 'Show')
+<div class="special pt_70 pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full-section">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="left-side">
+                                <div class="inner">
+                                    <h3>{{ $welcome_item->heading }}</h3>
+                                    {!! $welcome_item->description !!}
+                                    @if($welcome_item->button_text != '')
+                                    <div class="button-style-1 mt_20">
+                                        <a href="{{ $welcome_item->button_link }}">{{ $welcome_item->button_text }}</a>
                                     </div>
+                                    @endif
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="right-side" style="background-image: url(uploads/about-1.jpg);">
-                                        <a class="video-button" href="https://www.youtube.com/watch?v=S4DI3Bve_bQ"><span></span></a>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="right-side" style="background-image: url({{ asset('uploads/'.$welcome_item->photo) }});">
+                                <a class="video-button" href="https://www.youtube.com/watch?v={{ $welcome_item->video }}"><span></span></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+@endif
 
 
         <div class="destination pt_70 pb_70">
@@ -193,51 +191,30 @@
 
 
 
-        <div class="why-choose pt_70">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="inner pb_70">
-                            <div class="icon">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="text">
-                                <h2>Explore Destinations</h2>
-                                <p>
-                                    Discover amazing places to visit, from bustling cities to serene beaches, and plan your perfect adventure with our expert guides.
-                                </p>
-                            </div>
-                        </div>
+
+<div class="why-choose pt_70">
+    <div class="container">
+        <div class="row">
+            @foreach($features as $feature)
+            <div class="col-md-4">
+                <div class="inner pb_70">
+                    <div class="icon">
+                        <i class="{{ $feature->icon }}"></i>
                     </div>
-                    <div class="col-md-4">
-                        <div class="inner pb_70">
-                            <div class="icon">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <div class="text">
-                                <h2>Custom Travel Packages</h2>
-                                <p>
-                                    Create custom travel packages designed to your accommodations, activities & transportation for a smooth journey.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="inner pb_70">
-                            <div class="icon">
-                                <i class="fas fa-share-alt"></i>
-                            </div>
-                            <div class="text">
-                                <h2>Travel Deals & Discounts</h2>
-                                <p>
-                                    Take advantage of our exclusive travel deals and discounts, ensuring you get the best value for your dream vacation.
-                                </p>
-                            </div>
-                        </div>
+                    <div class="text">
+                        <h2>{{ $feature->heading }}</h2>
+                        <p>
+                            {!! $feature->description !!}
+                        </p>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
+    </div>
+</div>
+
+
 
 
 
@@ -408,45 +385,30 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="testimonial-carousel owl-carousel">
-                            <div class="item">
-                                <div class="photo">
-                                    <img src="uploads/t1.jpg" alt="" />
-                                </div>
-                                <div class="text">
-                                    <h4>Robert Krol</h4>
-                                    <p>CEO, ABC Company</p>
-                                </div>
-                                <div class="quote">
-                                    <i class="fas fa-quote-left"></i>
-                                </div>
-                                <div class="description">
-                                    <p>
-                                        Volunteering with this charity has been a transformative experience. Their unwavering dedication to helping those in need is truly inspiring. I'm proud to be part of their mission, witnessing the remarkable impact they make. I'm grateful for the opportunity to contribute to their efforts.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="photo">
-                                    <img src="uploads/t2.jpg" alt="" />
-                                </div>
-                                <div class="text">
-                                    <h4>Sal Harvey</h4>
-                                    <p>Director, DEF Company</p>
-                                </div>
-                                <div class="quote">
-                                    <i class="fas fa-quote-left"></i>
-                                </div>
-                                <div class="description">
-                                    <p>
-                                        As a long-time donor, I'm consistently impressed by this charity's transparency and life-changing impact. They provide real support to those in need, making a meaningful difference in various communities. I'm proud to be a part of their mission and will continue to support their efforts.
-                                    </p>
-                                </div>
-                            </div>
+            <div class="col-12">
+                <div class="testimonial-carousel owl-carousel">
+                    @foreach($testimonials as $testimonial)
+                    <div class="item">
+                        <div class="photo">
+                            <img src="{{ asset('uploads/'.$testimonial->photo) }}" alt="" />
+                        </div>
+                        <div class="text">
+                            <h4>{{ $testimonial->name }}</h4>
+                            <p>{{ $testimonial->designation }}</p>
+                        </div>
+                        <div class="quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="description">
+                            <p>
+                                {!! $testimonial->comment !!}
+                            </p>
                         </div>
                     </div>
+                    @endforeach
                 </div>
+            </div>
+        </div>
             </div>
         </div>
 

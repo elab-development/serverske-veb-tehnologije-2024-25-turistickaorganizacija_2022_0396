@@ -3,9 +3,31 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Front\FrontController;
-use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\AdminWelcomeItemController;
+use App\Http\Controllers\Admin\AdminFeatureController;
+use App\Http\Controllers\Admin\AdminCounterItemController;
+use App\Http\Controllers\Admin\AdminTestimonialController;
+use App\Http\Controllers\Admin\AdminTeamMemberController;
+use App\Http\Controllers\Admin\AdminFaqController;
+use App\Http\Controllers\Admin\AdminBlogCategoryController;
+use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminDestinationController;
+use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Admin\AdminAmenityController;
+use App\Http\Controllers\Admin\AdminTourController;
+use App\Http\Controllers\Admin\AdminReviewController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminSubscriberController;
+use App\Http\Controllers\Admin\AdminHomeItemController;
+use App\Http\Controllers\Admin\AdminAboutItemController;
+use App\Http\Controllers\Admin\AdminContactItemController;
+use App\Http\Controllers\Admin\AdminTermPrivacyItemController;
+use App\Http\Controllers\Admin\AdminSettingController;
+
+use App\Http\Controllers\Front\FrontController;
+
+use App\Http\Controllers\User\UserController;
 
 Route::get('/' ,[FrontController::class,'home'])->name('home');
 Route::get('/about' ,[FrontController::class,'about'])->name('about'); 
@@ -23,15 +45,46 @@ Route::get('/logout',[FrontController::class,'logout'])->name('logout');
 
 // Admin
 Route::middleware('admin')->prefix('admin')->group(function () {
+
+    // Dashboard Section
     Route::get('/dashboard',[AdminDashboardController::class,'dashboard'])->name('admin_dashboard');
+
+    // Profile Section
     Route::get('/profile',[AdminAuthController::class,'profile'])->name('admin_profile');
     Route::post('/profile',[AdminAuthController::class,'profile_submit'])->name('admin_profile_submit');
+    
+    // Slider Section
     Route::get('/slider/index',[AdminSliderController::class,'index'])->name('admin_slider_index');
     Route::get('/slider/create',[AdminSliderController::class,'create'])->name('admin_slider_create');
     Route::post('/slider/create',[AdminSliderController::class,'create_submit'])->name('admin_slider_create_submit');
     Route::get('/slider/edit/{id}',[AdminSliderController::class,'edit'])->name('admin_slider_edit');
     Route::post('/slider/edit/{id}',[AdminSliderController::class,'edit_submit'])->name('admin_slider_edit_submit');
     Route::get('/slider/delete/{id}',[AdminSliderController::class,'delete'])->name('admin_slider_delete');
+
+    // Welcome Section
+    Route::get('/welcome-item/index',[AdminWelcomeItemController::class,'index'])->name('admin_welcome_item_index');
+    Route::post('/welcome-item/update',[AdminWelcomeItemController::class,'update'])->name('admin_welcome_item_update');
+
+    // Feature Section
+    Route::get('/feature/index',[AdminFeatureController::class,'index'])->name('admin_feature_index');
+    Route::get('/feature/create',[AdminFeatureController::class,'create'])->name('admin_feature_create');
+    Route::post('/feature/create',[AdminFeatureController::class,'create_submit'])->name('admin_feature_create_submit');
+    Route::get('/feature/edit/{id}',[AdminFeatureController::class,'edit'])->name('admin_feature_edit');
+    Route::post('/feature/edit/{id}',[AdminFeatureController::class,'edit_submit'])->name('admin_feature_edit_submit');
+    Route::get('/feature/delete/{id}',[AdminFeatureController::class,'delete'])->name('admin_feature_delete');
+
+    // Counter Section
+    Route::get('/counter-item/index',[AdminCounterItemController::class,'index'])->name('admin_counter_item_index');
+    Route::post('/counter-item/update',[AdminCounterItemController::class,'update'])->name('admin_counter_item_update');
+
+    // Testimonial Section
+    Route::get('/testimonial/index',[AdminTestimonialController::class,'index'])->name('admin_testimonial_index');
+    Route::get('/testimonial/create',[AdminTestimonialController::class,'create'])->name('admin_testimonial_create');
+    Route::post('/testimonial/create',[AdminTestimonialController::class,'create_submit'])->name('admin_testimonial_create_submit');
+    Route::get('/testimonial/edit/{id}',[AdminTestimonialController::class,'edit'])->name('admin_testimonial_edit');
+    Route::post('/testimonial/edit/{id}',[AdminTestimonialController::class,'edit_submit'])->name('admin_testimonial_edit_submit');
+    Route::get('/testimonial/delete/{id}',[AdminTestimonialController::class,'delete'])->name('admin_testimonial_delete');
+
 });
 
 //User

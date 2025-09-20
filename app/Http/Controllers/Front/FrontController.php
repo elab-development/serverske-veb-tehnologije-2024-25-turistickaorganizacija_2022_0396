@@ -2,22 +2,57 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Slider;
+use App\Models\WelcomeItem;
+use App\Models\Feature;
+use App\Models\CounterItem;
+use App\Models\Testimonial;
+use App\Models\TeamMember;
+use App\Models\Faq;
+use App\Models\BlogCategory;
+use App\Models\Post;
+use App\Models\Destination;
+use App\Models\DestinationPhoto;
+use App\Models\DestinationVideo;
+use App\Models\Package;
+use App\Models\PackageAmenity;
+use App\Models\PackageItinerary;
+use App\Models\PackagePhoto;
+use App\Models\PackageVideo;
+use App\Models\PackageFaq;
+use App\Models\Amenity;
+use App\Models\Tour;
+use App\Models\Booking;
+use App\Models\Review;
+use App\Models\Wishlist;
+use App\Models\Subscriber;
+use App\Models\HomeItem;
+use App\Models\AboutItem;
+use App\Models\ContactItem;
+use App\Models\TermPrivacyItem;
 use App\Mail\Websitemail;
 use Hash;
 use Auth;
-use App\Models\Slider;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class FrontController extends Controller
 {
     public function home(){
         $sliders = Slider::get();
-        return view('front.home',  compact('sliders'));
+        $welcome_item = WelcomeItem::where('id',1)->first();
+        $features = Feature::get();
+        $testimonials = Testimonial::get();
+        return view('front.home',  compact('sliders', 'welcome_item', 'features', 'testimonials'));
     }
     public function about(){
-        return view('front.about');
+        $welcome_item = WelcomeItem::where('id',1)->first();
+        $features = Feature::get();
+        $counter_item = CounterItem::where('id',1)->first();
+        return view('front.about', compact('welcome_item', 'features','counter_item'));
     }
     public function registration(){
         return view('front.registration');
