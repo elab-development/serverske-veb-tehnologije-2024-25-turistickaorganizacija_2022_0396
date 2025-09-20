@@ -182,5 +182,21 @@ class FrontController extends Controller
 
         return redirect()->route('login')->with('success','Password reset is successful. You can login now.');
     }
+    public function team_members()
+    {
+        $team_members = TeamMember::paginate(4);
+        return view('front.team_members', compact('team_members'));
+    }
+    public function team_member($slug)
+    {
+        $team_member = TeamMember::where('slug',$slug)->first();
+        return view('front.team_member', compact('team_member'));
+    } 
+    public function faq()
+    {
+        $faqs = Faq::get();
+        return view('front.faq', compact('faqs'));
+    }
+
 
 }

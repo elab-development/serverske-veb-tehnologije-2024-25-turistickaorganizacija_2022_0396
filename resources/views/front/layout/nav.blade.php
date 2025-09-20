@@ -28,10 +28,10 @@
                                     <a href="packages.html" class="nav-link">Paketi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="team-members.html" class="nav-link">Tim</a>
+                                    <a href="{{ route('team_members') }}" class="nav-link">Tim</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="faq.html" class="nav-link">FAQ</a>
+                                    <a href="{{ route('faq') }}" class="nav-link">FAQ</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="blog.html" class="nav-link">Blog</a>
