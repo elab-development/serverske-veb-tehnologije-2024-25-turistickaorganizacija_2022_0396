@@ -45,8 +45,10 @@ class FrontController extends Controller
         $sliders = Slider::get();
         $welcome_item = WelcomeItem::where('id',1)->first();
         $features = Feature::get();
-        $testimonials = Testimonial::get();
-        return view('front.home',  compact('sliders', 'welcome_item', 'features', 'testimonials'));
+        $testimonials = Testimonial::get(); 
+        $destinations = Destination::orderBy('view_count','desc')->get()->take(8);       
+        $posts = Post::with('blog_category')->orderBy('id','desc')->get()->take(3);
+        return view('front.home',  compact('sliders', 'welcome_item', 'features', 'testimonials', 'posts', 'destinations'));
     }
     public function about(){
         $welcome_item = WelcomeItem::where('id',1)->first();
@@ -197,6 +199,43 @@ class FrontController extends Controller
         $faqs = Faq::get();
         return view('front.faq', compact('faqs'));
     }
+    public function blog()
+    {
+        $posts = Post::with('blog_category')->orderBy('id','desc')->paginate(9);
+        return view('front.blog', compact('posts'));
+    }
 
+    public function post($slug)
+    {
+        $categories = BlogCategory::orderBy('name','asc')->get();
+        $post = Post::with('blog_category')->where('slug',$slug)->first();
+        $latest_posts = Post::with('blog_category')->orderBy('id','desc')->get()->take(5);
+        return view('front.post', compact('post', 'categories', 'latest_posts'));
+    }
+    public function category($slug)
+    {
+        $category = BlogCategory::where('slug',$slug)->first();
+        $posts = Post::with('blog_category')->where('blog_category_id',$category->id)->orderBy('id','desc')->paginate(9);
+        return view('front.category', compact('posts', 'category'));
+    }
+        public function destinations()
+    {
+        $destinations = Destination::orderBy('id','asc')->paginate(20);
+        return view('front.destinations', compact('destinations'));
+    }
+
+    public function destination($slug)
+    {
+        $destination = Destination::where('slug',$slug)->first();
+        $destination->view_count = $destination->view_count + 1;
+        $destination->update();
+
+        $destination_photos = DestinationPhoto::where('destination_id',$destination->id)->get();
+        $destination_videos = DestinationVideo::where('destination_id',$destination->id)->get();
+
+       // $packages = Package::with(['destination','package_amenities','package_itineraries','tours','reviews'])->orderBy('id','desc')->where('destination_id',$destination->id)->get()->take(3);
+        
+        return view('front.destination', compact('destination', 'destination_photos', 'destination_videos'));
+    }
 
 }

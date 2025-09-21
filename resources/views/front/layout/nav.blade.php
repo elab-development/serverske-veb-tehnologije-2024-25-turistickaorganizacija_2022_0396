@@ -22,7 +22,7 @@
                                     <a href="{{ route('about') }}" class="nav-link">O nama</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="destinations.html" class="nav-link">Destinacija</a>
+                                     <a href="{{ route('destinations') }}" class="nav-link">Destinacije</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="packages.html" class="nav-link">Paketi</a>
@@ -34,7 +34,7 @@
                                     <a href="{{ route('faq') }}" class="nav-link">FAQ</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="blog.html" class="nav-link">Blog</a>
+                                    <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Kontakt</a>

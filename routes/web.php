@@ -46,6 +46,11 @@ Route::post('/forget-password',[FrontController::class,'forget_password_submit']
 Route::get('/reset-password/{token}/{email}',[FrontController::class,'reset_password'])->name('reset_password');
 Route::post('/reset-password/{token}/{email}',[FrontController::class,'reset_password_submit'])->name('reset_password_submit');
 Route::get('/logout',[FrontController::class,'logout'])->name('logout');
+Route::get('/blog',[FrontController::class,'blog'])->name('blog');
+Route::get('/post/{slug}',[FrontController::class,'post'])->name('post');
+Route::get('/category/{slug}',[FrontController::class,'category'])->name('category');
+Route::get('/destinations',[FrontController::class,'destinations'])->name('destinations');
+Route::get('/destination/{slug}',[FrontController::class,'destination'])->name('destination');
 
 
 // Admin
@@ -113,6 +118,33 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/blog-category/edit/{id}',[AdminBlogCategoryController::class,'edit'])->name('admin_blog_category_edit');
     Route::post('/blog-category/edit/{id}',[AdminBlogCategoryController::class,'edit_submit'])->name('admin_blog_category_edit_submit');
     Route::get('/blog-category/delete/{id}',[AdminBlogCategoryController::class,'delete'])->name('admin_blog_category_delete');
+
+    // Post Section
+    Route::get('/post/index',[AdminPostController::class,'index'])->name('admin_post_index');
+    Route::get('/post/create',[AdminPostController::class,'create'])->name('admin_post_create');
+    Route::post('/post/create',[AdminPostController::class,'create_submit'])->name('admin_post_create_submit');
+    Route::get('/post/edit/{id}',[AdminPostController::class,'edit'])->name('admin_post_edit');
+    Route::post('/post/edit/{id}',[AdminPostController::class,'edit_submit'])->name('admin_post_edit_submit');
+    Route::get('/post/delete/{id}',[AdminPostController::class,'delete'])->name('admin_post_delete');
+
+   // Destination Section
+    Route::get('/destination/index',[AdminDestinationController::class,'index'])->name('admin_destination_index');
+    Route::get('/destination/create',[AdminDestinationController::class,'create'])->name('admin_destination_create');
+    Route::post('/destination/create',[AdminDestinationController::class,'create_submit'])->name('admin_destination_create_submit');
+    Route::get('/destination/edit/{id}',[AdminDestinationController::class,'edit'])->name('admin_destination_edit');
+    Route::post('/destination/edit/{id}',[AdminDestinationController::class,'edit_submit'])->name('admin_destination_edit_submit');
+    Route::get('/destination/delete/{id}',[AdminDestinationController::class,'delete'])->name('admin_destination_delete');
+
+    // Destination Photo Section
+    Route::get('/destination-photos/{id}',[AdminDestinationController::class,'destination_photos'])->name('admin_destination_photos');
+    Route::post('/destination-photo-submit/{id}',[AdminDestinationController::class,'destination_photo_submit'])->name('admin_destination_photo_submit');
+    Route::get('/destination-photo-delete/{id}',[AdminDestinationController::class,'destination_photo_delete'])->name('admin_destination_photo_delete');
+
+    // Destination Video Section
+    Route::get('/destination-videos/{id}',[AdminDestinationController::class,'destination_videos'])->name('admin_destination_videos');
+    Route::post('/destination-video-submit/{id}',[AdminDestinationController::class,'destination_video_submit'])->name('admin_destination_video_submit');
+    Route::get('/destination-video-delete/{id}',[AdminDestinationController::class,'destination_video_delete'])->name('admin_destination_video_delete');
+
 
 });
 

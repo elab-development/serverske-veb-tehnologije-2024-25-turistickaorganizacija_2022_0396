@@ -67,127 +67,47 @@
 @endif
 
 
-        <div class="destination pt_70 pb_70">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="heading">
-                            <h2>Popular Destinations</h2>
-                            <p>
-                                Explore our most popular travel destinations around the world
-                            </p>
-                        </div>
+
+<div class="destination pt_70 pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading">
+                    <h2>Popularne destinacije</h2>
+                    <p>
+                        Istražite naše najpopularnije destinacije širom sveta!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($destinations as $destination)
+            <div class="col-lg-3 col-md-6">
+                <div class="item pb_25">
+                    <div class="photo">
+                        <a href=""><img src="{{ asset('uploads/'.$destination->featured_photo) }}" alt=""></a>
+                    </div>
+                    <div class="text">
+                        <h2>
+                            <a href="">{{ $destination->name }}</a>
+                        </h2>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-1.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Australia</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-2.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Thailand</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-3.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Canada</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-4.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Dubai</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-5.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Portugal</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-6.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Morocco</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-7.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Venice</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_25">
-                            <div class="photo">
-                                <a href="destination.html"><img src="uploads/destination-8.jpg" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="destination.html">Paris</a>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="see-more">
-                            <div class="button-style-1 mt_20">
-                                <a href="destinations.html">View All Destinations</a>
-                            </div>
-                        </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="see-more">
+                    <div class="button-style-1 mt_20">
+                        <a href="{{ route('destinations') }}">View All Destinations</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
 
 
 
@@ -414,164 +334,51 @@
 
 
 
-        <div class="blog pt_70">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="heading">
-                            <h2>Latest News</h2>
+
+
+
+
+
+        
+        
+<div class="blog pt_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading">
+                    <h2>Blog</h2>
+                    <p>
+                        Nasi postovi
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($posts as $post)
+            <div class="col-lg-4 col-md-6">
+                <div class="item pb_70">
+                    <div class="photo">
+                        <img src="{{ asset('uploads/'.$post->photo) }}" alt="">
+                    </div>
+                    <div class="text">
+                        <h2>
+                            <a href="{{ route('destination',$destination->slug) }}">{{ $destination->name }}</a>
+                        </h2>
+                        <div class="short-des">
                             <p>
-                                Check out the latest news and updates from our blog post
+                                {!! $post->short_description !!}
                             </p>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="item pb_70">
-                            <div class="photo">
-                                <img src="uploads/blog-1.jpg" alt="" />
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="post.html">Partnering to create a strong community</a>
-                                </h2>
-                                <div class="short-des">
-                                    <p>
-                                        In order to create a good community we need to work together. We need to help, support each other and be respectful to each other.
-                                    </p>
-                                </div>
-                                <div class="button-style-2 mt_20">
-                                    <a href="post.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="item pb_70">
-                            <div class="photo">
-                                <img src="uploads/blog-2.jpg" alt="" />
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="post.html">Turning your emergency donation into instant aid</a>
-                                </h2>
-                                <div class="short-des">
-                                    <p>
-                                        We are working hard to help the poor people. We are trying to provide them food, shelter, clothing, education and medical assistance.
-                                    </p>
-                                </div>
-                                <div class="button-style-2 mt_20">
-                                    <a href="post.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="item pb_70">
-                            <div class="photo">
-                                <img src="uploads/blog-3.jpg" alt="" />
-                            </div>
-                            <div class="text">
-                                <h2>
-                                    <a href="post.html">Charity provides educational boost for children</a>
-                                </h2>
-                                <div class="short-des">
-                                    <p>
-                                        In order boost the education of the children, we are providing them books, pens, pencils, notebooks and other necessary things.
-                                    </p>
-                                </div>
-                                <div class="button-style-2 mt_20">
-                                    <a href="post.html">Read More</a>
-                                </div>
-                            </div>
+                        <div class="button-style-2 mt_20">
+                            <a href="{{ route('post',$post->slug) }}">Read More</a>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
-
-        
-        
-        <div class="footer pt_70">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_50">
-                            <h2 class="heading">Important Pages</h2>
-                            <ul class="useful-links">
-                                <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
-                                <li><a href="destinations.html"><i class="fas fa-angle-right"></i> Destinations</a></li>
-                                <li><a href="packages.html"><i class="fas fa-angle-right"></i> Packages</a></li>
-                                <li><a href="blog.html"><i class="fas fa-angle-right"></i> Blog</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_50">
-                            <h2 class="heading">Useful Links</h2>
-                            <ul class="useful-links">
-                                <li><a href="faq.html"><i class="fas fa-angle-right"></i> FAQ</a></li>
-                                <li><a href="terms.html"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
-                                <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
-                                <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_50">
-                            <h2 class="heading">Contact</h2>
-                            <div class="list-item">
-                                <div class="left">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="right">
-                                    34 Antiger Lane, USA, 12937
-                                </div>
-                            </div>
-                            <div class="list-item">
-                                <div class="left">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="right">contact@example.com</div>
-                            </div>
-                            <div class="list-item">
-                                <div class="left">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="right">122-222-1212</div>
-                            </div>
-                            <ul class="social">
-                                <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                                <li><a href=""><i class="fab fa-youtube"></i></a></li>
-                                <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item pb_50">
-                            <h2 class="heading">Newsletter</h2>
-                            <p>
-                                To get the latest news from our website, please
-                                subscribe us here:
-                            </p>
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <input type="text" name="" class="form-control" placeholder="Email Address">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-primary" value="Subscribe Now">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+</div>
 
 @endsection
 
