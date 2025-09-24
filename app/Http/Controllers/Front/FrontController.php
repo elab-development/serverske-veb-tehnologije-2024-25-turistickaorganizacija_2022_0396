@@ -284,11 +284,32 @@ class FrontController extends Controller
         $package_photos = PackagePhoto::where('package_id',$package->id)->get();
         $package_videos = PackageVideo::where('package_id',$package->id)->get();
         $package_faqs = PackageFaq::where('package_id',$package->id)->get();
-        $tours = Tour::where('package_id',$package->id)->get();
-        $reviews = Review::with('user')->where('package_id',$package->id)->get();
+       
 
 
-        return view('front.package', compact('package', 'package_amenities_include', 'package_amenities_exclude', 'package_itineraries', 'package_photos', 'package_videos', 'package_faqs', 'tours', 'reviews'));
+        return view('front.package', compact('package', 'package_amenities_include', 'package_amenities_exclude', 'package_itineraries', 'package_photos', 'package_videos', 'package_faqs'));
+    }
+    public function enquery_form_submit(Request $request, $id)
+    {
+        $package = Package::where('id',$id)->first();
+        $admin = Admin::where('id',1)->first();
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required',
+        ]);
+
+        $subject = "Enquery about: ".$package->name;
+        $message = "<b>Name:</b><br>".$request->name."<br><br>";
+        $message .= "<b>Email:</b><br>".$request->email."<br><br>";
+        $message .= "<b>Phone:</b><br>".$request->phone."<br><br>";
+        $message .= "<b>Message:</b><br>".nl2br($request->message)."<br>";
+
+        \Mail::to($admin->email)->send(new Websitemail($subject,$message));
+
+        return redirect()->back()->with('success', 'Your enquery is submitted successfully. We will contact you soon.');
     }
 
 

@@ -53,6 +53,7 @@ Route::get('/destinations',[FrontController::class,'destinations'])->name('desti
 Route::get('/destination/{slug}',[FrontController::class,'destination'])->name('destination');
 Route::get('/packages',[FrontController::class,'packages'])->name('packages');
 Route::get('/package/{slug}',[FrontController::class,'package'])->name('package');
+Route::post('/enquery/submit/{id}',[FrontController::class,'enquery_form_submit'])->name('enquery_form_submit');
 
 
 // Admin
@@ -173,6 +174,20 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::post('/package-itinerary-submit/{id}',[AdminPackageController::class,'package_itinerary_submit'])->name('admin_package_itinerary_submit');
     Route::get('/package-itinerary-delete/{id}',[AdminPackageController::class,'package_itinerary_delete'])->name('admin_package_itinerary_delete');
 
+    // Package Photos Section
+    Route::get('/package-photos/{id}',[AdminPackageController::class,'package_photos'])->name('admin_package_photos');
+    Route::post('/package-photo-submit/{id}',[AdminPackageController::class,'package_photo_submit'])->name('admin_package_photo_submit');
+    Route::get('/package-photo-delete/{id}',[AdminPackageController::class,'package_photo_delete'])->name('admin_package_photo_delete');
+
+    // Package Videos Section
+    Route::get('/package-videos/{id}',[AdminPackageController::class,'package_videos'])->name('admin_package_videos');
+    Route::post('/package-video-submit/{id}',[AdminPackageController::class,'package_video_submit'])->name('admin_package_video_submit');
+    Route::get('/package-video-delete/{id}',[AdminPackageController::class,'package_video_delete'])->name('admin_package_video_delete');
+
+    // Package FAQ Section
+    Route::get('/package-faqs/{id}',[AdminPackageController::class,'package_faqs'])->name('admin_package_faqs');
+    Route::post('/package-faq-submit/{id}',[AdminPackageController::class,'package_faq_submit'])->name('admin_package_faq_submit');
+    Route::get('/package-faq-delete/{id}',[AdminPackageController::class,'package_faq_delete'])->name('admin_package_faq_delete');
 
 });
 
