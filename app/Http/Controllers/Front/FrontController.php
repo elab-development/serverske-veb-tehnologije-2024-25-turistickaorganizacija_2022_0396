@@ -238,4 +238,49 @@ class FrontController extends Controller
         return view('front.destination', compact('destination', 'destination_photos', 'destination_videos'));
     }
 
+    public function packages(Request $request)
+    {
+        $form_name = $request->name;
+        $form_min_price = $request->min_price;
+        $form_max_price = $request->max_price;
+        $form_destination_id = $request->destination_id;
+        $form_review = $request->review;
+
+        $destinations = Destination::orderBy('name','asc')->get();
+        
+        $packages = Package::with(['destination','package_amenities','package_itineraries','tours','reviews'])->orderBy('id','desc');
+
+        if($request->name != '') {
+            $packages = $packages->where('name','like','%'.$request->name.'%');
+        }
+
+        if($request->min_price != '') {
+            $packages = $packages->where('price','>=',$request->min_price);
+        }
+
+        if($request->max_price != '') {
+            $packages = $packages->where('price','<=',$request->max_price);
+        }
+
+        if($request->destination_id != '') {
+            $packages = $packages->where('destination_id',$request->destination_id);
+        }
+
+        if($request->review != 'all' && $request->review != null) {
+            $packages = $packages->whereRaw('total_score/total_rating = ?', [$request->review]);
+        }
+
+        $packages = $packages->paginate(6);
+
+        return view('front.packages', compact('destinations', 'packages', 'form_name', 'form_min_price', 'form_max_price', 'form_destination_id', 'form_review'));
+    }
+     public function package($slug)
+    {
+        $package = Package::with('destination')->where('slug',$slug)->first();
+       
+
+
+        return view('front.package', compact('package'));
+    }
+
 }

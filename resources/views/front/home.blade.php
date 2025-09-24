@@ -89,7 +89,7 @@
                     </div>
                     <div class="text">
                         <h2>
-                            <a href="">{{ $destination->name }}</a>
+                           <a href="{{ route('destination',$destination->slug) }}">{{ $destination->name }}</a>
                         </h2>
                     </div>
                 </div>
@@ -362,7 +362,7 @@
                     </div>
                     <div class="text">
                         <h2>
-                            <a href="{{ route('destination',$destination->slug) }}">{{ $destination->name }}</a>
+                            <a href="{{ route('post',$post->slug) }}">{{ $post->title }}</a>
                         </h2>
                         <div class="short-des">
                             <p>

@@ -51,6 +51,8 @@ Route::get('/post/{slug}',[FrontController::class,'post'])->name('post');
 Route::get('/category/{slug}',[FrontController::class,'category'])->name('category');
 Route::get('/destinations',[FrontController::class,'destinations'])->name('destinations');
 Route::get('/destination/{slug}',[FrontController::class,'destination'])->name('destination');
+Route::get('/packages',[FrontController::class,'packages'])->name('packages');
+Route::get('/package/{slug}',[FrontController::class,'package'])->name('package');
 
 
 // Admin
@@ -145,6 +147,13 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::post('/destination-video-submit/{id}',[AdminDestinationController::class,'destination_video_submit'])->name('admin_destination_video_submit');
     Route::get('/destination-video-delete/{id}',[AdminDestinationController::class,'destination_video_delete'])->name('admin_destination_video_delete');
 
+    // Package Section
+    Route::get('/package/index',[AdminPackageController::class,'index'])->name('admin_package_index');
+    Route::get('/package/create',[AdminPackageController::class,'create'])->name('admin_package_create');
+    Route::post('/package/create',[AdminPackageController::class,'create_submit'])->name('admin_package_create_submit');
+    Route::get('/package/edit/{id}',[AdminPackageController::class,'edit'])->name('admin_package_edit');
+    Route::post('/package/edit/{id}',[AdminPackageController::class,'edit_submit'])->name('admin_package_edit_submit');
+    Route::get('/package/delete/{id}',[AdminPackageController::class,'delete'])->name('admin_package_delete');
 
 });
 

@@ -18,6 +18,8 @@
             <li class="{{ Request::is('admin/team-member/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_team_member_index') }}"><i class="fas fa-hand-point-right"></i> <span>Članovi tima</span></a></li>
             <li class="{{ Request::is('admin/faq/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faq_index') }}"><i class="fas fa-hand-point-right"></i> <span>FAQ</span></a></li>
             <li class="{{ Request::is('admin/destination/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_destination_index') }}"><i class="fas fa-hand-point-right"></i> <span>Destinacije</span></a></li>
+            <li class="{{ Request::is('admin/package/*')||Request::is('admin/package-itineraries/*')||Request::is('admin/package-itinerary-*')||Request::is('admin/package-amenities/*')||Request::is('admin/package-amenity-*')||Request::is('admin/package-photos/*')||Request::is('admin/package-photo-*')||Request::is('admin/package-videos/*')||Request::is('admin/package-video-*')||Request::is('admin/package-faqs/*')||Request::is('admin/package-faq-*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_package_index') }}"><i class="fas fa-hand-point-right"></i> <span>Paketi</span></a></li>
+
 
             <li class="nav-item dropdown {{ Request::is('admin/blog-category/*')||Request::is('admin/post/*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Blog Section</span></a>
