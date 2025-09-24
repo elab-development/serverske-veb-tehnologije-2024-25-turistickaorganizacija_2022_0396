@@ -34,7 +34,15 @@
                                                 <img src="{{ asset('uploads/'.$package->featured_photo) }}" alt="" class="w_200">
                                             </td>
                                             <td>{{ $package->name }}</td>
-                                            
+                                                <div>
+                                                    <a href="{{ route('admin_package_amenities',$package->id) }}" class="btn btn-success mb-2">Amenities</a>
+                                                    <a href="{{ route('admin_package_itineraries',$package->id) }}" class="btn btn-success mb-2">Itinerary</a>
+                                                    <a href="{{ route('admin_package_faqs',$package->id) }}" class="btn btn-success mb-2">FAQ</a>
+                                                </div>
+                                                <div>
+                                                    <a href="{{ route('admin_package_photos',$package->id) }}" class="btn btn-success mb-2">Photo Gallery</a>
+                                                    <a href="{{ route('admin_package_videos',$package->id) }}" class="btn btn-success mb-2">Video Gallery</a>
+                                                </div>
                                             
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_package_edit',$package->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>

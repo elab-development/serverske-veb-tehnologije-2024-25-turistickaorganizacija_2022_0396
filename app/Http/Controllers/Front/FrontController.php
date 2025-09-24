@@ -274,13 +274,22 @@ class FrontController extends Controller
 
         return view('front.packages', compact('destinations', 'packages', 'form_name', 'form_min_price', 'form_max_price', 'form_destination_id', 'form_review'));
     }
-     public function package($slug)
+
+    public function package($slug)
     {
         $package = Package::with('destination')->where('slug',$slug)->first();
-       
+        $package_amenities_include = PackageAmenity::with('amenity')->where('package_id',$package->id)->where('type','Include')->get();
+        $package_amenities_exclude = PackageAmenity::with('amenity')->where('package_id',$package->id)->where('type','Exclude')->get();
+        $package_itineraries = PackageItinerary::where('package_id',$package->id)->get();
+        $package_photos = PackagePhoto::where('package_id',$package->id)->get();
+        $package_videos = PackageVideo::where('package_id',$package->id)->get();
+        $package_faqs = PackageFaq::where('package_id',$package->id)->get();
+        $tours = Tour::where('package_id',$package->id)->get();
+        $reviews = Review::with('user')->where('package_id',$package->id)->get();
 
 
-        return view('front.package', compact('package'));
+        return view('front.package', compact('package', 'package_amenities_include', 'package_amenities_exclude', 'package_itineraries', 'package_photos', 'package_videos', 'package_faqs', 'tours', 'reviews'));
     }
+
 
 }

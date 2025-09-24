@@ -155,6 +155,25 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::post('/package/edit/{id}',[AdminPackageController::class,'edit_submit'])->name('admin_package_edit_submit');
     Route::get('/package/delete/{id}',[AdminPackageController::class,'delete'])->name('admin_package_delete');
 
+    // Amenity Section
+    Route::get('/amenity/index',[AdminAmenityController::class,'index'])->name('admin_amenity_index');
+    Route::get('/amenity/create',[AdminAmenityController::class,'create'])->name('admin_amenity_create');
+    Route::post('/amenity/create',[AdminAmenityController::class,'create_submit'])->name('admin_amenity_create_submit');
+    Route::get('/amenity/edit/{id}',[AdminAmenityController::class,'edit'])->name('admin_amenity_edit');
+    Route::post('/amenity/edit/{id}',[AdminAmenityController::class,'edit_submit'])->name('admin_amenity_edit_submit');
+    Route::get('/amenity/delete/{id}',[AdminAmenityController::class,'delete'])->name('admin_amenity_delete');
+
+    // Package Amenity Section
+    Route::get('/package-amenities/{id}',[AdminPackageController::class,'package_amenities'])->name('admin_package_amenities');
+    Route::post('/package-amenity-submit/{id}',[AdminPackageController::class,'package_amenity_submit'])->name('admin_package_amenity_submit');
+    Route::get('/package-amenity-delete/{id}',[AdminPackageController::class,'package_amenity_delete'])->name('admin_package_amenity_delete');
+
+    // Package Itinerary Section
+    Route::get('/package-itineraries/{id}',[AdminPackageController::class,'package_itineraries'])->name('admin_package_itineraries');
+    Route::post('/package-itinerary-submit/{id}',[AdminPackageController::class,'package_itinerary_submit'])->name('admin_package_itinerary_submit');
+    Route::get('/package-itinerary-delete/{id}',[AdminPackageController::class,'package_itinerary_delete'])->name('admin_package_itinerary_delete');
+
+
 });
 
 //User
