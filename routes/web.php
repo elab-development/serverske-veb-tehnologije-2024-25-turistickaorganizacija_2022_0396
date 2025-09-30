@@ -55,6 +55,15 @@ Route::get('/packages',[FrontController::class,'packages'])->name('packages');
 Route::get('/package/{slug}',[FrontController::class,'package'])->name('package');
 Route::post('/enquery/submit/{id}',[FrontController::class,'enquery_form_submit'])->name('enquery_form_submit');
 
+// Payment
+Route::post('/payment',[FrontController::class,'payment'])->name('payment');
+
+Route::get('/paypal/success', [FrontController::class, 'paypal_success'])->name('paypal_success');
+Route::get('/paypal/cancel', [FrontController::class, 'paypal_cancel'])->name('paypal_cancel');
+
+Route::get('/stripe/success', [FrontController::class, 'stripe_success'])->name('stripe_success');
+Route::get('/stripe/cancel', [FrontController::class, 'stripe_cancel'])->name('stripe_cancel');
+
 
 // Admin
 Route::middleware('admin')->prefix('admin')->group(function () {
@@ -188,6 +197,26 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/package-faqs/{id}',[AdminPackageController::class,'package_faqs'])->name('admin_package_faqs');
     Route::post('/package-faq-submit/{id}',[AdminPackageController::class,'package_faq_submit'])->name('admin_package_faq_submit');
     Route::get('/package-faq-delete/{id}',[AdminPackageController::class,'package_faq_delete'])->name('admin_package_faq_delete');
+
+    // Amenity Section
+    Route::get('/amenity/index',[AdminAmenityController::class,'index'])->name('admin_amenity_index');
+    Route::get('/amenity/create',[AdminAmenityController::class,'create'])->name('admin_amenity_create');
+    Route::post('/amenity/create',[AdminAmenityController::class,'create_submit'])->name('admin_amenity_create_submit');
+    Route::get('/amenity/edit/{id}',[AdminAmenityController::class,'edit'])->name('admin_amenity_edit');
+    Route::post('/amenity/edit/{id}',[AdminAmenityController::class,'edit_submit'])->name('admin_amenity_edit_submit');
+    Route::get('/amenity/delete/{id}',[AdminAmenityController::class,'delete'])->name('admin_amenity_delete');
+
+    // Tour Section
+    Route::get('/tour/index',[AdminTourController::class,'index'])->name('admin_tour_index');
+    Route::get('/tour/create',[AdminTourController::class,'create'])->name('admin_tour_create');
+    Route::post('/tour/create',[AdminTourController::class,'create_submit'])->name('admin_tour_create_submit');
+    Route::get('/tour/edit/{id}',[AdminTourController::class,'edit'])->name('admin_tour_edit');
+    Route::post('/tour/edit/{id}',[AdminTourController::class,'edit_submit'])->name('admin_tour_edit_submit');
+    Route::get('/tour/delete/{id}',[AdminTourController::class,'delete'])->name('admin_tour_delete');
+    Route::get('/tour/booking/{tour_id}/{package_id}',[AdminTourController::class,'tour_booking'])->name('admin_tour_booking');
+    Route::get('/tour/booking-delete/{id}',[AdminTourController::class,'tour_booking_delete'])->name('admin_tour_booking_delete');
+    Route::get('/tour/booking-approve/{id}',[AdminTourController::class,'tour_booking_approve'])->name('admin_tour_booking_approve');
+    Route::get('/tour/invoice/{invoice_no}',[AdminTourController::class,'tour_invoice'])->name('admin_tour_invoice');
 
 });
 

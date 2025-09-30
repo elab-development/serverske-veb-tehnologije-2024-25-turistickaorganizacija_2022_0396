@@ -242,7 +242,120 @@
                         </div>
 
 
-                   
+                        <div class="tab-pane fade" id="tab-6-pane" role="tabpanel" aria-labelledby="tab-6" tabindex="0">
+                            <!-- Review -->
+                            <div class="review-package">
+
+                                <h2>Reviews ({{ $reviews->count() }})</h2>
+
+                                @forelse($reviews as $item)
+                                <div class="review-package-section">
+                                    <div class="review-package-box d-flex justify-content-start">
+                                        <div class="left">
+                                            @if($item->user->photo == '')
+                                            <img src="{{ asset('uploads/default.png') }}" alt="">
+                                            @else
+                                            <img src="{{ asset('uploads/'.$item->user->photo) }}" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="right">
+                                            <div class="name">{{ $item->user->name }}</div>
+                                            <div class="date">{{ $item->created_at->format('Y-m-d') }}</div>
+                                            <div class="review mb-2">
+                                                <div class="set">
+                                                    @for($i=1; $i<=5; $i++)
+                                                        @if($i <= $item->rating)
+                                                            <i class="fas fa-star"></i>
+                                                        @else
+                                                            <i class="far fa-star"></i>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                {!! $item->comment !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                <div class="alert alert-danger">
+                                    No Review Found.
+                                </div>
+                                @endforelse
+
+
+                                <div class="mt_40"></div>
+
+                                <h2>Leave Your Review</h2>
+
+                                @if(Auth::guard('web')->check())
+                                    @php
+                                        $review_possible = App\Models\Booking::where('package_id',$package->id)->where('user_id',Auth::guard('web')->user()->id)->where('payment_status','Completed')->count();
+                                    @endphp
+
+                                    @if($review_possible > 0)
+
+                                        @php
+                                        App\Models\Review::where('package_id',$package->id)->where('user_id',Auth::guard('web')->user()->id)->count() > 0 ? $reviewed = true : $reviewed = false;
+                                        @endphp
+
+                                        @if($reviewed == false)
+                                            <form action="{{ route('review_submit') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="package_id" value="{{ $package->id }}">
+                                                <div class="mb-3">
+                                                    <div class="give-review-auto-select">
+                                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                                                    </div>
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                                            const stars = document.querySelectorAll('.star-rating label');
+                                                            stars.forEach(star => {
+                                                                star.addEventListener('click', function() {
+                                                                    stars.forEach(s => s.style.color = '#ccc');
+                                                                    this.style.color = '#f5b301';
+                                                                    let previousStar = this.previousElementSibling;
+                                                                    while(previousStar) {
+                                                                        if (previousStar.tagName === 'LABEL') {
+                                                                            previousStar.style.color = '#f5b301';
+                                                                        }
+                                                                        previousStar = previousStar.previousElementSibling;
+                                                                    }
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        @else
+                                            <div class="alert alert-danger">
+                                                You have already given review.
+                                            </div>
+                                        @endif
+                                    @else
+                                        <div class="alert alert-danger">
+                                            You have to book this package to give review.
+                                        </div>
+                                    @endif
+
+
+                                @else
+                                    <a href="{{ route('login') }}" class="text-danger text-decoration-underline">Login to Review</a>
+                                @endif
+                            </div>
+                            <!-- // Review -->
+                        </div>
 
 
 
@@ -275,7 +388,139 @@
                         </div>
 
 
-                        
+                        <div class="tab-pane fade" id="tab-8-pane" role="tabpanel" aria-labelledby="tab-8" tabindex="0">
+                            <!-- Booking -->
+                            @if($tours->count() > 0)
+                            <form action="{{ route('payment') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="package_id" value="{{ $package->id }}">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        @php $i=0; @endphp
+                                        @foreach($tours as $item)
+                                        @if($item->booking_end_date < date('Y-m-d'))
+                                            @continue
+                                        @endif
+                                        @php 
+                                        $i++;
+                                        $total_booked_seats = 0;
+                                        $all_data = App\Models\Booking::where('tour_id',$item->id)->where('package_id',$package->id)->get();
+                                        foreach($all_data as $data) {
+                                            $total_booked_seats += $data->total_person;
+                                        }
+                                        
+                                        if($item->total_seat == '-1') {
+                                            $remaining_seats = 'Unlimited';
+                                        } else {
+                                            $remaining_seats = $item->total_seat - $total_booked_seats;
+                                        }
+                                        
+
+                                        @endphp
+                                        <h2 class="mt_30">
+                                            <input type="radio" name="tour_id" value="{{ $item->id }}" @if($i == 1) checked @endif>
+                                            Tour {{ $i }}
+                                        </h2>
+                                        <div class="summary">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <td><b>Tour Start Date</b></td>
+                                                        <td>{{ $item->tour_start_date }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Tour End Date</b></td>
+                                                        <td>{{ $item->tour_end_date }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Booking End Date</b></td>
+                                                        <td class="text-danger">{{ $item->booking_end_date }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Total Seat</b></td>
+                                                        <td>
+                                                            @if($item->total_seat == -1)
+                                                            Unlimited
+                                                            @else
+                                                            {{ $item->total_seat }}
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Booked Seat</b></td>
+                                                        <td>{{ $total_booked_seats }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Remaining Seat</b></td>
+                                                        <td>{{ $remaining_seats }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h2 class="mt_30">Payment</h2>
+                                        <div class="summary">
+                                            
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td>
+                                                                <input type="hidden" name="ticket_price" id="ticketPrice" value="{{ $package->price }}">
+                                                                <label for=""><b>Number of Persons</b></label>
+                                                                <input type="number" min="1" max="100" name="total_person" class="form-control" value="1" id="numPersons" oninput="calculateTotal()">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label for=""><b>Total</b></label>
+                                                                <input type="text" name="" class="form-control" id="totalAmount" value="${{ $package->price }}" disabled>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label for=""><b>Select Payment Method</b></label>
+                                                                <select name="payment_method" class="form-select">
+                                                                    <option value="PayPal">PayPal</option>
+                                                                    <option value="Stripe">Stripe</option>
+                                                                    <option value="Cash">Cash</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @if(Auth::guard('web')->check())
+                                                                <button type="submit" class="btn btn-primary">Pay Now</button>
+                                                                @else
+                                                                <a href="{{ route('login') }}" class="btn btn-primary">Login to Book</a>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            
+                                        </div>
+                                        <script>
+                                            function calculateTotal() {
+                                                const ticketPrice = document.getElementById('ticketPrice').value;
+                                                const numPersons = document.getElementById('numPersons').value;
+                                                const totalAmount = ticketPrice * numPersons;
+                                                document.getElementById('totalAmount').value = `$${totalAmount}`;
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+                            </form>
+                            @else
+                            <div class="alert alert-danger">
+                                No Tour Available.
+                            </div>
+                            @endif
+                            <!-- // Booking -->
+                        </div>
+
+                    </div>
                     
                 </div>
                     

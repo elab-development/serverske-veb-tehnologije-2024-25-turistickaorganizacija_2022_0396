@@ -52,6 +52,11 @@
                     </div>
                     <div class="col-md-6 right-side">
                         <ul class="right">
+                            @if(Auth::guard('web')->check())
+                            <li class="menu">
+                                <a href="{{ route('user_dashboard') }}"><i class="fas fa-sign-in-alt"></i> Početna</a>
+                            </li>
+                            @else
                             <li class="menu">
                                 <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
                             </li>
