@@ -220,9 +220,17 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
 });
 
-//User
-Route::middleware('auth')->group(function () {    
-    Route::get('/user/dashboard',[UserController::class,'dashboard'])->name('user_dashboard');
+// User
+Route::middleware('auth')->prefix('user')->group(function () {    
+    Route::get('/dashboard',[UserController::class,'dashboard'])->name('user_dashboard');
+    Route::get('/booking',[UserController::class,'booking'])->name('user_booking');
+    Route::get('/invoice/{invoice_no}',[UserController::class,'invoice'])->name('user_invoice');
+    Route::get('/review',[UserController::class,'review'])->name('user_review');
+    Route::get('/wishlist',[UserController::class,'wishlist'])->name('user_wishlist');
+    Route::get('/wishlist-delete/{id}',[UserController::class,'wishlist_delete'])->name('user_wishlist_delete');
+    Route::get('/message',[UserController::class,'message'])->name('user_message');
+    Route::get('/message-start',[UserController::class,'message_start'])->name('user_message_start');
+    Route::post('/message-submit',[UserController::class,'message_submit'])->name('user_message_submit');
     Route::get('/profile',[UserController::class,'profile'])->name('user_profile');
     Route::post('/profile',[UserController::class,'profile_submit'])->name('user_profile_submit');
 });

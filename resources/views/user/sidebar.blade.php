@@ -1,23 +1,23 @@
 <ul class="list-group list-group-flush">
-                                <li class="list-group-item active {{ Route::is('user_dashboard') ? 'active' : '' }}">
-                                    <a href="{{ route('user_dashboard') }}">Kontrolna tabla</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="user-order.html">Porudžbine</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="user-wishlist.html">Lista želja</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="user-message.html">Poruke</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="user-review.html">Ocene</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{ route('user_profile') }}">Izmeni profil</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{ route('logout') }}">Izloguj se</a>
-                                </li>
-                            </ul>
+    <li class="list-group-item {{ Route::is('user_dashboard') ? 'active' : '' }}">
+        <a href="{{ route('user_dashboard') }}">Dashboard</a>
+    </li>
+    <li class="list-group-item {{ Route::is('user_booking')||Request::is('user/invoice/*') ? 'active' : '' }}">
+        <a href="{{ route('user_booking') }}">Booking</a>
+    </li>
+    <li class="list-group-item {{ Route::is('user_wishlist') ? 'active' : '' }}">
+        <a href="{{ route('user_wishlist') }}">Wishlist</a>
+    </li>
+    <li class="list-group-item {{ Route::is('user_message') ? 'active' : '' }}">
+        <a href="{{ route('user_message') }}">Message</a>
+    </li>
+    <li class="list-group-item {{ Route::is('user_review') ? 'active' : '' }}">
+        <a href="{{ route('user_review') }}">Reviews</a>
+    </li>
+    <li class="list-group-item {{ Route::is('user_profile') ? 'active' : '' }}">
+        <a href="{{ route('user_profile') }}">Edit Profile</a>
+    </li>
+    <li class="list-group-item">
+        <a href="{{ route('logout') }}">Logout</a>
+    </li>
+</ul>
