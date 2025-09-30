@@ -46,28 +46,30 @@
                 <div class="row">
                     <div class="col-md-6 left-side">
                         <ul>
-                            <li class="phone-text"><i class="fas fa-phone"></i> +11 110011</li>
-                            <li class="email-text"><i class="fas fa-envelope"></i> ilovenyc@gmail.com</li>
+                            <li class="phone-text"><i class="fas fa-phone"></i>nesto broj </li>
+                            <li class="email-text"><i class="fas fa-envelope"></i> nesto</li>
                         </ul>
                     </div>
                     <div class="col-md-6 right-side">
                         <ul class="right">
                             @if(Auth::guard('web')->check())
                             <li class="menu">
-                                <a href="{{ route('user_dashboard') }}"><i class="fas fa-sign-in-alt"></i> Početna</a>
+                                <a href="{{ route('user_dashboard') }}"><i class="fas fa-sign-in-alt"></i> Dashboard</a>
                             </li>
                             @else
                             <li class="menu">
                                 <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
                             </li>
                             <li class="menu">
-                                <a href="{{ route('registration') }}"><i class="fas fa-user"></i> Registuj se</a>
+                                <a href="{{ route('registration') }}"><i class="fas fa-user"></i> Sign Up</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+
 
      @include('front.layout.nav')
      @yield('main_content')
