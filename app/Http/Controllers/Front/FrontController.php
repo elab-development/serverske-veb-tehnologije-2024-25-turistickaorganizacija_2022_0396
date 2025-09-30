@@ -285,11 +285,11 @@ class FrontController extends Controller
         $package_videos = PackageVideo::where('package_id',$package->id)->get();
         $package_faqs = PackageFaq::where('package_id',$package->id)->get();
         $tours = Tour::where('package_id',$package->id)->get();
+        $reviews = Review::with('user')->where('package_id',$package->id)->get();
 
 
-        return view('front.package', compact('package', 'package_amenities_include', 'package_amenities_exclude', 'package_itineraries', 'package_photos', 'package_videos', 'package_faqs', 'tours'));
+        return view('front.package', compact('package', 'package_amenities_include', 'package_amenities_exclude', 'package_itineraries', 'package_photos', 'package_videos', 'package_faqs', 'tours', 'reviews'));
     }
-
  public function payment(Request $request)
     {
         //dd($request->all());
@@ -508,5 +508,27 @@ class FrontController extends Controller
         return redirect()->back()->with('success', 'Your enquery is submitted successfully. We will contact you soon.');
     }
 
+     public function review_submit(Request $request)
+    {
+        //dd($request->all());
+        $request->validate([
+            'rating' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $obj = new Review;
+        $obj->user_id = Auth::guard('web')->user()->id;
+        $obj->package_id = $request->package_id;
+        $obj->rating = $request->rating;
+        $obj->comment = $request->comment;
+        $obj->save();
+
+        $package_data = Package::where('id',$request->package_id)->first();
+        $package_data->total_rating = $package_data->total_rating + 1;
+        $package_data->total_score = $package_data->total_score + $request->rating;
+        $package_data->update();
+
+        return redirect()->back()->with('success', 'Uspešno ste ostavili recenziju!');
+    }
 
 }

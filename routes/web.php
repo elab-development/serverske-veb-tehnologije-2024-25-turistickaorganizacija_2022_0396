@@ -54,6 +54,7 @@ Route::get('/destination/{slug}',[FrontController::class,'destination'])->name('
 Route::get('/packages',[FrontController::class,'packages'])->name('packages');
 Route::get('/package/{slug}',[FrontController::class,'package'])->name('package');
 Route::post('/enquery/submit/{id}',[FrontController::class,'enquery_form_submit'])->name('enquery_form_submit');
+Route::post('/review/submit',[FrontController::class,'review_submit'])->name('review_submit');
 
 // Payment
 Route::post('/payment',[FrontController::class,'payment'])->name('payment');
@@ -217,6 +218,10 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/tour/booking-delete/{id}',[AdminTourController::class,'tour_booking_delete'])->name('admin_tour_booking_delete');
     Route::get('/tour/booking-approve/{id}',[AdminTourController::class,'tour_booking_approve'])->name('admin_tour_booking_approve');
     Route::get('/tour/invoice/{invoice_no}',[AdminTourController::class,'tour_invoice'])->name('admin_tour_invoice');
+
+    // Review Section
+    Route::get('/review/index',[AdminReviewController::class,'index'])->name('admin_review_index');
+    Route::get('/review/delete/{id}',[AdminReviewController::class,'delete'])->name('admin_review_delete');
 
 });
 

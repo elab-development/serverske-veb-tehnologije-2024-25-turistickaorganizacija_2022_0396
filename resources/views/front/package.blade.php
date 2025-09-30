@@ -24,7 +24,7 @@
                             @endif
                         @endfor
                     </div>
-                    <span>({{ $package_rating }} out of 5)</span>
+                    <span>({{ $package_rating }} od 5)</span>
                 </div>
                 @else
                 <div class="review">
@@ -242,7 +242,120 @@
                         </div>
 
 
+                        <div class="tab-pane fade" id="tab-6-pane" role="tabpanel" aria-labelledby="tab-6" tabindex="0">
+                            <!-- Review -->
+                            <div class="review-package">
 
+                                <h2>Recenzije ({{ $reviews->count() }})</h2>
+
+                                @forelse($reviews as $item)
+                                <div class="review-package-section">
+                                    <div class="review-package-box d-flex justify-content-start">
+                                        <div class="left">
+                                            @if($item->user->photo == '')
+                                            <img src="{{ asset('uploads/default.png') }}" alt="">
+                                            @else
+                                            <img src="{{ asset('uploads/'.$item->user->photo) }}" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="right">
+                                            <div class="name">{{ $item->user->name }}</div>
+                                            <div class="date">{{ $item->created_at->format('Y-m-d') }}</div>
+                                            <div class="review mb-2">
+                                                <div class="set">
+                                                    @for($i=1; $i<=5; $i++)
+                                                        @if($i <= $item->rating)
+                                                            <i class="fas fa-star"></i>
+                                                        @else
+                                                            <i class="far fa-star"></i>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                {!! $item->comment !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                <div class="alert alert-danger">
+                                    Nema recenzija.
+                                </div>
+                                @endforelse
+
+
+                                <div class="mt_40"></div>
+
+                                <h2>Leave Your Review</h2>
+
+                                @if(Auth::guard('web')->check())
+                                    @php
+                                        $review_possible = App\Models\Booking::where('package_id',$package->id)->where('user_id',Auth::guard('web')->user()->id)->where('payment_status','Completed')->count();
+                                    @endphp
+
+                                    @if($review_possible > 0)
+
+                                        @php
+                                        App\Models\Review::where('package_id',$package->id)->where('user_id',Auth::guard('web')->user()->id)->count() > 0 ? $reviewed = true : $reviewed = false;
+                                        @endphp
+
+                                        @if($reviewed == false)
+                                            <form action="{{ route('review_submit') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="package_id" value="{{ $package->id }}">
+                                                <div class="mb-3">
+                                                    <div class="give-review-auto-select">
+                                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                                                    </div>
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                                            const stars = document.querySelectorAll('.star-rating label');
+                                                            stars.forEach(star => {
+                                                                star.addEventListener('click', function() {
+                                                                    stars.forEach(s => s.style.color = '#ccc');
+                                                                    this.style.color = '#f5b301';
+                                                                    let previousStar = this.previousElementSibling;
+                                                                    while(previousStar) {
+                                                                        if (previousStar.tagName === 'LABEL') {
+                                                                            previousStar.style.color = '#f5b301';
+                                                                        }
+                                                                        previousStar = previousStar.previousElementSibling;
+                                                                    }
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        @else
+                                            <div class="alert alert-danger">
+                                                You have already given review.
+                                            </div>
+                                        @endif
+                                    @else
+                                        <div class="alert alert-danger">
+                                            You have to book this package to give review.
+                                        </div>
+                                    @endif
+
+
+                                @else
+                                    <a href="{{ route('login') }}" class="text-danger text-decoration-underline">Login to Review</a>
+                                @endif
+                            </div>
+                            <!-- // Review -->
+                        </div>
 
 
 
