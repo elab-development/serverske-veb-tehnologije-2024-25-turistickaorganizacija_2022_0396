@@ -56,6 +56,8 @@ Route::get('/package/{slug}',[FrontController::class,'package'])->name('package'
 Route::post('/enquery/submit/{id}',[FrontController::class,'enquery_form_submit'])->name('enquery_form_submit');
 Route::post('/review/submit',[FrontController::class,'review_submit'])->name('review_submit');
 Route::get('/wishlist/{package_id}',[FrontController::class,'wishlist'])->name('wishlist');
+Route::post('/subscriber_submit', [FrontController::class, 'subscriber_submit'])->name('subscriber_submit');
+Route::get('/subscriber_verify/{email}/{token}', [FrontController::class, 'subscriber_verify'])->name('subscriber_verify');
 
 // Payment
 Route::post('/payment',[FrontController::class,'payment'])->name('payment');
@@ -234,6 +236,12 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/message',[AdminUserController::class,'message'])->name('admin_message');
     Route::get('/message-detail/{id}',[AdminUserController::class,'message_detail'])->name('admin_message_detail');
     Route::post('/message-submit/{id}',[AdminUserController::class,'message_submit'])->name('admin_message_submit');
+
+    // Subscriber Section
+    Route::get('/subscribers',[AdminSubscriberController::class,'subscribers'])->name('admin_subscribers');
+    Route::get('/subscriber-send-email',[AdminSubscriberController::class,'send_email'])->name('admin_subscriber_send_email');
+    Route::post('/subscriber-send-email/submit',[AdminSubscriberController::class,'send_email_submit'])->name('admin_subscriber_send_email_submit');
+    Route::get('/subscriber/delete/{id}',[AdminSubscriberController::class,'subscriber_delete'])->name('admin_subscriber_delete');
 
 });
 

@@ -133,7 +133,7 @@
                                 To get the latest news from our website, please
                                 subscribe us here:
                             </p>
-                            <form action="" method="post">
+                            <form action="{{ route('subscriber_submit') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" name="email" class="form-control" placeholder="Email Address">
