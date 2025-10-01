@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>ILoveNYC</title>
+        <title>TripSummit</title>
 
+        <link rel="icon" type="image/png" href="{{ asset('uploads/favicon.jpg') }}">
 
         <!-- All CSS -->
         <link rel="stylesheet" href="{{ asset('dist-front/css/bootstrap.min.css') }}">
@@ -20,7 +20,6 @@
         <link rel="stylesheet" href="{{ asset('dist/css/iziToast.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/spacing.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('dist/css/iziToast.min.css') }}">
         
         <!-- All Javascripts -->
         <script src="{{ asset('dist-front/js/jquery-3.6.1.min.js') }}"></script>
@@ -33,7 +32,6 @@
         <script src="{{ asset('dist-front/js/jquery.waypoints.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/moment.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/counterup.min.js') }}"></script>
-        <script src="{{ asset('dist/js/iziToast.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/multi-countdown.js') }}"></script>
         <script src="{{ asset('dist-front/js/jquery.meanmenu.js') }}"></script>
         <script src="{{ asset('dist/js/iziToast.min.js') }}"></script>
@@ -46,8 +44,8 @@
                 <div class="row">
                     <div class="col-md-6 left-side">
                         <ul>
-                            <li class="phone-text"><i class="fas fa-phone"></i>nesto broj </li>
-                            <li class="email-text"><i class="fas fa-envelope"></i> nesto</li>
+                            <li class="phone-text"><i class="fas fa-phone"></i> broj telefona</li>
+                            <li class="email-text"><i class="fas fa-envelope"></i> mejl</li>
                         </ul>
                     </div>
                     <div class="col-md-6 right-side">
@@ -70,16 +68,92 @@
             </div>
         </div>
 
+        @include('front.layout.nav')
 
-     @include('front.layout.nav')
-     @yield('main_content')
+        @yield('main_content')
+        
+        <div class="footer pt_70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="item pb_50">
+                            <h2 class="heading">Important Pages</h2>
+                            <ul class="useful-links">
+                                <li><a href="{{ route('home') }}"><i class="fas fa-angle-right"></i> Home</a></li>
+                                <li><a href="{{ route('destinations') }}"><i class="fas fa-angle-right"></i> Destinations</a></li>
+                                <li><a href="{{ route('packages') }}"><i class="fas fa-angle-right"></i> Packages</a></li>
+                                <li><a href="{{ route('blog') }}"><i class="fas fa-angle-right"></i> Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="item pb_50">
+                            <h2 class="heading">Useful Links</h2>
+                            <ul class="useful-links">
+                                <li><a href="{{ route('faq') }}"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                                <li><a href=""><i class="fas fa-angle-right"></i> Terms of Use</a></li>
+                                <li><a href=""><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                                <li><a href=""><i class="fas fa-angle-right"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="item pb_50">
+                            <h2 class="heading">Contact</h2>
+                            <div class="list-item">
+                                <div class="left">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="right">
+                                    adresa
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="left">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="right">mejl</div>
+                            </div>
+                            <div class="list-item">
+                                <div class="left">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="right">brojtelefona</div>
+                            </div>
+
+                           
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="item pb_50">
+                            <h2 class="heading">Newsletter</h2>
+                            <p>
+                                To get the latest news from our website, please
+                                subscribe us here:
+                            </p>
+                            <form action="" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" name="email" class="form-control" placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="Subscribe Now">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="copyright">
-                            Copyright &copy; 2025, DVA. All Rights Reserved.
+                           copyright
                         </div>
                     </div>
                 </div>
@@ -90,10 +164,9 @@
             <i class="fas fa-angle-up"></i>
         </div>
 
-       
         <script src="{{ asset('dist-front/js/custom.js') }}"></script>
-     
-                @if($errors->any())
+
+        @if($errors->any())
             @foreach ($errors->all() as $error)
                 <script>
                     iziToast.show({
@@ -123,6 +196,5 @@
                 });
             </script>
         @endif
-
     </body>
 </html>

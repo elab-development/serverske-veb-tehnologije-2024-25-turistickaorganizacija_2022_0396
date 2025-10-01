@@ -48,7 +48,9 @@ class FrontController extends Controller
         $testimonials = Testimonial::get(); 
         $destinations = Destination::orderBy('view_count','desc')->get()->take(8);       
         $posts = Post::with('blog_category')->orderBy('id','desc')->get()->take(3);
-        return view('front.home',  compact('sliders', 'welcome_item', 'features', 'testimonials', 'posts', 'destinations'));
+        $packages = Package::with(['destination','package_amenities','package_itineraries','tours','reviews'])->orderBy('id','desc')->get()->take(3);
+
+        return view('front.home',  compact('sliders', 'welcome_item', 'features', 'testimonials', 'posts', 'destinations', 'packages'));
     }
     public function about(){
         $welcome_item = WelcomeItem::where('id',1)->first();
@@ -224,7 +226,7 @@ class FrontController extends Controller
         return view('front.destinations', compact('destinations'));
     }
 
-    public function destination($slug)
+   public function destination($slug)
     {
         $destination = Destination::where('slug',$slug)->first();
         $destination->view_count = $destination->view_count + 1;
@@ -233,9 +235,9 @@ class FrontController extends Controller
         $destination_photos = DestinationPhoto::where('destination_id',$destination->id)->get();
         $destination_videos = DestinationVideo::where('destination_id',$destination->id)->get();
 
-       // $packages = Package::with(['destination','package_amenities','package_itineraries','tours','reviews'])->orderBy('id','desc')->where('destination_id',$destination->id)->get()->take(3);
+        $packages = Package::with(['destination','package_amenities','package_itineraries','tours','reviews'])->orderBy('id','desc')->where('destination_id',$destination->id)->get()->take(3);
         
-        return view('front.destination', compact('destination', 'destination_photos', 'destination_videos'));
+        return view('front.destination', compact('destination', 'destination_photos', 'destination_videos', 'packages'));
     }
 
     public function packages(Request $request)

@@ -1,10 +1,8 @@
 @extends('front.layout.master')
 
 @section('main_content')
-@php
-$setting = App\Models\Setting::where('id',1)->first();
-@endphp
-<div class="page-top" style="background-image: url({{ asset('uploads/'.$setting->banner) }})">
+
+<div class="page-top" style="background-image: url({{ asset('uploads/banner.jpg') }})">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -158,9 +156,7 @@ $setting = App\Models\Setting::where('id',1)->first();
                         <div class="item pb_25">
                             <div class="photo">
                                 <a href="{{ route('package',$item->slug) }}"><img src="{{ asset('uploads/'.$item->featured_photo) }}" alt=""></a>
-                                <div class="wishlist">
-                                    <a href="{{ route('wishlist',$item->id) }}"><i class="far fa-heart"></i></a>
-                                </div>
+                                
                             </div>
                             <div class="text">
                                 <div class="price">
