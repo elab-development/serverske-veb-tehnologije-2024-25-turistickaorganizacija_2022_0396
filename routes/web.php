@@ -60,6 +60,8 @@ Route::post('/review/submit',[FrontController::class,'review_submit'])->name('re
 Route::get('/wishlist/{package_id}',[FrontController::class,'wishlist'])->name('wishlist');
 Route::post('/subscriber_submit', [FrontController::class, 'subscriber_submit'])->name('subscriber_submit');
 Route::get('/subscriber_verify/{email}/{token}', [FrontController::class, 'subscriber_verify'])->name('subscriber_verify');
+Route::get('/terms-of-use',[FrontController::class,'terms'])->name('terms');
+Route::get('/privacy-policy',[FrontController::class,'privacy'])->name('privacy');
 
 // Payment
 Route::post('/payment',[FrontController::class,'payment'])->name('payment');
@@ -256,6 +258,10 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     // Contact Item Section
     Route::get('/contact-item/index',[AdminContactItemController::class,'index'])->name('admin_contact_item_index');
     Route::post('/contact-item/update',[AdminContactItemController::class,'update'])->name('admin_contact_item_update');
+
+    // Term and Privacy Item Section
+    Route::get('/term-privacy-item/index',[AdminTermPrivacyItemController::class,'index'])->name('admin_term_privacy_item_index');
+    Route::post('/term-privacy-item/update',[AdminTermPrivacyItemController::class,'update'])->name('admin_term_privacy_item_update');
 
 });
 

@@ -85,6 +85,17 @@ class FrontController extends Controller
 
         return redirect()->back()->with('success', 'Your message is submitted successfully. We will contact you soon.');
     }
+    public function terms()
+    {
+        $term_privacy_item = TermPrivacyItem::where('id',1)->first();
+        return view('front.terms', compact('term_privacy_item'));
+    }
+
+    public function privacy()
+    {
+        $term_privacy_item = TermPrivacyItem::where('id',1)->first();
+        return view('front.privacy', compact('term_privacy_item'));
+    }
     public function registration(){
         return view('front.registration');
     }
