@@ -23,6 +23,14 @@
             <li class="{{ Request::is('admin/tour/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_tour_index') }}"><i class="fas fa-hand-point-right"></i> <span>Tour</span></a></li>
             <li class="{{ Request::is('admin/review/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_review_index') }}"><i class="fas fa-hand-point-right"></i> <span>Reviews</span></a></li>
 
+            <li class="nav-item dropdown {{ Request::is('admin/message')||Request::is('admin/users') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>User Section</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/users') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_users') }}"><i class="fas fa-angle-right"></i> User</a></li>
+                    <li class="{{ Request::is('admin/message') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_message') }}"><i class="fas fa-angle-right"></i> Message</a></li>
+                </ul>
+            </li>
+
 
             <li class="nav-item dropdown {{ Request::is('admin/blog-category/*')||Request::is('admin/post/*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Blog Section</span></a>
