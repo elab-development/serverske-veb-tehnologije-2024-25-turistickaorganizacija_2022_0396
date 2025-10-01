@@ -33,6 +33,8 @@ use App\Http\Controllers\User\UserController;
 // Pages
 Route::get('/' ,[FrontController::class,'home'])->name('home');
 Route::get('/about' ,[FrontController::class,'about'])->name('about'); 
+Route::get('/contact',[FrontController::class,'contact'])->name('contact');
+Route::post('/contact/submit',[FrontController::class,'contact_submit'])->name('contact_submit');
 Route::get('/team-members',[FrontController::class,'team_members'])->name('team_members');
 Route::get('/team-member/{slug}',[FrontController::class,'team_member'])->name('team_member');
 Route::get('/faq',[FrontController::class,'faq'])->name('faq');
@@ -242,6 +244,18 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/subscriber-send-email',[AdminSubscriberController::class,'send_email'])->name('admin_subscriber_send_email');
     Route::post('/subscriber-send-email/submit',[AdminSubscriberController::class,'send_email_submit'])->name('admin_subscriber_send_email_submit');
     Route::get('/subscriber/delete/{id}',[AdminSubscriberController::class,'subscriber_delete'])->name('admin_subscriber_delete');
+
+    // Home Item Section
+    Route::get('/home-item/index',[AdminHomeItemController::class,'index'])->name('admin_home_item_index');
+    Route::post('/home-item/update',[AdminHomeItemController::class,'update'])->name('admin_home_item_update');
+
+    // About Item Section
+    Route::get('/about-item/index',[AdminAboutItemController::class,'index'])->name('admin_about_item_index');
+    Route::post('/about-item/update',[AdminAboutItemController::class,'update'])->name('admin_about_item_update');
+
+    // Contact Item Section
+    Route::get('/contact-item/index',[AdminContactItemController::class,'index'])->name('admin_contact_item_index');
+    Route::post('/contact-item/update',[AdminContactItemController::class,'update'])->name('admin_contact_item_update');
 
 });
 

@@ -48,7 +48,9 @@
                 </ul>
             </li>
 
-
+            <li class="{{ Request::is('admin/contact-item/index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_contact_item_index') }}"><i class="fas fa-hand-point-right"></i> <span>Contact Page Item</span></a></li>
+            <li class="{{ Request::is('admin/about-item/index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_about_item_index') }}"><i class="fas fa-hand-point-right"></i> <span>About Page Item</span></a></li>
+            <li class="{{ Request::is('admin/home-item/index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_home_item_index') }}"><i class="fas fa-hand-point-right"></i> <span>Home Page Item</span></a></li>
             <li class="{{ Request::is('admin/profile') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_profile') }}"><i class="fas fa-hand-point-right"></i> <span>Profile</span></a></li>
 
         </ul>

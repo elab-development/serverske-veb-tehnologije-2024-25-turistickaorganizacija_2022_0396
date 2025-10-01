@@ -52,11 +52,38 @@ class FrontController extends Controller
 
         return view('front.home',  compact('sliders', 'welcome_item', 'features', 'testimonials', 'posts', 'destinations', 'packages'));
     }
-    public function about(){
+     public function about()
+    {
         $welcome_item = WelcomeItem::where('id',1)->first();
         $features = Feature::get();
         $counter_item = CounterItem::where('id',1)->first();
-        return view('front.about', compact('welcome_item', 'features','counter_item'));
+        $about_item = AboutItem::where('id',1)->first();
+        return view('front.about', compact('welcome_item', 'features', 'counter_item', 'about_item'));
+    }
+    public function contact()
+    {
+        $contact_item = ContactItem::where('id',1)->first();
+        return view('front.contact', compact('contact_item'));
+    }
+
+    public function contact_submit(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'comment' => 'required',
+        ]);
+
+        $admin = Admin::where('id',1)->first();
+
+        $subject = "Contact Form Message";
+        $message = "<b>Name:</b><br>".$request->name."<br><br>";
+        $message .= "<b>Email:</b><br>".$request->email."<br><br>";
+        $message .= "<b>Comment:</b><br>".nl2br($request->comment)."<br>";
+
+        \Mail::to($admin->email)->send(new Websitemail($subject,$message));
+
+        return redirect()->back()->with('success', 'Your message is submitted successfully. We will contact you soon.');
     }
     public function registration(){
         return view('front.registration');
