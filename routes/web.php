@@ -263,6 +263,10 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/term-privacy-item/index',[AdminTermPrivacyItemController::class,'index'])->name('admin_term_privacy_item_index');
     Route::post('/term-privacy-item/update',[AdminTermPrivacyItemController::class,'update'])->name('admin_term_privacy_item_update');
 
+    // Setting Section
+    Route::get('/setting/index',[AdminSettingController::class,'index'])->name('admin_setting_index');
+    Route::post('/setting/update',[AdminSettingController::class,'update'])->name('admin_setting_update');
+
 });
 
 // User

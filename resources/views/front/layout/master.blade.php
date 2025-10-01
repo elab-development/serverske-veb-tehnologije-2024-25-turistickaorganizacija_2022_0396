@@ -1,3 +1,6 @@
+@php
+$setting = App\Models\Setting::where('id',1)->first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>TripSummit</title>
 
-        <link rel="icon" type="image/png" href="{{ asset('uploads/favicon.jpg') }}">
+        <link rel="icon" type="image/png" href="{{ asset('uploads/'.$setting->favicon) }}">
 
         <!-- All CSS -->
         <link rel="stylesheet" href="{{ asset('dist-front/css/bootstrap.min.css') }}">
@@ -44,8 +47,8 @@
                 <div class="row">
                     <div class="col-md-6 left-side">
                         <ul>
-                            <li class="phone-text"><i class="fas fa-phone"></i> broj telefona</li>
-                            <li class="email-text"><i class="fas fa-envelope"></i> mejl</li>
+                            <li class="phone-text"><i class="fas fa-phone"></i> {{ $setting->top_bar_phone }}</li>
+                            <li class="email-text"><i class="fas fa-envelope"></i> {{ $setting->top_bar_email }}</li>
                         </ul>
                     </div>
                     <div class="col-md-6 right-side">
@@ -106,23 +109,45 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="right">
-                                    adresa
+                                    {{ $setting->footer_address }}
                                 </div>
                             </div>
                             <div class="list-item">
                                 <div class="left">
                                     <i class="fas fa-phone"></i>
                                 </div>
-                                <div class="right">mejl</div>
+                                <div class="right">{{ $setting->footer_email }}</div>
                             </div>
                             <div class="list-item">
                                 <div class="left">
                                     <i class="fas fa-envelope"></i>
                                 </div>
-                                <div class="right">brojtelefona</div>
+                                <div class="right">{{ $setting->footer_phone }}</div>
                             </div>
 
-                           
+                            @if($setting->facebook != '' || $setting->twitter != '' || $setting->youtube != '' || $setting->linkedin != '' || $setting->instagram != '')
+                            <ul class="social">
+                                @if($setting->facebook != '')
+                                <li><a href="{{ $setting->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                                @endif
+
+                                @if($setting->twitter != '')
+                                <li><a href="{{ $setting->twitter }}"><i class="fab fa-twitter"></i></a></li>
+                                @endif
+
+                                @if($setting->youtube != '')
+                                <li><a href="{{ $setting->youtube }}"><i class="fab fa-youtube"></i></a></li>
+                                @endif
+
+                                @if($setting->linkedin != '')
+                                <li><a href="{{ $setting->linkedin }}"><i class="fab fa-linkedin-in"></i></a></li>
+                                @endif
+
+                                @if($setting->instagram != '')
+                                <li><a href="{{ $setting->instagram }}"><i class="fab fa-instagram"></i></a></li>
+                                @endif
+                            </ul>
+                            @endif
                         </div>
                     </div>
 
@@ -153,7 +178,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="copyright">
-                           copyright
+                            {{ $setting->copyright }}
                         </div>
                     </div>
                 </div>

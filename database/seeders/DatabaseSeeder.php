@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         //$this->call([AdminSeeder::class,WelcomeItemSeeder::class,CounterItemSeeder::class]);
-        $this->call([TermPrivacyItemSeeder::class]);
+        $this->call([SettingSeeder::class]);
         // User::factory(10)->create();
 
         // User::factory()->create([
