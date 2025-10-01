@@ -532,5 +532,25 @@ class FrontController extends Controller
 
         return redirect()->back()->with('success', 'Uspešno ste ostavili recenziju!');
     }
+    public function wishlist($package_id)
+    {
+        if(!Auth::guard('web')->check()) {
+            return redirect()->route('login')->with('error', 'Please login first to add this item to your wishlist!');
+        }
+
+        $user_id = Auth::guard('web')->user()->id;
+
+        $check = Wishlist::where('user_id',$user_id)->where('package_id',$package_id)->count();
+        if($check > 0) {
+            return redirect()->back()->with('error', 'This item is already in your wishlist!');
+        }
+
+        $wishlist = new Wishlist();
+        $wishlist->user_id = $user_id;
+        $wishlist->package_id = $package_id;
+        $wishlist->save();
+
+        return redirect()->back()->with('success', 'Item is added to your wishlist!');
+    }
 
 }

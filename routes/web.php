@@ -55,6 +55,7 @@ Route::get('/packages',[FrontController::class,'packages'])->name('packages');
 Route::get('/package/{slug}',[FrontController::class,'package'])->name('package');
 Route::post('/enquery/submit/{id}',[FrontController::class,'enquery_form_submit'])->name('enquery_form_submit');
 Route::post('/review/submit',[FrontController::class,'review_submit'])->name('review_submit');
+Route::get('/wishlist/{package_id}',[FrontController::class,'wishlist'])->name('wishlist');
 
 // Payment
 Route::post('/payment',[FrontController::class,'payment'])->name('payment');
