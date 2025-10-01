@@ -11,7 +11,7 @@ class AdminFaqController extends Controller
     public function index()
     {
         $faqs = Faq::get();
-        return view('admin.faq.index',compact('faqs'));
+        return view('admin.faq.index', compact('faqs'));
     }
 
     public function create()
@@ -23,21 +23,24 @@ class AdminFaqController extends Controller
     {
         $request->validate([
             'question' => 'required',
-            'answer' => 'required',
+            'answer'   => 'required',
+        ],[
+            'question.required' => 'Pitanje je obavezno.',
+            'answer.required'   => 'Odgovor je obavezan.',
         ]);
 
         $obj = new Faq();
         $obj->question = $request->question;
-        $obj->answer = $request->answer;
+        $obj->answer   = $request->answer;
         $obj->save();
 
-        return redirect()->route('admin_faq_index')->with('success','FAQ is Created Successfully');
+        return redirect()->route('admin_faq_index')->with('success','FAQ je uspešno kreiran.');
     }
 
     public function edit($id)
     {
         $faq = Faq::where('id',$id)->first();
-        return view('admin.faq.edit',compact('faq'));
+        return view('admin.faq.edit', compact('faq'));
     }
     
     public function edit_submit(Request $request, $id)
@@ -46,20 +49,23 @@ class AdminFaqController extends Controller
         
         $request->validate([
             'question' => 'required',
-            'answer' => 'required',
+            'answer'   => 'required',
+        ],[
+            'question.required' => 'Pitanje je obavezno.',
+            'answer.required'   => 'Odgovor je obavezan.',
         ]);
 
         $obj->question = $request->question;
-        $obj->answer = $request->answer;
+        $obj->answer   = $request->answer;
         $obj->save();
 
-        return redirect()->route('admin_faq_index')->with('success','FAQ is Updated Successfully');
+        return redirect()->route('admin_faq_index')->with('success','FAQ je uspešno izmenjen.');
     }
 
     public function delete($id)
     {
         $faq = Faq::where('id',$id)->first();
         $faq->delete();
-        return redirect()->route('admin_faq_index')->with('success','FAQ is Deleted Successfully');
+        return redirect()->route('admin_faq_index')->with('success','FAQ je uspešno obrisan.');
     }
 }

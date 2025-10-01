@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Subscribers</h1>
+            <h1>Pretplatnici</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_subscriber_send_email') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Send Email</a>
+                <a href="{{ route('admin_subscriber_send_email') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Pošalji email</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,9 +19,9 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
+                                            <th>RB</th>
                                             <th>Email</th>
-                                            <th>Action</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -32,7 +32,7 @@
                                                 {{ $item->email }}
                                             </td>
                                             <td class="pt_10 pb_10">
-                                                <a href="{{ route('admin_subscriber_delete',$item->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_subscriber_delete',$item->id) }}" class="btn btn-danger" onClick="return confirm('Da li ste sigurni?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

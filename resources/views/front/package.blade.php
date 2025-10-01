@@ -1,6 +1,7 @@
 @extends('front.layout.master')
 
 @section('main_content')
+
 <div class="page-top page-top-package" style="background-image: url({{ asset('uploads/'.$package->banner) }})">
     <div class="container">
         <div class="row">
@@ -33,7 +34,7 @@
                             <i class="far fa-star"></i>
                         @endfor
                     </div>
-                    <span>(No Rating Found)</span>
+                    <span>(Nema ocena)</span>
                 </div>
                 @endif
                 
@@ -41,7 +42,7 @@
                     ${{ $package->price }} @if($package->old_price != '')<del>${{ $package->old_price }}</del>@endif
                 </div>
                 <div class="person">
-                    per person
+                    po osobi
                 </div>
             </div>
         </div>
@@ -54,59 +55,59 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
 
-
                 <div class="main-item mb_50">
 
                     <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="tab-1" data-bs-toggle="tab" data-bs-target="#tab-1-pane" type="button" role="tab" aria-controls="tab-1-pane" aria-selected="true">Detail</button>
+                            <button class="nav-link active" id="tab-1" data-bs-toggle="tab" data-bs-target="#tab-1-pane" type="button" role="tab" aria-controls="tab-1-pane" aria-selected="true">Detalji</button>
                         </li>
 
                         @if($package_itineraries->count() > 0)
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#tab-2-pane" type="button" role="tab" aria-controls="tab-2-pane" aria-selected="false">Itinerary</button>
+                            <button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#tab-2-pane" type="button" role="tab" aria-controls="tab-2-pane" aria-selected="false">Itinerar</button>
                         </li>
                         @endif
 
                         @if($package->map != '')
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-3" data-bs-toggle="tab" data-bs-target="#tab-3-pane" type="button" role="tab" aria-controls="tab-3-pane" aria-selected="false">Location</button>
+                            <button class="nav-link" id="tab-3" data-bs-toggle="tab" data-bs-target="#tab-3-pane" type="button" role="tab" aria-controls="tab-3-pane" aria-selected="false">Lokacija</button>
                         </li>
                         @endif
 
                         @if($package_photos->count() > 0 || $package_videos->count() > 0)
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-4" data-bs-toggle="tab" data-bs-target="#tab-4-pane" type="button" role="tab" aria-controls="tab-4-pane" aria-selected="false">Gallery</button>
+                            <button class="nav-link" id="tab-4" data-bs-toggle="tab" data-bs-target="#tab-4-pane" type="button" role="tab" aria-controls="tab-4-pane" aria-selected="false">Galerija</button>
                         </li>
                         @endif
 
                         @if($package_faqs->count() > 0)
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-5" data-bs-toggle="tab" data-bs-target="#tab-5-pane" type="button" role="tab" aria-controls="tab-5-pane" aria-selected="false">FAQ</button>
+                            <button class="nav-link" id="tab-5" data-bs-toggle="tab" data-bs-target="#tab-5-pane" type="button" role="tab" aria-controls="tab-5-pane" aria-selected="false">Česta pitanja</button>
                         </li>
                         @endif
                         
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-6" data-bs-toggle="tab" data-bs-target="#tab-6-pane" type="button" role="tab" aria-controls="tab-6-pane" aria-selected="false">Review</button>
+                            <button class="nav-link" id="tab-6" data-bs-toggle="tab" data-bs-target="#tab-6-pane" type="button" role="tab" aria-controls="tab-6-pane" aria-selected="false">Recenzije</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-7" data-bs-toggle="tab" data-bs-target="#tab-7-pane" type="button" role="tab" aria-controls="tab-7-pane" aria-selected="false">Enquery</button>
+                            <button class="nav-link" id="tab-7" data-bs-toggle="tab" data-bs-target="#tab-7-pane" type="button" role="tab" aria-controls="tab-7-pane" aria-selected="false">Upit</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-8" data-bs-toggle="tab" data-bs-target="#tab-8-pane" type="button" role="tab" aria-controls="tab-8-pane" aria-selected="false">Booking</button>
+                            <button class="nav-link" id="tab-8" data-bs-toggle="tab" data-bs-target="#tab-8-pane" type="button" role="tab" aria-controls="tab-8-pane" aria-selected="false">Rezervacija</button>
                         </li>
                     </ul>
+
                     <div class="tab-content" id="myTabContent">
                         
                         <div class="tab-pane fade show active" id="tab-1-pane" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
-                            <!-- Detail -->
-                            <h2 class="mt_30">Detail</h2>
+                            <!-- Detalji -->
+                            <h2 class="mt_30">Detalji</h2>
                             <p>
                                 {!! $package->description !!}
                             </p>
 
                             @if($package_amenities_include->count() > 0)
-                            <h2 class="mt_30">Includes</h2>
+                            <h2 class="mt_30">Uključeno</h2>
                             <div class="amenity">
                                 <div class="row">
                                     @foreach($package_amenities_include as $item)
@@ -119,7 +120,7 @@
                             @endif
 
                             @if($package_amenities_exclude->count() > 0)
-                            <h2 class="mt_30">Excludes</h2>
+                            <h2 class="mt_30">Nije uključeno</h2>
                             <div class="amenity">
                                 <div class="row">
                                     @foreach($package_amenities_exclude as $item)
@@ -130,16 +131,13 @@
                                 </div>
                             </div>
                             @endif
-                            <!-- // Detail -->
-
-                            
+                            <!-- // Detalji -->
                         </div>
 
                         <div class="tab-pane fade" id="tab-2-pane" role="tabpanel" aria-labelledby="tab-2" tabindex="0">
-                            <!-- Itinerary -->
-                            <h2 class="mt_30">Itinerary</h2>
+                            <!-- Itinerar -->
+                            <h2 class="mt_30">Itinerar</h2>
                             <div class="tour-plan">
-                                
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         @foreach($package_itineraries as $item)
@@ -153,25 +151,24 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- // Itinerary -->
+                            <!-- // Itinerar -->
                         </div>
                         
-
                         <div class="tab-pane fade" id="tab-3-pane" role="tabpanel" aria-labelledby="tab-3" tabindex="0">
-                            <!-- Location -->
-                            <h2 class="mt_30">Location Map</h2>
+                            <!-- Lokacija -->
+                            <h2 class="mt_30">Mapa lokacije</h2>
                             <div class="location-map">
                                 {!! $package->map !!}
                             </div>
-                            <!-- // Location -->
+                            <!-- // Lokacija -->
                         </div>
 
                         <div class="tab-pane fade" id="tab-4-pane" role="tabpanel" aria-labelledby="tab-4" tabindex="0">
-                            <!-- Gallery -->
+                            <!-- Galerija -->
 
                             @if($package_photos->count() > 0)
                             <h2 class="mt_30">
-                                Photos
+                                Fotografije
                             </h2>
                             <div class="photo-all">
                                 <div class="row">
@@ -188,10 +185,9 @@
                             </div>
                             @endif
 
-
                             @if($package_videos->count() > 0)
                             <h2 class="mt_30">
-                                Videos
+                                Video
                             </h2>
                             <div class="video-all">
                                 <div class="row">
@@ -212,14 +208,12 @@
                             </div>
                             @endif
 
-
-                            <!-- // Gallery -->
+                            <!-- // Galerija -->
                         </div>
 
-
                         <div class="tab-pane fade" id="tab-5-pane" role="tabpanel" aria-labelledby="tab-5" tabindex="0">
-                            <!-- FAQ -->
-                            <h2 class="mt_30">Frequently Asked Questions</h2>
+                            <!-- Česta pitanja -->
+                            <h2 class="mt_30">Česta pitanja</h2>
                             <div class="faq-package">
                                 <div class="accordion" id="accordionExample">
                                     @foreach($package_faqs as $item)
@@ -238,12 +232,11 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <!-- // FAQ -->
+                            <!-- // Česta pitanja -->
                         </div>
 
-
                         <div class="tab-pane fade" id="tab-6-pane" role="tabpanel" aria-labelledby="tab-6" tabindex="0">
-                            <!-- Review -->
+                            <!-- Recenzije -->
                             <div class="review-package">
 
                                 <h2>Recenzije ({{ $reviews->count() }})</h2>
@@ -284,10 +277,9 @@
                                 </div>
                                 @endforelse
 
-
                                 <div class="mt_40"></div>
 
-                                <h2>Leave Your Review</h2>
+                                <h2>Ostavite svoju recenziju</h2>
 
                                 @if(Auth::guard('web')->check())
                                     @php
@@ -306,11 +298,11 @@
                                                 <input type="hidden" name="package_id" value="{{ $package->id }}">
                                                 <div class="mb-3">
                                                     <div class="give-review-auto-select">
-                                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
-                                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
-                                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
-                                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
-                                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 zvezdica"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 zvezdice"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 zvezdice"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 zvezdice"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 zvezdica"><i class="fas fa-star"></i></label>
                                                     </div>
                                                     <script>
                                                         document.addEventListener('DOMContentLoaded', (event) => {
@@ -332,64 +324,60 @@
                                                     </script>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Komentar" name="comment"></textarea>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" class="btn btn-primary">Pošalji</button>
                                                 </div>
                                             </form>
                                         @else
                                             <div class="alert alert-danger">
-                                                You have already given review.
+                                                Već ste ostavili recenziju.
                                             </div>
                                         @endif
                                     @else
                                         <div class="alert alert-danger">
-                                            You have to book this package to give review.
+                                            Morate rezervisati ovaj paket da biste ostavili recenziju.
                                         </div>
                                     @endif
 
-
                                 @else
-                                    <a href="{{ route('login') }}" class="text-danger text-decoration-underline">Login to Review</a>
+                                    <a href="{{ route('login') }}" class="text-danger text-decoration-underline">Prijavite se da biste ocenili</a>
                                 @endif
                             </div>
-                            <!-- // Review -->
+                            <!-- // Recenzije -->
                         </div>
 
-
-
                         <div class="tab-pane fade" id="tab-7-pane" role="tabpanel" aria-labelledby="tab-7" tabindex="0">
-                            <!-- Enquery -->
-                            <h2 class="mt_30">Ask Your Question</h2>
+                            <!-- Upit -->
+                            <h2 class="mt_30">Postavite pitanje</h2>
                             <div class="enquery-form">
                                 <form action="{{ route('enquery_form_submit',$package->id) }}" method="post">
                                     @csrf
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Full Name" name="name">
+                                        <input type="text" class="form-control" placeholder="Ime i prezime" name="name">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="email" class="form-control" placeholder="Email Address" name="email">
+                                        <input type="email" class="form-control" placeholder="Email adresa" name="email">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Phone Number" name="phone">
+                                        <input type="text" class="form-control" placeholder="Broj telefona" name="phone">
                                     </div>
                                     <div class="mb-3">
-                                        <textarea class="form-control h-150" rows="3" placeholder="Message" name="message"></textarea>
+                                        <textarea class="form-control h-150" rows="3" placeholder="Poruka" name="message"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <button type="submit" class="btn btn-primary">
-                                            Send Message
+                                            Pošalji poruku
                                         </button>
                                     </div>
                                 </form>
                             </div>
-                            <!-- // Enquery -->
+                            <!-- // Upit -->
                         </div>
 
-
                         <div class="tab-pane fade" id="tab-8-pane" role="tabpanel" aria-labelledby="tab-8" tabindex="0">
-                            <!-- Booking -->
+                            <!-- Rezervacija -->
                             @if($tours->count() > 0)
                             <form action="{{ route('payment') }}" method="post">
                                 @csrf
@@ -410,48 +398,46 @@
                                         }
                                         
                                         if($item->total_seat == '-1') {
-                                            $remaining_seats = 'Unlimited';
+                                            $remaining_seats = 'Neograničeno';
                                         } else {
                                             $remaining_seats = $item->total_seat - $total_booked_seats;
                                         }
-                                        
-
                                         @endphp
                                         <h2 class="mt_30">
                                             <input type="radio" name="tour_id" value="{{ $item->id }}" @if($i == 1) checked @endif>
-                                            Tour {{ $i }}
+                                            Tura {{ $i }}
                                         </h2>
                                         <div class="summary">
                                             <div class="table-responsive">
                                                 <table class="table table-bordered">
                                                     <tr>
-                                                        <td><b>Tour Start Date</b></td>
+                                                        <td><b>Početak ture</b></td>
                                                         <td>{{ $item->tour_start_date }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Tour End Date</b></td>
+                                                        <td><b>Kraj ture</b></td>
                                                         <td>{{ $item->tour_end_date }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Booking End Date</b></td>
+                                                        <td><b>Rok za rezervaciju</b></td>
                                                         <td class="text-danger">{{ $item->booking_end_date }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Total Seat</b></td>
+                                                        <td><b>Ukupno mesta</b></td>
                                                         <td>
                                                             @if($item->total_seat == -1)
-                                                            Unlimited
+                                                            Neograničeno
                                                             @else
                                                             {{ $item->total_seat }}
                                                             @endif
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Booked Seat</b></td>
+                                                        <td><b>Rezervisano</b></td>
                                                         <td>{{ $total_booked_seats }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Remaining Seat</b></td>
+                                                        <td><b>Preostalo</b></td>
                                                         <td>{{ $remaining_seats }}</td>
                                                     </tr>
                                                 </table>
@@ -460,46 +446,44 @@
                                         @endforeach
                                     </div>
                                     <div class="col-md-4">
-                                        <h2 class="mt_30">Payment</h2>
+                                        <h2 class="mt_30">Plaćanje</h2>
                                         <div class="summary">
-                                            
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered">
-                                                        <tr>
-                                                            <td>
-                                                                <input type="hidden" name="ticket_price" id="ticketPrice" value="{{ $package->price }}">
-                                                                <label for=""><b>Number of Persons</b></label>
-                                                                <input type="number" min="1" max="100" name="total_person" class="form-control" value="1" id="numPersons" oninput="calculateTotal()">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label for=""><b>Total</b></label>
-                                                                <input type="text" name="" class="form-control" id="totalAmount" value="${{ $package->price }}" disabled>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label for=""><b>Select Payment Method</b></label>
-                                                                <select name="payment_method" class="form-select">
-                                                                    <option value="PayPal">PayPal</option>
-                                                                    <option value="Stripe">Stripe</option>
-                                                                    <option value="Cash">Cash</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                @if(Auth::guard('web')->check())
-                                                                <button type="submit" class="btn btn-primary">Pay Now</button>
-                                                                @else
-                                                                <a href="{{ route('login') }}" class="btn btn-primary">Login to Book</a>
-                                                                @endif
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" name="ticket_price" id="ticketPrice" value="{{ $package->price }}">
+                                                            <label for=""><b>Broj osoba</b></label>
+                                                            <input type="number" min="1" max="100" name="total_person" class="form-control" value="1" id="numPersons" oninput="calculateTotal()">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label for=""><b>Ukupno</b></label>
+                                                            <input type="text" name="" class="form-control" id="totalAmount" value="${{ $package->price }}" disabled>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label for=""><b>Izaberite način plaćanja</b></label>
+                                                            <select name="payment_method" class="form-select">
+                                                                <option value="PayPal">PayPal</option>
+                                                                <option value="Stripe">Stripe</option>
+                                                                <option value="Cash">Gotovina</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            @if(Auth::guard('web')->check())
+                                                            <button type="submit" class="btn btn-primary">Plati odmah</button>
+                                                            @else
+                                                            <a href="{{ route('login') }}" class="btn btn-primary">Prijavite se za rezervaciju</a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                         </div>
                                         <script>
                                             function calculateTotal() {
@@ -514,16 +498,14 @@
                             </form>
                             @else
                             <div class="alert alert-danger">
-                                No Tour Available.
+                                Nema dostupnih tura.
                             </div>
                             @endif
-                            <!-- // Booking -->
+                            <!-- // Rezervacija -->
                         </div>
 
                     </div>
-                    
                 </div>
-                    
 
             </div>
         </div>

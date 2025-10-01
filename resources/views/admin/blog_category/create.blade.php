@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Create Blog Category</h1>
+            <h1>Kreiraj kategoriju za blog</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_blog_category_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+                <a href="{{ route('admin_blog_category_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Vidi sve</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,7 +18,7 @@
                             <form action="{{ route('admin_blog_category_create_submit') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Name *</label>
+                                    <label class="form-label">Naziv *</label>
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                 </div>
                                 <div class="mb-3">
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Sačuvaj</button>
                                 </div>
                             </form>
                         </div>

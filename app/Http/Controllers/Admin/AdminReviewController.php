@@ -29,6 +29,6 @@ class AdminReviewController extends Controller
         $package_data->total_score = $updated_total_score;
         $package_data->save();
 
-        return redirect()->back()->with('success','Review is Deleted Successfully');
+        return redirect()->back()->with('success','Recenzija je uspešno obrisana.');
     }
 }

@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Messages from </h1>
+            <h1>Poruke od </h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_message') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Back to Previous</a>
+                <a href="{{ route('admin_message') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Nazad na Prethodnu</a>
             </div>
         </div>
         <div class="section-body">
@@ -35,8 +35,8 @@
                                     </div>
                                     <div class="right">
                                         <h4>{{ $sender_data->name }}</h4>
-                                        <h5>{{ $item->type }}</h5>
-                                        <div class="date-time">{{ $item->created_at->format('Y-m-d H:i A') }}</div>
+                                        <h5>{{ $item->type == 'User' ? 'Korisnik' : 'Administrator' }}</h5>
+                                        <div class="date-time">{{ $item->created_at->format('d.m.Y H:i') }}</div>
                                     </div>
                                 </div>
                                 <div class="message-bottom">
@@ -57,10 +57,10 @@
                             <form action="{{ route('admin_message_submit',$id) }}" method="post">
                                 @csrf
                                 <div class="mb-2">
-                                    <textarea name="comment" class="form-control h_200" cols="30" rows="10" placeholder="Write your message here"></textarea>
+                                    <textarea name="comment" class="form-control h_200" cols="30" rows="10" placeholder="Napišite svoju poruku ovde"></textarea>
                                 </div>
                                 <div class="mb-2">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Pošalji</button>
                                 </div>
                             </form>
                         </div>

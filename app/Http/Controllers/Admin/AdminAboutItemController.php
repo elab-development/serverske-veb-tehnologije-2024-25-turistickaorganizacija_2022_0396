@@ -20,6 +20,6 @@ class AdminAboutItemController extends Controller
         $obj->feature_status = $request->feature_status;
         $obj->save();
 
-        return redirect()->back()->with('success','About Item is Updated Successfully');
+        return redirect()->back()->with('success','Sekcija "O nama" je uspešno ažurirana.');
     }
 }

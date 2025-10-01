@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Dashboard</h2>
+                <h2>Kontrolna tabla</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item active">Kontrolna tabla</li>
                     </ol>
                 </div>
             </div>
@@ -27,18 +27,18 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-12">
-                <h3 class="mb_20">Hello, {{ Auth::guard('web')->user()->name }}</h3>
+                <h3 class="mb_20">Zdravo, {{ Auth::guard('web')->user()->name }}</h3>
                 <div class="row box-items">
                     <div class="col-md-4">
                         <div class="box1">
                             <h4>{{ $total_completed_orders }}</h4>
-                            <p>Completed Orders</p>
+                            <p>Završene kupovine</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box2">
                             <h4>{{ $total_pending_orders }}</h4>
-                            <p>Pending Orders</p>
+                            <p>Na čekanju</p>
                         </div>
                     </div>
                 </div>

@@ -25,6 +25,9 @@ class AdminSubscriberController extends Controller
         $request->validate([
             'subject' => 'required',
             'message' => 'required',
+        ], [
+            'subject.required' => 'Polje za predmet je obavezno.',
+            'message.required' => 'Polje za poruku je obavezno.',
         ]);
 
         $subject = $request->subject;
@@ -36,13 +39,13 @@ class AdminSubscriberController extends Controller
             \Mail::to($item->email)->send(new Websitemail($subject,$message));
         }
 
-        return redirect()->back()->with('success', 'Email is sent successfully');
+        return redirect()->back()->with('success', 'Email je uspešno poslat svim pretplatnicima!');
     }
 
     public function subscriber_delete($id)
     {
         $obj = Subscriber::where('id',$id)->first();
         $obj->delete();
-        return redirect()->back()->with('success', 'Subscriber is deleted successfully');
+        return redirect()->back()->with('success', 'Pretplatnik je uspešno obrisan!');
     }
 }

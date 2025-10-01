@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Edit Post</h1>
+            <h1>Izmena Objave</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_post_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+                <a href="{{ route('admin_post_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Pogledaj sve</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,15 +18,15 @@
                             <form action="{{ route('admin_post_edit_submit',$post->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Existing Photo</label>
+                                    <label class="form-label">Postojeća Fotografija</label>
                                     <div><img src="{{ asset('uploads/'.$post->photo) }}" alt="" class="w_200"></div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Change Photo</label>
+                                    <label class="form-label">Promeni Fotografiju</label>
                                     <div><input type="file" name="photo"></div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Title *</label>
+                                    <label class="form-label">Naslov *</label>
                                     <input type="text" class="form-control" name="title" value="{{ $post->title }}">
                                 </div>
                                 <div class="mb-3">
@@ -34,15 +34,15 @@
                                     <input type="text" class="form-control" name="slug" value="{{ $post->slug }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Description *</label>
+                                    <label class="form-label">Opis *</label>
                                     <textarea name="description" class="form-control editor" cols="30" rows="10">{{ $post->description }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Short Description *</label>
+                                    <label class="form-label">Kratak Opis *</label>
                                     <textarea name="short_description" class="form-control h_100" cols="30" rows="10">{{ $post->short_description }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Category *</label>
+                                    <label class="form-label">Kategorija *</label>
                                     <select name="blog_category_id" class="form-select">
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}" @if($category->id == $post->blog_category_id) selected @endif>{{ $category->name }}</option>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Ažuriraj</button>
                                 </div>
                             </form>
                         </div>

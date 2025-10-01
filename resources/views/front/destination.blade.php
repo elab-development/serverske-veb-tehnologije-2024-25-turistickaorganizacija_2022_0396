@@ -9,8 +9,8 @@
                 <h2>{{ $destination->name }}</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('destinations') }}">Destinations</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('destinations') }}">Destinacije</a></li>
                         <li class="breadcrumb-item active">{{ $destination->name }}</li>
                     </ol>
                 </div>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="main-item mb_50">
                     <h2>
-                        Description
+                        Opis
                     </h2>
                     {!! $destination->description !!}
                 </div>
@@ -39,7 +39,7 @@
 
                 @if($packages->count()>0)
                 <div class="main-item mb_50">
-                    <h2>Packages</h2>
+                    <h2>Paketi</h2>
                     <div class="package">
                         <div class="row">
                             @foreach($packages as $item)
@@ -71,14 +71,14 @@
                                                     <i class="far fa-star"></i>
                                                 @endif
                                             @endfor
-                                            ({{ $item->reviews->count() }} Reviews)
+                                            ({{ $item->reviews->count() }} Recenzija)
                                         </div>
                                         @else
                                         <div class="review">
                                             @for($i=1; $i<=5; $i++)
                                                 <i class="far fa-star"></i>
                                             @endfor
-                                            ({{ $item->reviews->count() }} Reviews)
+                                            ({{ $item->reviews->count() }} Recenzija)
                                         </div>
                                         @endif
                                         <div class="element">
@@ -86,15 +86,15 @@
                                                 <i class="fas fa-plane-departure"></i> {{ $item->destination->name }}
                                             </div>
                                             <div class="element-right">
-                                                <i class="fas fa-th-large"></i> {{ $item->package_amenities->count() }} Amenities
+                                                <i class="fas fa-th-large"></i> {{ $item->package_amenities->count() }} Sadržaja
                                             </div>
                                         </div>
                                         <div class="element">
                                             <div class="element-left">
-                                                <i class="fas fa-users"></i> {{ $item->tours->count() }} Tours
+                                                <i class="fas fa-users"></i> {{ $item->tours->count() }} Tura
                                             </div>
                                             <div class="element-right">
-                                                <i class="fas fa-clock"></i> {{ $item->package_itineraries->count() }} Days
+                                                <i class="fas fa-clock"></i> {{ $item->package_itineraries->count() }} Dana
                                             </div>
                                         </div>
                                     </div>
@@ -111,32 +111,32 @@
                 @if($destination->country != '' || $destination->language != '' || $destination->currency != '' || $destination->area != '' || $destination->timezone != '' || $destination->visa_requirement != '' || $destination->activity != '' || $destination->best_time != '' || $destination->health_safety != '')
                 <div class="main-item mb_50">
                     <h2>
-                        Information
+                        Informacije
                     </h2>
                     <div class="summary">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 @if($destination->country != '')
                                 <tr>
-                                    <td><b>Country</b></td>
+                                    <td><b>Država</b></td>
                                     <td>{{ $destination->country }}</td>
                                 </tr>
                                 @endif
                                 @if($destination->language != '')
                                 <tr>
-                                    <td><b>Languages Spoken</b></td>
+                                    <td><b>Govorni jezik</b></td>
                                     <td>{{ $destination->language }}</td>
                                 </tr>
                                 @endif
                                 @if($destination->currency != '')
                                 <tr>
-                                    <td><b>Currency Used</b></td>
+                                    <td><b>Valuta</b></td>
                                     <td>{{ $destination->currency }}</td>
                                 </tr>
                                 @endif
                                 @if($destination->area != '')
                                 <tr>
-                                    <td><b>Area</b></td>
+                                    <td><b>Površina</b></td>
                                     <td>
                                         {{ $destination->area }}
                                     </td>
@@ -144,7 +144,7 @@
                                 @endif
                                 @if($destination->timezone != '')
                                 <tr>
-                                    <td><b>Time Zone</b></td>
+                                    <td><b>Vremenska zona</b></td>
                                     <td>
                                         {{ $destination->timezone }}
                                     </td>
@@ -152,7 +152,7 @@
                                 @endif
                                 @if($destination->visa_requirement != '')
                                 <tr>
-                                    <td><b>Visa Requirements</b></td>
+                                    <td><b>Viza</b></td>
                                     <td>
                                         {!! $destination->visa_requirement !!}
                                     </td>
@@ -160,7 +160,7 @@
                                 @endif
                                 @if($destination->activity != '')
                                 <tr>
-                                    <td><b>Activities</b></td>
+                                    <td><b>Aktivnosti</b></td>
                                     <td>
                                         {!! $destination->activity !!}
                                     </td>
@@ -168,7 +168,7 @@
                                 @endif
                                 @if($destination->best_time != '')
                                 <tr>
-                                    <td><b>Best Time to Visit</b></td>
+                                    <td><b>Najbolje vreme za posetu</b></td>
                                     <td>
                                         {!! $destination->best_time !!}
                                     </td>
@@ -176,7 +176,7 @@
                                 @endif
                                 @if($destination->health_safety != '')
                                 <tr>
-                                    <td><b>Health and Safety</b></td>
+                                    <td><b>Zdravlje i bezbednost</b></td>
                                     <td>
                                         {!! $destination->health_safety !!}
                                     </td>
@@ -191,7 +191,7 @@
                 @if($destination_photos->count() > 0)
                 <div class="main-item mb_50">
                     <h2>
-                        Photos
+                        Fotografije
                     </h2>
                     <div class="photo-all">
                         <div class="row">
@@ -212,7 +212,7 @@
                 @if($destination_videos->count() > 0)
                 <div class="main-item mb_50">
                     <h2>
-                        Videos
+                        Video
                     </h2>
                     <div class="video-all">
                         <div class="row">
@@ -236,7 +236,7 @@
 
                 @if($destination->map != '')
                 <div class="main-item">
-                    <h2>Map</h2>
+                    <h2>Mapa</h2>
                     <div class="location-map">
                         {!! $destination->map !!}
                     </div>

@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Messages</h2>
+                <h2>Poruke</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Messages</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item active">Poruke</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
             
             @if($message_check > 0)
             <div class="col-lg-5 col-md-12">
-                <h3>All Messages</h3>
+                <h3>Sve poruke</h3>
 
                 @forelse($message_comments as $item)
                 @php
@@ -48,8 +48,8 @@
                             @endif
                         </div>
                         <div class="right">
-                            <h4>{{ $sender_data->name }} @if($item->type == 'Admin') (Admin) @endif</h4>
-                            <div class="date-time">{{ $item->created_at->format('Y-m-d H:i A') }}</div>
+                            <h4>{{ $sender_data->name }} @if($item->type == 'Admin') (Administrator) @endif</h4>
+                            <div class="date-time">{{ $item->created_at->format('d.m.Y H:i') }}</div>
                         </div>
                     </div>
                     <div class="message-bottom">
@@ -61,22 +61,20 @@
 
                 @empty
                 <div class="alert alert-danger">
-                    No message found
+                    Nema poruka
                 </div>
                 @endforelse
-
-
             </div>
 
             <div class="col-lg-4 col-md-12">
-                <h3>Write a message</h3>
+                <h3>Napišite poruku</h3>
                 <form action="{{ route('user_message_submit') }}" method="post">
                     @csrf
                     <div class="mb-2">
-                        <textarea name="comment" class="form-control h-150" cols="30" rows="10" placeholder="Write your message here"></textarea>
+                        <textarea name="comment" class="form-control h-150" cols="30" rows="10" placeholder="Napišite poruku ovde"></textarea>
                     </div>
                     <div class="mb-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Pošalji</button>
                     </div>
                 </form>
             </div>
@@ -85,8 +83,8 @@
 
             <div class="col-lg-9 col-md-12">
                 <div class="alert alert-danger">
-                    No message found<br>
-                    <a href="{{ route('user_message_start') }}" class="text-decoration-underline">Please click here to start messaging</a>
+                    Nema poruka<br>
+                    <a href="{{ route('user_message_start') }}" class="text-decoration-underline">Kliknite ovde da započnete konverzaciju</a>
                 </div>
             </div>
             @endif

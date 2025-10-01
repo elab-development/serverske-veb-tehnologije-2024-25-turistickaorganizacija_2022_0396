@@ -5,7 +5,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Messages</h1>
+            <h1>Poruke</h1>
         </div>
         <div class="section-body">
             <div class="row">
@@ -16,12 +16,12 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>User Photo</th>
-                                            <th>User Name</th>
-                                            <th>User Email</th>
-                                            <th>User Phone</th>
-                                            <th>Action</th>
+                                            <th>RB</th>
+                                            <th>Fotografija korisnika</th>
+                                            <th>Korisničko ime</th>
+                                            <th>Email korisnika</th>
+                                            <th>Telefon korisnika</th>
+                                            <th>Akcije</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,7 +45,7 @@
                                                 {{ $item->user->phone }}
                                             </td>
                                             <td class="pt_10 pb_10">
-                                                <a href="{{ route('admin_message_detail',$item->id) }}" class="btn btn-primary">Messages</a>
+                                                <a href="{{ route('admin_message_detail',$item->id) }}" class="btn btn-primary">Poruke</a>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -45,6 +45,6 @@ class AdminWelcomeItemController extends Controller
         $obj->status = $request->status;
         $obj->save();
 
-        return redirect()->back()->with('success','Welcome Item is Updated Successfully');
+        return redirect()->back()->with('success','Welcome stavka je uspešno ažurirana');
     }
 }

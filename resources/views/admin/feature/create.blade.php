@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Create Feature</h1>
+            <h1>Kreiraj Funkciju</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_feature_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+                <a href="{{ route('admin_feature_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Vidi sve</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,20 +18,20 @@
                             <form action="{{ route('admin_feature_create_submit') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Icon *</label>
+                                    <label class="form-label">Ikonica *</label>
                                     <input type="text" class="form-control" name="icon" value="{{ old('icon') }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Heading *</label>
+                                    <label class="form-label">Naslov *</label>
                                     <input type="text" class="form-control" name="heading" value="{{ old('heading') }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Description *</label>
+                                    <label class="form-label">Opis *</label>
                                     <textarea name="description" class="form-control h_100" cols="30" rows="10">{{ old('description') }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Sačuvaj</button>
                                 </div>
                             </form>
                         </div>

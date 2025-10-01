@@ -2,7 +2,7 @@
 
 @section('main_content')
 
-<div class="page-top" style="background-image: url({{ asset('uploads.jpg') }})">
+<div class="page-top" style="background-image: url({{ asset('uploads/banner.jpg') }})">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -17,6 +17,7 @@
         </div>
     </div>
 </div>
+
 <div class="page-content pt_70 pb_70">
     <div class="container">
         <div class="row justify-content-center">
@@ -25,15 +26,15 @@
                     <form action="{{ route('reset_password_submit',[$token,$email]) }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="" class="form-label">Lozinka</label>
-                            <input type="password" class="form-control" name="password">
+                            <label class="form-label">Nova lozinka *</label>
+                            <input type="password" class="form-control" name="password" required>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Ponovo unestite lozinku</label>
-                            <input type="password" class="form-control" name="retype_password">
+                            <label class="form-label">Ponovite lozinku *</label>
+                            <input type="password" class="form-control" name="retype_password" required>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary bg-website">
+                            <button type="submit" class="btn btn-primary bg-website w-100">
                                 Potvrdi
                             </button>
                         </div>

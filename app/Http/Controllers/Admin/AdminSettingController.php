@@ -22,6 +22,11 @@ class AdminSettingController extends Controller
         {
             $request->validate([
                 'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ], [
+                'logo.required' => 'Logo je obavezan.',
+                'logo.image' => 'Logo mora biti slika.',
+                'logo.mimes' => 'Logo mora biti tipa: jpeg, png, jpg, gif ili svg.',
+                'logo.max' => 'Logo ne sme biti veći od 2MB.'
             ]);
 
             if($obj->logo != '')
@@ -38,6 +43,11 @@ class AdminSettingController extends Controller
         {
             $request->validate([
                 'favicon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ], [
+                'favicon.required' => 'Favicon je obavezan.',
+                'favicon.image' => 'Favicon mora biti slika.',
+                'favicon.mimes' => 'Favicon mora biti tipa: jpeg, png, jpg, gif ili svg.',
+                'favicon.max' => 'Favicon ne sme biti veći od 2MB.'
             ]);
 
             if($obj->favicon != '')
@@ -54,6 +64,11 @@ class AdminSettingController extends Controller
         {
             $request->validate([
                 'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ], [
+                'banner.required' => 'Baner je obavezan.',
+                'banner.image' => 'Baner mora biti slika.',
+                'banner.mimes' => 'Baner mora biti tipa: jpeg, png, jpg, gif ili svg.',
+                'banner.max' => 'Baner ne sme biti veći od 2MB.'
             ]);
 
             if($obj->banner != '')
@@ -79,6 +94,6 @@ class AdminSettingController extends Controller
         $obj->copyright = $request->copyright;
         $obj->save();
 
-        return redirect()->back()->with('success','Setting is Updated Successfully');
+        return redirect()->back()->with('success','Podešavanja su uspešno ažurirana.');
     }
 }

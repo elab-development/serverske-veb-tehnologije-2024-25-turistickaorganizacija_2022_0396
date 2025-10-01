@@ -5,7 +5,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Edit About Item</h1>
+            <h1>Izmeni sekciju O nama</h1>
         </div>
         <div class="section-body">
             <div class="row">
@@ -15,15 +15,15 @@
                             <form action="{{ route('admin_about_item_update',$about_item->id) }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Feature Status</label>
+                                    <label class="form-label">Status opcije</label>
                                     <select name="feature_status" class="form-select">
-                                        <option value="Show" {{ $about_item->feature_status == 'Show' ? 'selected' : '' }}>Show</option>
-                                        <option value="Hide" {{ $about_item->feature_status == 'Hide' ? 'selected' : '' }}>Hide</option>
+                                        <option value="Show" {{ $about_item->feature_status == 'Show' ? 'selected' : '' }}>Prikaži</option>
+                                        <option value="Hide" {{ $about_item->feature_status == 'Hide' ? 'selected' : '' }}>Sakrij</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Sačuvaj</button>
                                 </div>
                             </form>
                         </div>

@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>FAQs of {{ $package->name }}</h1>
+            <h1>Česta pitanja za {{ $package->name }}</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_package_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> back to previous</a>
+                <a href="{{ route('admin_package_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Nazad na prethodnu</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,9 +19,9 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Question</th>
-                                            <th>Action</th>
+                                            <th>RB</th>
+                                            <th>Pitanje</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -32,7 +32,7 @@
                                                 {{ $item->question }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin_package_faq_delete',$item->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?')">Delete</a>
+                                                <a href="{{ route('admin_package_faq_delete',$item->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('Da li ste sigurni?')">Obriši</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -48,16 +48,16 @@
                             <form action="{{ route('admin_package_faq_submit',$package->id) }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Question *</label>
+                                    <label class="form-label">Pitanje *</label>
                                     <input type="text" name="question" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Answer *</label>
+                                    <label class="form-label">Odgovor *</label>
                                     <textarea name="answer" class="form-control h_200" rows="5"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Pošalji</button>
                                 </div>
                             </form>
                         </div>

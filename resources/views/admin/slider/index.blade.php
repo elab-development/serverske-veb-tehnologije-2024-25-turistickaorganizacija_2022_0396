@@ -19,7 +19,7 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
+                                            <th>RB</th>
                                             <th>Slika</th>
                                             <th>Naslov</th>
                                             <th>Akcija</th>

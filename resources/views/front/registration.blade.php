@@ -26,29 +26,29 @@
                     <form action="{{ route('registration_submit') }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="" class="form-label">Ime *</label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            <label class="form-label">Ime *</label>
+                            <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Email adresa *</label>
-                            <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                            <label class="form-label">Email adresa *</label>
+                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Lozinka *</label>
-                            <input type="password" class="form-control" name="password">
+                            <label class="form-label">Lozinka *</label>
+                            <input type="password" class="form-control" name="password" required>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Potvrdi lozinku *</label>
-                            <input type="password" class="form-control" name="retype_password">
+                            <label class="form-label">Potvrdi lozinku *</label>
+                            <input type="password" class="form-control" name="retype_password" required>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary bg-website">
+                            <button type="submit" class="btn btn-primary bg-website w-100">
                                 Napravi nalog
                             </button>
                         </div>
                     </form>
-                    <div class="mb-3">
-                        <a href="{{ route('login') }}" class="primary-color">Postojeći koristinik? Ulogujte se!</a>
+                    <div class="text-center">
+                        <a href="{{ route('login') }}" class="primary-color">Već imate nalog? Ulogujte se!</a>
                     </div>
                 </div>
             </div>

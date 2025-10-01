@@ -66,8 +66,6 @@
 </div>
 @endif
 
-
-
 <div class="destination pt_70 pb_70">
     <div class="container">
         <div class="row">
@@ -85,7 +83,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="item pb_25">
                     <div class="photo">
-                        <a href=""><img src="{{ asset('uploads/'.$destination->featured_photo) }}" alt=""></a>
+                        <a href="{{ route('destination',$destination->slug) }}"><img src="{{ asset('uploads/'.$destination->featured_photo) }}" alt=""></a>
                     </div>
                     <div class="text">
                         <h2>
@@ -100,17 +98,13 @@
             <div class="col-md-12">
                 <div class="see-more">
                     <div class="button-style-1 mt_20">
-                        <a href="{{ route('destinations') }}">View All Destinations</a>
+                        <a href="{{ route('destinations') }}">Pogledaj sve destinacije</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 
 <div class="why-choose pt_70">
     <div class="container">
@@ -134,27 +128,24 @@
     </div>
 </div>
 
-
 <div class="package pt_70 pb_70">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h2>asd</h2>
+                    <h2>Popularni paketi</h2>
                     <p>
-                        asd
+                        Izabrani aranžmani sa najboljim odnosom cene i kvaliteta.
                     </p>
                 </div>
             </div>
         </div>
         <div class="row">
-
             @foreach($packages as $item)
             <div class="col-lg-4 col-md-6">
                 <div class="item pb_25">
                     <div class="photo">
                         <a href="{{ route('package',$item->slug) }}"><img src="{{ asset('uploads/'.$item->featured_photo) }}" alt=""></a>
-                        
                     </div>
                     <div class="text">
                         <div class="price">
@@ -178,14 +169,14 @@
                                     <i class="far fa-star"></i>
                                 @endif
                             @endfor
-                            ({{ $item->reviews->count() }} Reviews)
+                            ({{ $item->reviews->count() }} recenzija)
                         </div>
                         @else
                         <div class="review">
                             @for($i=1; $i<=5; $i++)
                                 <i class="far fa-star"></i>
                             @endfor
-                            ({{ $item->reviews->count() }} Reviews)
+                            ({{ $item->reviews->count() }} recenzija)
                         </div>
                         @endif
                         <div class="element">
@@ -193,15 +184,15 @@
                                 <i class="fas fa-plane-departure"></i> {{ $item->destination->name }}
                             </div>
                             <div class="element-right">
-                                <i class="fas fa-th-large"></i> {{ $item->package_amenities->count() }} Amenities
+                                <i class="fas fa-th-large"></i> {{ $item->package_amenities->count() }} sadržaja
                             </div>
                         </div>
                         <div class="element">
                             <div class="element-left">
-                                <i class="fas fa-users"></i> {{ $item->tours->count() }} Tours
+                                <i class="fas fa-users"></i> {{ $item->tours->count() }} tura
                             </div>
                             <div class="element-right">
-                                <i class="fas fa-clock"></i> {{ $item->package_itineraries->count() }} Days
+                                <i class="fas fa-clock"></i> {{ $item->package_itineraries->count() }} dana
                             </div>
                         </div>
                     </div>
@@ -213,25 +204,26 @@
             <div class="col-md-12">
                 <div class="see-more">
                     <div class="button-style-1 mt_20">
-                        <a href="{{ route('packages') }}">View All Packages</a>
+                        <a href="{{ route('packages') }}">Pogledaj sve pakete</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-        <div class="testimonial pt_70 pb_70" style="background-image: url(uploads/testimonial-bg.jpg)">
-            <div class="bg"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="main-header">Client Testimonials</h2>
-                        <h3 class="sub-header">
-                            See what our clients have to say about their experience with us
-                        </h3>
-                    </div>
-                </div>
-                <div class="row">
+
+<div class="testimonial pt_70 pb_70" style="background-image: url({{ asset('uploads/testimonial-bg.jpg') }})">
+    <div class="bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="main-header">Utisci klijenata</h2>
+                <h3 class="sub-header">
+                    Pogledajte šta naši klijenti kažu o iskustvu sa nama
+                </h3>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
                 <div class="testimonial-carousel owl-carousel">
                     @foreach($testimonials as $testimonial)
@@ -256,18 +248,9 @@
                 </div>
             </div>
         </div>
-            </div>
-        </div>
+    </div>
+</div>
 
-
-
-
-
-
-
-
-        
-        
 <div class="blog pt_70">
     <div class="container">
         <div class="row">
@@ -275,7 +258,7 @@
                 <div class="heading">
                     <h2>Blog</h2>
                     <p>
-                        Nasi postovi
+                        Naši postovi
                     </p>
                 </div>
             </div>
@@ -297,7 +280,7 @@
                             </p>
                         </div>
                         <div class="button-style-2 mt_20">
-                            <a href="{{ route('post',$post->slug) }}">Read More</a>
+                            <a href="{{ route('post',$post->slug) }}">Pročitaj više</a>
                         </div>
                     </div>
                 </div>
@@ -308,4 +291,3 @@
 </div>
 
 @endsection
-

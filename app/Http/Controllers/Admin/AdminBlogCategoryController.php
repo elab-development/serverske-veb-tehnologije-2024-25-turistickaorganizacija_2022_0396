@@ -12,7 +12,7 @@ class AdminBlogCategoryController extends Controller
     public function index()
     {
         $blog_categories = BlogCategory::get();
-        return view('admin.blog_category.index',compact('blog_categories'));
+        return view('admin.blog_category.index', compact('blog_categories'));
     }
 
     public function create()
@@ -25,6 +25,11 @@ class AdminBlogCategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'slug' => 'required|alpha_dash|unique:blog_categories',
+        ],[
+            'name.required' => 'Naziv kategorije je obavezan.',
+            'slug.required' => 'Slug je obavezan.',
+            'slug.alpha_dash' => 'Slug može sadržati samo slova, brojeve, crtice i donje crte.',
+            'slug.unique' => 'Ovaj slug već postoji.',
         ]);
 
         $obj = new BlogCategory();
@@ -32,41 +37,46 @@ class AdminBlogCategoryController extends Controller
         $obj->slug = $request->slug;
         $obj->save();
 
-        return redirect()->route('admin_blog_category_index')->with('success','Blog Category is Created Successfully');
+        return redirect()->route('admin_blog_category_index')->with('success','Kategorija bloga je uspešno kreirana.');
     }
 
     public function edit($id)
     {
-        $blog_category = BlogCategory::where('id',$id)->first();
-        return view('admin.blog_category.edit',compact('blog_category'));
+        $blog_category = BlogCategory::where('id', $id)->first();
+        return view('admin.blog_category.edit', compact('blog_category'));
     }
     
     public function edit_submit(Request $request, $id)
     {
-        $obj = BlogCategory::where('id',$id)->first();
+        $obj = BlogCategory::where('id', $id)->first();
         
         $request->validate([
             'name' => 'required',
             'slug' => 'required|alpha_dash|unique:blog_categories,slug,'.$id,
+        ],[
+            'name.required' => 'Naziv kategorije je obavezan.',
+            'slug.required' => 'Slug je obavezan.',
+            'slug.alpha_dash' => 'Slug može sadržati samo slova, brojeve, crtice i donje crte.',
+            'slug.unique' => 'Ovaj slug već postoji.',
         ]);
 
         $obj->name = $request->name;
         $obj->slug = $request->slug;
         $obj->save();
 
-        return redirect()->route('admin_blog_category_index')->with('success','Blog Category is Updated Successfully');
+        return redirect()->route('admin_blog_category_index')->with('success','Kategorija bloga je uspešno izmenjena.');
     }
 
     public function delete($id)
     {
-        $total = Post::where('blog_category_id',$id)->count();
+        $total = Post::where('blog_category_id', $id)->count();
         if($total > 0)
         {
-            return redirect()->back()->with('error','This Blog Category is in use. So you can not delete it.');
+            return redirect()->back()->with('error','Ova kategorija se koristi u postovima, pa ne može biti obrisana.');
         }
 
-        $faq = BlogCategory::where('id',$id)->first();
-        $faq->delete();
-        return redirect()->route('admin_blog_category_index')->with('success','Blog Category is Deleted Successfully');
+        $category = BlogCategory::where('id', $id)->first();
+        $category->delete();
+        return redirect()->route('admin_blog_category_index')->with('success','Kategorija bloga je uspešno obrisana.');
     }
 }

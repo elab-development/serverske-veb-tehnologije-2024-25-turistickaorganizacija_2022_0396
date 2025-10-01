@@ -39,7 +39,6 @@ class UserController extends Controller
     public function review()
     {
         $reviews = Review::with('package')->where('user_id',Auth::guard('web')->user()->id)->get();
-        //dd($reviews);
         return view('user.review', compact('reviews'));
     }
 
@@ -53,7 +52,7 @@ class UserController extends Controller
     {
         $obj = Wishlist::where('id',$id)->first();
         $obj->delete();
-        return redirect()->back()->with('success', 'Wishlist item is deleted successfully!');
+        return redirect()->back()->with('success', 'Stavka sa liste želja je uspešno obrisana!');
     }
 
     public function message()
@@ -66,7 +65,6 @@ class UserController extends Controller
         } else {
             $message_comments = [];
         }
-        
 
         return view('user.message', compact('message_check', 'message_comments'));
     }
@@ -75,20 +73,22 @@ class UserController extends Controller
     {
         $message_check = Message::where('user_id',Auth::guard('web')->user()->id)->count();
         if($message_check > 0) {
-            return redirect()->back()->with('error', 'You have already started a conversation!');
+            return redirect()->back()->with('error', 'Već ste započeli konverzaciju!');
         }
 
         $obj = new Message;
         $obj->user_id = Auth::guard('web')->user()->id;
         $obj->save();
         
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Konverzacija je započeta.');
     }
 
     public function message_submit(Request $request)
     {
         $request->validate([
             'comment' => 'required',
+        ], [
+            'comment.required' => 'Molimo unesite poruku.',
         ]);
 
         $message = Message::where('user_id',Auth::guard('web')->user()->id)->first();
@@ -101,14 +101,14 @@ class UserController extends Controller
         $obj->save();
 
         $message_link = route('admin_message_detail',$message->id);
-        $subject = 'New User Message';
-        $message = 'Please click on the following link to see the new message from the user:<br><a href="'.$message_link.'">Click Here</a>';
+        $subject = 'Nova poruka korisnika';
+        $emailBody = 'Kliknite na sledeći link da vidite novu poruku od korisnika:<br><a href="'.$message_link.'">Otvorite poruku</a>';
 
         $admin_data = Admin::where('id',1)->first();
 
-        \Mail::to($admin_data->email)->send(new Websitemail($subject,$message));
+        \Mail::to($admin_data->email)->send(new Websitemail($subject,$emailBody));
 
-        return redirect()->back()->with('success', 'Message is sent successfully!');
+        return redirect()->back()->with('success', 'Poruka je uspešno poslata!');
     }
 
     public function profile()
@@ -120,23 +120,40 @@ class UserController extends Controller
     {
         $user = User::where('id',Auth::guard('web')->user()->id)->first();
 
+        // Validacija sa porukama na srpskom
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'phone' => 'required',
+            'name'    => 'required',
+            'email'   => 'required|email|unique:users,email,'.$user->id,
+            'phone'   => 'required',
             'country' => 'required',
             'address' => 'required',
-            'state' => 'required',
-            'city' => 'required',
-            'zip' => 'required',
+            'state'   => 'required',
+            'city'    => 'required',
+            'zip'     => 'required',
+        ], [
+            'name.required'    => 'Ime i prezime je obavezno.',
+            'email.required'   => 'Email adresa je obavezna.',
+            'email.email'      => 'Unesite ispravnu email adresu.',
+            'email.unique'     => 'Ova email adresa je već zauzeta.',
+            'phone.required'   => 'Broj telefona je obavezan.',
+            'country.required' => 'Država je obavezna.',
+            'address.required' => 'Adresa je obavezna.',
+            'state.required'   => 'Pokrajina/Regija je obavezna.',
+            'city.required'    => 'Grad je obavezan.',
+            'zip.required'     => 'ZIP kod je obavezan.',
         ]);
 
         if($request->photo) {
             $request->validate([
                 'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ], [
+                'photo.image' => 'Odabrani fajl mora biti slika.',
+                'photo.mimes' => 'Dozvoljeni formati su: jpeg, png, jpg, gif, svg.',
+                'photo.max'   => 'Maksimalna veličina fotografije je 2MB.',
             ]);
+
             if($user->photo != '') {
-                unlink(public_path('uploads/'.$user->photo));
+                @unlink(public_path('uploads/'.$user->photo));
             }
             $final_name = 'user_'.time().'.'.$request->photo->extension();
             $request->photo->move(public_path('uploads'), $final_name);
@@ -145,22 +162,26 @@ class UserController extends Controller
 
         if($request->password != '') {
             $request->validate([
-                'password' => 'required',
+                'password'        => 'required',
                 'retype_password' => 'required|same:password',
+            ], [
+                'password.required'        => 'Lozinka je obavezna.',
+                'retype_password.required' => 'Potvrda lozinke je obavezna.',
+                'retype_password.same'     => 'Lozinke se ne poklapaju.',
             ]);
             $user->password = bcrypt($request->password);
         }
         
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
+        $user->name    = $request->name;
+        $user->email   = $request->email;
+        $user->phone   = $request->phone;
         $user->country = $request->country;
         $user->address = $request->address;
-        $user->state = $request->state;
-        $user->city = $request->city;
-        $user->zip = $request->zip;
+        $user->state   = $request->state;
+        $user->city    = $request->city;
+        $user->zip     = $request->zip;
         $user->save();
 
-        return redirect()->back()->with('success', 'Profile updated successfully!');
+        return redirect()->back()->with('success', 'Profil je uspešno ažuriran!');
     }
 }

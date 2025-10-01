@@ -2,7 +2,26 @@
     "use strict";
     $(".inputtags").tagsinput('items');
     $(document).ready(function() {
-        $('#example1').DataTable();
+        $('#example1').DataTable({
+    language: {
+        "sEmptyTable": "Nema podataka u tabeli",
+        "sInfo": "Prikazano _START_ do _END_ od ukupno _TOTAL_ unosa",
+        "sInfoEmpty": "Prikazano 0 do 0 od 0 unosa",
+        "sInfoFiltered": "(filtrirano iz _MAX_ unosa)",
+        "sLengthMenu": "Prikaži _MENU_ unosa",
+        "sLoadingRecords": "Učitavanje...",
+        "sProcessing": "Obrada...",
+        "sSearch": "Pretraga:",
+        "sZeroRecords": "Nije pronađen nijedan rezultat",
+        "oPaginate": {
+            "sFirst": "Prva",
+            "sLast": "Poslednja",
+            "sNext": "Sledeća",
+            "sPrevious": "Prethodna"
+        }
+    }
+});
+
     });
     $('.icp_demo').iconpicker();
 

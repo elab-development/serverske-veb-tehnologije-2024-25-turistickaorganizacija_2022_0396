@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Edit FAQ</h1>
+            <h1>Izmeni FAQ</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_faq_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+                <a href="{{ route('admin_faq_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Vidi sve</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,16 +18,16 @@
                             <form action="{{ route('admin_faq_edit_submit',$faq->id) }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Question *</label>
+                                    <label class="form-label">Pitanje *</label>
                                     <input type="text" class="form-control" name="question" value="{{ $faq->question }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Answer *</label>
+                                    <label class="form-label">Odgovor *</label>
                                     <textarea name="answer" class="form-control h_200" cols="30" rows="10">{{ $faq->answer }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Sačuvaj</button>
                                 </div>
                             </form>
                         </div>

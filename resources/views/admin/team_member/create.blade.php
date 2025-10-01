@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Create Team Member</h1>
+            <h1>Kreiraj Člana Tima</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_team_member_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+                <a href="{{ route('admin_team_member_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Pogledaj Sve</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,13 +18,13 @@
                             <form action="{{ route('admin_team_member_create_submit') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Photo *</label>
+                                    <label class="form-label">Fotografija *</label>
                                     <div><input type="file" name="photo"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Name *</label>
+                                            <label class="form-label">Ime i Prezime *</label>
                                             <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                         </div>
                                     </div>
@@ -36,13 +36,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Designation *</label>
+                                            <label class="form-label">Pozicija *</label>
                                             <input type="text" class="form-control" name="designation" value="{{ old('designation') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Address *</label>
+                                            <label class="form-label">Adresa *</label>
                                             <input type="text" class="form-control" name="address" value="{{ old('address') }}">
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Phone *</label>
+                                            <label class="form-label">Telefon *</label>
                                             <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
                                         </div>
                                     </div>
@@ -84,12 +84,12 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Biography</label>
+                                    <label class="form-label">Biografija</label>
                                     <textarea name="biography" class="form-control editor" cols="30" rows="10">{{ old('biography') }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Pošalji</button>
                                 </div>
                             </form>
                         </div>

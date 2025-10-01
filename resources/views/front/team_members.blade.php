@@ -9,8 +9,8 @@
                 <h2>Članovi tima</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Team Members</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item active">Članovi tima</li>
                     </ol>
                 </div>
             </div>

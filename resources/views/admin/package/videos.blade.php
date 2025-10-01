@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Videos of {{ $package->name }}</h1>
+            <h1>Video zapisi za {{ $package->name }}</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_package_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> back to previous</a>
+                <a href="{{ route('admin_package_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> nazad</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,9 +19,9 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
+                                            <th>RB</th>
                                             <th>Video</th>
-                                            <th>Action</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -29,10 +29,10 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <iframe class="iframe1" width="560" height="315" src="https://www.youtube.com/embed/{{ $item->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                                <iframe class="iframe1" width="560" height="315" src="https://www.youtube.com/embed/{{ $item->video }}" title="YouTube video plejer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin_package_video_delete',$item->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?')">Delete</a>
+                                                <a href="{{ route('admin_package_video_delete',$item->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('Da li ste sigurni?')">Obriši</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Sačuvaj</button>
                                 </div>
                             </form>
                         </div>

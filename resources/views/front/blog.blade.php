@@ -9,7 +9,7 @@
                 <h2>Blog</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
                         <li class="breadcrumb-item active">Blog</li>
                     </ol>
                 </div>
@@ -38,7 +38,7 @@
                             </p>
                         </div>
                         <div class="button-style-2 mt_20">
-                            <a href="{{ route('post',$post->slug) }}">Read More</a>
+                            <a href="{{ route('post',$post->slug) }}">Pročitaj više</a>
                         </div>
                     </div>
                 </div>

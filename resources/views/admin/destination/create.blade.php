@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Create Destination</h1>
+            <h1>Kreiraj destinaciju</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_destination_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+                <a href="{{ route('admin_destination_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Vidi sve</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,7 +18,7 @@
                             <form action="{{ route('admin_destination_create_submit') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Featured Photo *</label>
+                                    <label class="form-label">Istaknuta fotografija *</label>
                                     <div><input type="file" name="featured_photo"></div>
                                 </div>
                                 <div class="row">
@@ -87,7 +87,7 @@
                                     <textarea name="best_time" class="form-control editor" cols="30" rows="10">{{ old('best_time') }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Zdravlje & bezbednost</label>
+                                    <label class="form-label">Zdravlje & Bezbednost</label>
                                     <textarea name="health_safety" class="form-control editor" cols="30" rows="10">{{ old('health_safety') }}</textarea>
                                 </div>
                                 <div class="mb-3">

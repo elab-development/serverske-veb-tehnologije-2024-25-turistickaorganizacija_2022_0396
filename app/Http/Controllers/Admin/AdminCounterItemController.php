@@ -11,7 +11,7 @@ class AdminCounterItemController extends Controller
     public function index()
     {
         $counter_item = CounterItem::where('id',1)->first();
-        return view('admin.counter.index',compact('counter_item'));
+        return view('admin.counter.index', compact('counter_item'));
     }
     
     public function update(Request $request)
@@ -40,6 +40,6 @@ class AdminCounterItemController extends Controller
         $obj->status = $request->status;
         $obj->save();
 
-        return redirect()->back()->with('success','Counter Item is Updated Successfully');
+        return redirect()->back()->with('success','Statistički podaci su uspešno ažurirani.');
     }
 }

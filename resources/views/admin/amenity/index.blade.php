@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Amenities</h1>
+            <h1>Pogodnosti</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_amenity_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{{ route('admin_amenity_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Dodaj</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,9 +19,9 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
+                                            <th>Redni broj</th>
+                                            <th>Ime</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,7 +33,7 @@
                                             </td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_amenity_edit',$amenity->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin_amenity_delete',$amenity->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_amenity_delete',$amenity->id) }}" class="btn btn-danger" onClick="return confirm('Jeste li sigurni?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

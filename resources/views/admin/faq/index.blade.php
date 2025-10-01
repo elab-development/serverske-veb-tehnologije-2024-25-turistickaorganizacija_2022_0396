@@ -7,7 +7,7 @@
         <div class="section-header justify-content-between">
             <h1>FAQs</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_faq_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{{ route('admin_faq_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Dodaj</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,9 +19,9 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Question</th>
-                                            <th>Action</th>
+                                            <th>Redni broj</th>
+                                            <th>Pitanje</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,7 +33,7 @@
                                             </td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_faq_edit',$faq->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin_faq_delete',$faq->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_faq_delete',$faq->id) }}" class="btn btn-danger" onClick="return confirm('Da li ste sigurni?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

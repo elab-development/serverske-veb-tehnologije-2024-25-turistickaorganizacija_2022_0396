@@ -27,11 +27,11 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Existing Favicon</label>
+                                            <label class="form-label">Trenutna ikonica</label>
                                             <div><img src="{{ asset('uploads/'.$setting->favicon) }}" alt="" class="w_50"></div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Change Favicon</label>
+                                            <label class="form-label">Promeni ikonicu</label>
                                             <div><input type="file" name="favicon"></div>
                                         </div>
                                     </div>
@@ -48,11 +48,11 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Top Bar Phone</label>
+                                    <label class="form-label">Top Bar broj telefona</label>
                                     <input type="text" name="top_bar_phone" class="form-control" value="{{ $setting->top_bar_phone }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Top Bar Email</label>
+                                    <label class="form-label">Top Bar email</label>
                                     <input type="text" name="top_bar_email" class="form-control" value="{{ $setting->top_bar_email }}">
                                 </div>
                                 <div class="mb-3">

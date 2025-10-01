@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Create Amenity</h1>
+            <h1>Kreiraj pogodnost</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_amenity_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+                <a href="{{ route('admin_amenity_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Vidi sve</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,12 +18,12 @@
                             <form action="{{ route('admin_amenity_create_submit') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Name *</label>
+                                    <label class="form-label">Ime *</label>
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Sačuvaj</button>
                                 </div>
                             </form>
                         </div>

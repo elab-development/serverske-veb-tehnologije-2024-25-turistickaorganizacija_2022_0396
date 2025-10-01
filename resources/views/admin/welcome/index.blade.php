@@ -5,7 +5,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Izmeni stranu dobrodošli</h1>
+            <h1>Izmeni stranu dobrodošlice</h1>
         </div>
         <div class="section-body">
             <div class="row">
@@ -46,24 +46,24 @@
                                     <textarea name="description" class="form-control editor" cols="30" rows="10">{{ $welcome_item->description }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Button Text</label>
+                                    <label class="form-label">Tekst na dugmetu</label>
                                     <input type="text" class="form-control" name="button_text" value="{{ $welcome_item->button_text }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Dugme link</label>
+                                    <label class="form-label">Link dugmeta</label>
                                     <input type="text" class="form-control" name="button_link" value="{{ $welcome_item->button_link }}">
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-select">
-                                        <option value="Show" {{ $welcome_item->status == 'Show' ? 'selected' : '' }}>Show</option>
-                                        <option value="Hide" {{ $welcome_item->status == 'Hide' ? 'selected' : '' }}>Hide</option>
+                                        <option value="Show" {{ $welcome_item->status == 'Show' ? 'selected' : '' }}>Prikaži</option>
+                                        <option value="Hide" {{ $welcome_item->status == 'Hide' ? 'selected' : '' }}>Sakrij</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Potvrdi</button>
+                                    <button type="submit" class="btn btn-primary">Sačuvaj</button>
                                 </div>
                             </form>
                         </div>

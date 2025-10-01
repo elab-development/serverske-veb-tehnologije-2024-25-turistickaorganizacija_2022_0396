@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Packages</h2>
+                <h2>Paketi</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Packages</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item active">Paketi</li>
                     </ol>
                 </div>
             </div>
@@ -25,17 +25,17 @@
                 <div class="package-sidebar">
                     <form action="{{ route('packages') }}" method="get">
                         <div class="widget">
-                            <h2>Search Package</h2>
+                            <h2>Pretraga paketa</h2>
                             <div class="box">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="text" name="name" class="form-control" placeholder="Package Name ..." value="{{ $form_name }}">
+                                        <input type="text" name="name" class="form-control" placeholder="Naziv paketa..." value="{{ $form_name }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="widget">
-                            <h2>Filter by Price</h2>
+                            <h2>Filter po ceni</h2>
                             <div class="box">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -48,10 +48,10 @@
                             </div>
                         </div>
                         <div class="widget">
-                            <h2>Filter by Destination</h2>
+                            <h2>Filter po destinaciji</h2>
                             <div class="box">
                                 <select name="destination_id" class="form-select">
-                                    <option value="">All</option>
+                                    <option value="">Sve</option>
                                     @foreach($destinations as $destination)
                                         <option value="{{ $destination->id }}" @if($form_destination_id == $destination->id) selected @endif>{{ $destination->name }}</option>
                                     @endforeach
@@ -59,96 +59,77 @@
                             </div>
                         </div>
                         <div class="widget">
-                            <h2>Filter by Review</h2>
+                            <h2>Filter po oceni</h2>
                             <div class="box">
                                 <div class="form-check form-check-review form-check-review-1">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadiosAll" value="all" @if($form_review == 'all' || $form_review == null) checked @endif>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadiosAll" value="all" @if($form_review == 'all' || $form_review == null) checked @endif>
                                     <label class="form-check-label" for="reviewRadiosAll">
-                                        All
+                                        Sve
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios1" value="5" @if($form_review == '5') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios1">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios1" value="5" @if($form_review == '5') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios1" title="5 zvezdica">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios2" value="4.5" @if($form_review == '4.5') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios2" value="4.5" @if($form_review == '4.5') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios2" title="4.5 zvezdica">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios3" value="4" @if($form_review == '4') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios3">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios3" value="4" @if($form_review == '4') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios3" title="4 zvezdice">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios4" value="3.5" @if($form_review == '3.5') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios4">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios4" value="3.5" @if($form_review == '3.5') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios4" title="3.5 zvezdice">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios5" value="3" @if($form_review == '3') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios5">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios5" value="3" @if($form_review == '3') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios5" title="3 zvezdice">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios6" value="2.5" @if($form_review == '2.5') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios6">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios6" value="2.5" @if($form_review == '2.5') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios6" title="2.5 zvezdice">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios7" value="2" @if($form_review == '2') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios7">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios7" value="2" @if($form_review == '2') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios7" title="2 zvezdice">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios8" value="1.5" @if($form_review == '1.5') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios8">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios8" value="1.5" @if($form_review == '1.5') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios8" title="1.5 zvezdica">
+                                        <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-review">
-                                    <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios9" value="1" @if($form_review == '1') checked @endif>
-                                    <label class="form-check-label" for="reviewRadios9">
+                                    <input name="review" class="form-check-input" type="radio" id="reviewRadios9" value="1" @if($form_review == '1') checked @endif>
+                                    <label class="form-check-label" for="reviewRadios9" title="1 zvezdica">
                                         <i class="fas fa-star"></i>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="filter-button">
-                            <button class="btn btn-primary">Filter</button>
+                            <button class="btn btn-primary">Primeni filter</button>
                         </div>
                     </form>
                 </div>
             </div>
+
             <div class="col-lg-8 col-md-6">
                 <div class="row">
                     @foreach($packages as $item)
@@ -182,30 +163,31 @@
                                             <i class="far fa-star"></i>
                                         @endif
                                     @endfor
-                                    ({{ $item->reviews->count() }} Reviews)
+                                    ({{ $item->reviews->count() }} recenzija)
                                 </div>
                                 @else
                                 <div class="review">
                                     @for($i=1; $i<=5; $i++)
                                         <i class="far fa-star"></i>
                                     @endfor
-                                    ({{ $item->reviews->count() }} Reviews)
+                                    ({{ $item->reviews->count() }} recenzija)
                                 </div>
                                 @endif
+
                                 <div class="element">
                                     <div class="element-left">
                                         <i class="fas fa-plane-departure"></i> {{ $item->destination->name }}
                                     </div>
                                     <div class="element-right">
-                                        <i class="fas fa-th-large"></i> {{ $item->package_amenities->count() }} Amenities
+                                        <i class="fas fa-th-large"></i> {{ $item->package_amenities->count() }} sadržaja
                                     </div>
                                 </div>
                                 <div class="element">
                                     <div class="element-left">
-                                        <i class="fas fa-users"></i> {{ $item->tours->count() }} Tours
+                                        <i class="fas fa-users"></i> {{ $item->tours->count() }} tura
                                     </div>
                                     <div class="element-right">
-                                        <i class="fas fa-clock"></i> {{ $item->package_itineraries->count() }} Days
+                                        <i class="fas fa-clock"></i> {{ $item->package_itineraries->count() }} dana
                                     </div>
                                 </div>
                             </div>

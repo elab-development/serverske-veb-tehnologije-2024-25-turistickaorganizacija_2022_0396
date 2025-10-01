@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Packages</h1>
+            <h1>Paketi</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_package_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{{ route('admin_package_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Dodaj novi</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,11 +19,11 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Featured Photo</th>
-                                            <th>Name</th>
-                                            <th>Gallery</th>
-                                            <th>Action</th>
+                                            <th>RB</th>
+                                            <th>Glavna fotografija</th>
+                                            <th>Naziv</th>
+                                            <th>Galerija</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,18 +36,18 @@
                                             <td>{{ $package->name }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('admin_package_amenities',$package->id) }}" class="btn btn-success mb-2">Amenities</a>
-                                                    <a href="{{ route('admin_package_itineraries',$package->id) }}" class="btn btn-success mb-2">Itinerary</a>
-                                                    <a href="{{ route('admin_package_faqs',$package->id) }}" class="btn btn-success mb-2">FAQ</a>
+                                                    <a href="{{ route('admin_package_amenities',$package->id) }}" class="btn btn-success mb-2">Sadržaji</a>
+                                                    <a href="{{ route('admin_package_itineraries',$package->id) }}" class="btn btn-success mb-2">Itinerar</a>
+                                                    <a href="{{ route('admin_package_faqs',$package->id) }}" class="btn btn-success mb-2">Česta pitanja</a>
                                                 </div>
                                                 <div>
-                                                    <a href="{{ route('admin_package_photos',$package->id) }}" class="btn btn-success mb-2">Photo Gallery</a>
-                                                    <a href="{{ route('admin_package_videos',$package->id) }}" class="btn btn-success mb-2">Video Gallery</a>
+                                                    <a href="{{ route('admin_package_photos',$package->id) }}" class="btn btn-success mb-2">Foto galerija</a>
+                                                    <a href="{{ route('admin_package_videos',$package->id) }}" class="btn btn-success mb-2">Video galerija</a>
                                                 </div>
                                             </td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_package_edit',$package->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin_package_delete',$package->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_package_delete',$package->id) }}" class="btn btn-danger" onClick="return confirm('Da li ste sigurni?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

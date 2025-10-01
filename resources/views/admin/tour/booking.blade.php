@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Booking Information</h1>
+            <h1>Informacije o rezervacijama</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_tour_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Back to Previous</a>
+                <a href="{{ route('admin_tour_index') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Nazad na prethodnu</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,15 +19,15 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Invoice No</th>
-                                            <th>User Info</th>
-                                            <th>Total Persons</th>
-                                            <th>Paid Amount</th>
-                                            <th>Payment Method</th>
-                                            <th>Payment Status</th>
-                                            <th>Show Invoice</th>
-                                            <th>Action</th>
+                                            <th>RB</th>
+                                            <th>Broj fakture</th>
+                                            <th>Informacije o korisniku</th>
+                                            <th>Ukupno osoba</th>
+                                            <th>Plaćeni iznos</th>
+                                            <th>Način plaćanja</th>
+                                            <th>Status plaćanja</th>
+                                            <th>Prikaži fakturu</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,26 +38,26 @@
                                                 {{ $item->invoice_no }}
                                             </td>
                                             <td>
-                                                <strong>Name:</strong> {{ $item->user->name }}<br>
+                                                <strong>Ime:</strong> {{ $item->user->name }}<br>
                                                 <strong>Email:</strong> {{ $item->user->email }}<br>
-                                                <strong>Phone:</strong> {{ $item->user->phone }}
+                                                <strong>Telefon:</strong> {{ $item->user->phone }}
                                             </td>
                                             <td>{{ $item->total_person }}</td>
                                             <td>{{ $item->paid_amount }}</td>
                                             <td>{{ $item->payment_method }}</td>
                                             <td>
                                                 @if($item->payment_status == 'Completed')
-                                                <span class="badge bg-success">Completed</span>
+                                                <span class="badge bg-success">Završeno</span>
                                                 @else
-                                                <span class="badge bg-danger">Pending</span>
-                                                <a href="{{ route('admin_tour_booking_approve',$item->id) }}">Approve It</a>
+                                                <span class="badge bg-danger">Na čekanju</span>
+                                                <a href="{{ route('admin_tour_booking_approve',$item->id) }}">Odobri</a>
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin_tour_invoice',$item->invoice_no) }}" class="badge bg-primary text-decoration-none" target="_blank">Show Invoice</a>
+                                                <a href="{{ route('admin_tour_invoice',$item->invoice_no) }}" class="badge bg-primary text-decoration-none" target="_blank">Prikaži fakturu</a>
                                             </td>
                                             <td class="pt_10 pb_10">
-                                                <a href="{{ route('admin_tour_booking_delete',$item->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_tour_booking_delete',$item->id) }}" class="btn btn-danger" onClick="return confirm('Da li ste sigurni?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

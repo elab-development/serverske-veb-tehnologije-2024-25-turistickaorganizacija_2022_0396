@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Send Email to All</h1>
+            <h1>Pošalji email svima</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_subscribers') }}" class="btn btn-primary"><i class="fas fa-plus"></i> All Subscribers</a>
+                <a href="{{ route('admin_subscribers') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Svi pretplatnici</a>
             </div>
         </div>
         <div class="section-body">
@@ -18,16 +18,16 @@
                             <form action="{{ route('admin_subscriber_send_email_submit') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Subject *</label>
+                                    <label class="form-label">Naslov *</label>
                                     <input type="text" class="form-control" name="subject">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Message *</label>
+                                    <label class="form-label">Poruka *</label>
                                     <textarea name="message" class="form-control h_200" cols="30" rows="10"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Send Email</button>
+                                    <button type="submit" class="btn btn-primary">Pošalji email</button>
                                 </div>
                             </form>
                         </div>

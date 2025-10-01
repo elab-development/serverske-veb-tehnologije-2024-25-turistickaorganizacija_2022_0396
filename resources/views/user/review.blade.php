@@ -6,10 +6,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Reviews</h2>
+                <h2>Recenzije</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
                         <li class="breadcrumb-item active">Recenzije</li>
                     </ol>
                 </div>
@@ -17,6 +17,7 @@
         </div>
     </div>
 </div>
+
 <div class="page-content user-panel pt_70 pb_70">
     <div class="container-fluid">
         <div class="row">
@@ -30,11 +31,11 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th>SL</th>
-                                <th>Photo</th>
-                                <th>Package</th>
-                                <th>Rating</th>
-                                <th>Comment</th>
+                                <th>RB</th>
+                                <th>Fotografija</th>
+                                <th>Paket</th>
+                                <th>Ocena</th>
+                                <th>Komentar</th>
                             </tr>
 
                             @foreach($reviews as $item)
@@ -45,22 +46,21 @@
                                 </td>
                                 <td>
                                     {{ $item->package->name }}<br>
-                                    <a href="{{ route('package',$item->package->slug) }}" target="_blank" class="text-decoration-underline">See Detail</a>
+                                    <a href="{{ route('package',$item->package->slug) }}" target="_blank" class="text-decoration-underline">Pogledaj detalje</a>
                                 </td>
+                                <td>{{ $item->rating }}</td>
                                 <td>
-                                    {{ $item->rating }}
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $loop->iteration }}">Comment</a>
+                                    <a href="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $loop->iteration }}">Komentar</a>
                                 </td>
                             </tr>
+
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal{{ $loop->iteration }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Comment</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Komentar</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3 row">

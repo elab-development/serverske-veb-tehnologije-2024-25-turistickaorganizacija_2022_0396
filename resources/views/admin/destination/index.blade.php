@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Destinations</h1>
+            <h1>Destinacije</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_destination_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{{ route('admin_destination_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Dodaj</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,11 +19,11 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Featured Photo</th>
-                                            <th>Name</th>
-                                            <th>Gallery</th>
-                                            <th>Action</th>
+                                            <th>Redni broj</th>
+                                            <th>Istaknuta fotografija</th>
+                                            <th>Naziv</th>
+                                            <th>Galerija</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -35,12 +35,12 @@
                                             </td>
                                             <td>{{ $destination->name }}</td>
                                             <td>
-                                                <a href="{{ route('admin_destination_photos',$destination->id) }}" class="btn btn-success btn-sm">Photo Gallery</a>
-                                                <a href="{{ route('admin_destination_videos',$destination->id) }}" class="btn btn-success btn-sm">Video Gallery</a>
+                                                <a href="{{ route('admin_destination_photos',$destination->id) }}" class="btn btn-success btn-sm">Galerija fotografija</a>
+                                                <a href="{{ route('admin_destination_videos',$destination->id) }}" class="btn btn-success btn-sm">Video galerija</a>
                                             </td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_destination_edit',$destination->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin_destination_delete',$destination->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_destination_delete',$destination->id) }}" class="btn btn-danger" onClick="return confirm('Da li ste sigurni?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

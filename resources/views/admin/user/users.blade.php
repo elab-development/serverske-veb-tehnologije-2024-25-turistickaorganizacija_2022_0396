@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Users</h1>
+            <h1>Korisnici</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_user_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{{ route('admin_user_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Dodaj novog</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,14 +19,14 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Photo</th>
-                                            <th>Name</th>
+                                            <th>RB</th>
+                                            <th>Fotografija</th>
+                                            <th>Ime</th>
                                             <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Address Info</th>
+                                            <th>Telefon</th>
+                                            <th>Adresa</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Akcija</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,22 +50,22 @@
                                                 {{ $item->phone }}
                                             </td>
                                             <td>
-                                                Country: {{ $item->country }}<br>
-                                                Address: {{ $item->address }}<br>
-                                                State: {{ $item->state }}<br>
-                                                City: {{ $item->city }}<br>
-                                                Zip: {{ $item->zip }}
+                                                Država: {{ $item->country }}<br>
+                                                Adresa: {{ $item->address }}<br>
+                                                Pokrajina/Region: {{ $item->state }}<br>
+                                                Grad: {{ $item->city }}<br>
+                                                Poštanski broj: {{ $item->zip }}
                                             </td>
                                             <td>
                                                 @if($item->status == 1)
-                                                <span class="badge badge-success">Active</span>
+                                                <span class="badge badge-success">Aktivan</span>
                                                 @else
-                                                <span class="badge badge-danger">Pending</span>
+                                                <span class="badge badge-danger">Na čekanju</span>
                                                 @endif
                                             </td>
                                             <td class="pt_10 pb_10">
-                                                <a href="{{ route('admin_user_edit',$item->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin_user_delete',$item->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_user_edit',$item->id) }}" class="btn btn-primary" title="Izmeni"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('admin_user_delete',$item->id) }}" class="btn btn-danger" onClick="return confirm('Da li ste sigurni?');" title="Obriši"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

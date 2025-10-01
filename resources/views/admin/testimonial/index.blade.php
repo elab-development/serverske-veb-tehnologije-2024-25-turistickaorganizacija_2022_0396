@@ -5,9 +5,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header justify-content-between">
-            <h1>Testimonials</h1>
+            <h1>Iskustva Korisnika</h1>
             <div class="ml-auto">
-                <a href="{{ route('admin_testimonial_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{{ route('admin_testimonial_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Dodaj Novo</a>
             </div>
         </div>
         <div class="section-body">
@@ -19,11 +19,11 @@
                                 <table class="table table-bordered" id="example1">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Photo</th>
-                                            <th>Name</th>
-                                            <th>Designation</th>
-                                            <th>Action</th>
+                                            <th>RB</th>
+                                            <th>Fotografija</th>
+                                            <th>Ime i Prezime</th>
+                                            <th>Pozicija</th>
+                                            <th>Akcije</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,7 +37,7 @@
                                             <td>{{ $testimonial->designation }}</td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_testimonial_edit',$testimonial->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin_testimonial_delete',$testimonial->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('admin_testimonial_delete',$testimonial->id) }}" class="btn btn-danger" onClick="return confirm('Da li ste sigurni?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

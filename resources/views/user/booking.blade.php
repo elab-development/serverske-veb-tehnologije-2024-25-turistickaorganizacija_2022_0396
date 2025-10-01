@@ -34,36 +34,28 @@
                                 <th>Redni broj</th>
                                 <th>Broj računa</th>
                                 <th>Ukupno osoba</th>
-                                <th>Paid Amount</th>
-                                <th>Payment Method</th>
-                                <th>Payment Status</th>
-                                <th class="w-100">
-                                    Action
-                                </th>
+                                <th>Uplaćen iznos</th>
+                                <th>Način plaćanja</th>
+                                <th>Status plaćanja</th>
+                                <th class="w-100">Akcije</th>
                             </tr>
                             @foreach($all_data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>
-                                    {{ $item->invoice_no }}
-                                </td>
-                                <td>
-                                    {{ $item->total_person }}
-                                </td>
+                                <td>{{ $item->invoice_no }}</td>
+                                <td>{{ $item->total_person }}</td>
                                 <td>${{ $item->paid_amount }}</td>
-                                <td>
-                                    {{ $item->payment_method }}
-                                </td>
+                                <td>{{ $item->payment_method }}</td>
                                 <td>
                                     @if($item->payment_status == 'Completed')
-                                    <div class="badge bg-success">Completed</div>
+                                    <div class="badge bg-success">Završeno</div>
                                     @else
-                                    <div class="badge bg-danger">Pending</div>
+                                    <div class="badge bg-danger">Na čekanju</div>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-secondary btn-sm mb-1 w-100-p" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $loop->iteration }}">Detail</a>
-                                    <a href="{{ route('user_invoice',$item->invoice_no) }}" class="btn btn-secondary btn-sm w-100-p">Invoice</a>
+                                    <a href="" class="btn btn-secondary btn-sm mb-1 w-100-p" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $loop->iteration }}">Detalji</a>
+                                    <a href="{{ route('user_invoice',$item->invoice_no) }}" class="btn btn-secondary btn-sm w-100-p">Račun</a>
                                 </td>
                             </tr>
                             <!-- Modal -->
@@ -71,69 +63,47 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detalji kupovine</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3 row modal-seperator">
-                                                <div class="col-md-5">
-                                                    <b>Invoice No:</b>
-                                                </div>
+                                                <div class="col-md-5"><b>Broj računa:</b></div>
+                                                <div class="col-md-7">{{ $item->invoice_no }}</div>
+                                            </div>
+                                            <div class="mb-3 row modal-seperator">
+                                                <div class="col-md-5"><b>Paket:</b></div>
                                                 <div class="col-md-7">
-                                                    {{ $item->invoice_no }}
+                                                    <b>Naziv:</b> {{ $item->package->name }}<br>
+                                                    <a href="{{ route('package',$item->package->slug) }}" target="_blank">Prikaži detalje</a>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row modal-seperator">
-                                                <div class="col-md-5">
-                                                    <b>Package Detail:</b>
-                                                </div>
+                                                <div class="col-md-5"><b>Tura:</b></div>
                                                 <div class="col-md-7">
-                                                    <b>Name:</b> {{ $item->package->name }}<br>
-                                                    <a href="{{ route('package',$item->package->slug) }}" target="_blank">Show Detail</a>
+                                                    <b>Početak:</b> {{ $item->tour->tour_start_date }}<br>
+                                                    <b>Kraj:</b> {{ $item->tour->tour_end_date }}
                                                 </div>
                                             </div>
                                             <div class="mb-3 row modal-seperator">
-                                                <div class="col-md-5">
-                                                    <b>Tour Detail:</b>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    <b>Start Date: </b> {{ $item->tour->tour_start_date }}<br>
-                                                    <b>End Date: </b> {{ $item->tour->tour_end_date }}<br>
-                                                </div>
+                                                <div class="col-md-5"><b>Ukupno osoba:</b></div>
+                                                <div class="col-md-7">{{ $item->total_person }}</div>
                                             </div>
                                             <div class="mb-3 row modal-seperator">
-                                                <div class="col-md-5">
-                                                    <b>Total Persons:</b>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    {{ $item->total_person }}
-                                                </div>
+                                                <div class="col-md-5"><b>Uplaćen iznos:</b></div>
+                                                <div class="col-md-7">${{ $item->paid_amount }}</div>
                                             </div>
                                             <div class="mb-3 row modal-seperator">
-                                                <div class="col-md-5">
-                                                    <b>Paid Amount:</b>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    ${{ $item->paid_amount }}
-                                                </div>
+                                                <div class="col-md-5"><b>Način plaćanja:</b></div>
+                                                <div class="col-md-7">{{ $item->payment_method }}</div>
                                             </div>
                                             <div class="mb-3 row modal-seperator">
-                                                <div class="col-md-5">
-                                                    <b>Payment Method:</b>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    {{ $item->payment_method }}
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row modal-seperator">
-                                                <div class="col-md-5">
-                                                    <b>Payment Status:</b>
-                                                </div>
+                                                <div class="col-md-5"><b>Status plaćanja:</b></div>
                                                 <div class="col-md-7">
                                                     @if($item->payment_status == 'Completed')
-                                                    <div class="badge bg-success">Completed</div>
+                                                    <div class="badge bg-success">Završeno</div>
                                                     @else
-                                                    <div class="badge bg-danger">Pending</div>
+                                                    <div class="badge bg-danger">Na čekanju</div>
                                                     @endif
                                                 </div>
                                             </div>

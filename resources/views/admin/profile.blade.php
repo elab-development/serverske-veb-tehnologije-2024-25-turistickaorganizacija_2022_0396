@@ -29,7 +29,7 @@
                                             <input type="text" class="form-control" name="email" value="{{ Auth::guard('admin')->user()->email }}">
                                         </div>
                                         <div class="mb-4">
-                                            <label class="form-label">Lozinka</label>
+                                            <label class="form-label">Nova lozinka</label>
                                             <input type="password" class="form-control" name="password">
                                         </div>
                                         <div class="mb-4">
@@ -37,8 +37,7 @@
                                             <input type="password" class="form-control" name="confirm_password">
                                         </div>
                                         <div class="mb-4">
-                                            <label class="form-label"></label>
-                                            <button type="submit" class="btn btn-primary">Potvrdi</button>
+                                            <button type="submit" class="btn btn-primary">Sačuvaj izmene</button>
                                         </div>
                                     </div>
                                 </div>

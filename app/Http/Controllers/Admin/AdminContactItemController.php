@@ -11,7 +11,7 @@ class AdminContactItemController extends Controller
     public function index()
     {
         $contact_item = ContactItem::where('id',1)->first();
-        return view('admin.contact_item.index',compact('contact_item'));
+        return view('admin.contact_item.index', compact('contact_item'));
     }
     
     public function update(Request $request)
@@ -20,6 +20,6 @@ class AdminContactItemController extends Controller
         $obj->map_code = $request->map_code;
         $obj->save();
 
-        return redirect()->back()->with('success','Contact Item is Updated Successfully');
+        return redirect()->back()->with('success','Kontakt podaci su uspešno ažurirani.');
     }
 }

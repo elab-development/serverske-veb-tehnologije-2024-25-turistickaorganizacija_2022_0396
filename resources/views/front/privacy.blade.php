@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Privacy Policy</h2>
+                <h2>Politika privatnosti</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Privacy Policy</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item active">Politika privatnosti</li>
                     </ol>
                 </div>
             </div>

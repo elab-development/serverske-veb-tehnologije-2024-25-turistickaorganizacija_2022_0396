@@ -2,7 +2,7 @@
 $setting = App\Models\Setting::where('id',1)->first();
 @endphp
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +10,7 @@ $setting = App\Models\Setting::where('id',1)->first();
 
         <link rel="icon" type="image/png" href="{{ asset('uploads/'.$setting->favicon) }}">
 
-        <!-- All CSS -->
+        <!-- CSS -->
         <link rel="stylesheet" href="{{ asset('dist-front/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/bootstrap-datepicker.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/animate.min.css') }}">
@@ -24,7 +24,7 @@ $setting = App\Models\Setting::where('id',1)->first();
         <link rel="stylesheet" href="{{ asset('dist-front/css/spacing.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/style.css') }}">
         
-        <!-- All Javascripts -->
+        <!-- JS -->
         <script src="{{ asset('dist-front/js/jquery-3.6.1.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/bootstrap-datepicker.min.js') }}"></script>
@@ -55,14 +55,14 @@ $setting = App\Models\Setting::where('id',1)->first();
                         <ul class="right">
                             @if(Auth::guard('web')->check())
                             <li class="menu">
-                                <a href="{{ route('user_dashboard') }}"><i class="fas fa-sign-in-alt"></i> Dashboard</a>
+                                <a href="{{ route('user_dashboard') }}"><i class="fas fa-sign-in-alt"></i> Moj profil</a>
                             </li>
                             @else
                             <li class="menu">
-                                <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Prijava</a>
                             </li>
                             <li class="menu">
-                                <a href="{{ route('registration') }}"><i class="fas fa-user"></i> Sign Up</a>
+                                <a href="{{ route('registration') }}"><i class="fas fa-user"></i> Registracija</a>
                             </li>
                             @endif
                         </ul>
@@ -80,30 +80,30 @@ $setting = App\Models\Setting::where('id',1)->first();
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="item pb_50">
-                            <h2 class="heading">Important Pages</h2>
+                            <h2 class="heading">Važne stranice</h2>
                             <ul class="useful-links">
-                                <li><a href="{{ route('home') }}"><i class="fas fa-angle-right"></i> Home</a></li>
-                                <li><a href="{{ route('destinations') }}"><i class="fas fa-angle-right"></i> Destinations</a></li>
-                                <li><a href="{{ route('packages') }}"><i class="fas fa-angle-right"></i> Packages</a></li>
+                                <li><a href="{{ route('home') }}"><i class="fas fa-angle-right"></i> Početna</a></li>
+                                <li><a href="{{ route('destinations') }}"><i class="fas fa-angle-right"></i> Destinacije</a></li>
+                                <li><a href="{{ route('packages') }}"><i class="fas fa-angle-right"></i> Paketi</a></li>
                                 <li><a href="{{ route('blog') }}"><i class="fas fa-angle-right"></i> Blog</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="item pb_50">
-                            <h2 class="heading">Useful Links</h2>
+                            <h2 class="heading">Korisni linkovi</h2>
                             <ul class="useful-links">
-                                <li><a href="{{ route('faq') }}"><i class="fas fa-angle-right"></i> FAQ</a></li>
-                                <li><a href="{{ route('terms') }}"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
-                                <li><a href="{{ route('privacy') }}"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
-                                <li><a href="{{ route('contact') }}"><i class="fas fa-angle-right"></i> Contact</a></li>
+                                <li><a href="{{ route('faq') }}"><i class="fas fa-angle-right"></i> Česta pitanja</a></li>
+                                <li><a href="{{ route('terms') }}"><i class="fas fa-angle-right"></i> Uslovi korišćenja</a></li>
+                                <li><a href="{{ route('privacy') }}"><i class="fas fa-angle-right"></i> Politika privatnosti</a></li>
+                                <li><a href="{{ route('contact') }}"><i class="fas fa-angle-right"></i> Kontakt</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6">
                         <div class="item pb_50">
-                            <h2 class="heading">Contact</h2>
+                            <h2 class="heading">Kontakt</h2>
                             <div class="list-item">
                                 <div class="left">
                                     <i class="fas fa-map-marker-alt"></i>
@@ -116,13 +116,13 @@ $setting = App\Models\Setting::where('id',1)->first();
                                 <div class="left">
                                     <i class="fas fa-phone"></i>
                                 </div>
-                                <div class="right">{{ $setting->footer_email }}</div>
+                                <div class="right">{{ $setting->footer_phone }}</div>
                             </div>
                             <div class="list-item">
                                 <div class="left">
                                     <i class="fas fa-envelope"></i>
                                 </div>
-                                <div class="right">{{ $setting->footer_phone }}</div>
+                                <div class="right">{{ $setting->footer_email }}</div>
                             </div>
 
                             @if($setting->facebook != '' || $setting->twitter != '' || $setting->youtube != '' || $setting->linkedin != '' || $setting->instagram != '')
@@ -155,16 +155,15 @@ $setting = App\Models\Setting::where('id',1)->first();
                         <div class="item pb_50">
                             <h2 class="heading">Newsletter</h2>
                             <p>
-                                To get the latest news from our website, please
-                                subscribe us here:
+                                Da biste dobijali najnovije vesti sa našeg sajta, prijavite se ovde:
                             </p>
                             <form action="{{ route('subscriber_submit') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="email" class="form-control" placeholder="Email Address">
+                                    <input type="text" name="email" class="form-control" placeholder="Email adresa">
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary" value="Subscribe Now">
+                                    <input type="submit" class="btn btn-primary" value="Prijavi se">
                                 </div>
                             </form>
                         </div>

@@ -11,7 +11,7 @@ class AdminTestimonialController extends Controller
     public function index()
     {
         $testimonials = Testimonial::get();
-        return view('admin.testimonial.index',compact('testimonials'));
+        return view('admin.testimonial.index', compact('testimonials'));
     }
 
     public function create()
@@ -22,13 +22,21 @@ class AdminTestimonialController extends Controller
     public function create_submit(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name'        => 'required',
             'designation' => 'required',
-            'comment' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'comment'     => 'required',
+            'photo'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'name.required'        => 'Ime je obavezno.',
+            'designation.required' => 'Pozicija je obavezna.',
+            'comment.required'     => 'Komentar je obavezan.',
+            'photo.required'       => 'Fotografija je obavezna.',
+            'photo.image'          => 'Fotografija mora biti u odgovarajućem formatu.',
+            'photo.mimes'          => 'Dozvoljeni formati su: jpeg, png, jpg, gif, svg.',
+            'photo.max'            => 'Fotografija ne sme biti veća od 2MB.',
         ]);
 
-        $final_name = 'testimonial_'.time().'.'.$request->photo->extension();
+        $final_name = 'testimonial_' . time() . '.' . $request->photo->extension();
         $request->photo->move(public_path('uploads'), $final_name);
 
         $obj = new Testimonial();
@@ -38,34 +46,43 @@ class AdminTestimonialController extends Controller
         $obj->comment = $request->comment;
         $obj->save();
 
-        return redirect()->route('admin_testimonial_index')->with('success','Testimonial is Created Successfully');
+        return redirect()->route('admin_testimonial_index')->with('success','Testimonial je uspešno dodat!');
     }
 
     public function edit($id)
     {
-        $testimonial = Testimonial::where('id',$id)->first();
-        return view('admin.testimonial.edit',compact('testimonial'));
+        $testimonial = Testimonial::where('id', $id)->first();
+        return view('admin.testimonial.edit', compact('testimonial'));
     }
     
     public function edit_submit(Request $request, $id)
     {
-        $testimonial = Testimonial::where('id',$id)->first();
+        $testimonial = Testimonial::where('id', $id)->first();
         
         $request->validate([
-            'name' => 'required',
+            'name'        => 'required',
             'designation' => 'required',
-            'comment' => 'required',
+            'comment'     => 'required',
+        ], [
+            'name.required'        => 'Ime je obavezno.',
+            'designation.required' => 'Pozicija je obavezna.',
+            'comment.required'     => 'Komentar je obavezan.',
         ]);
 
         if($request->hasFile('photo'))
         {
             $request->validate([
                 'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ], [
+                'photo.required' => 'Fotografija je obavezna.',
+                'photo.image'    => 'Fotografija mora biti validna slika.',
+                'photo.mimes'    => 'Dozvoljeni formati su: jpeg, png, jpg, gif, svg.',
+                'photo.max'      => 'Fotografija ne sme biti veća od 2MB.',
             ]);
 
             unlink(public_path('uploads/'.$testimonial->photo));
 
-            $final_name = 'testimonial_'.time().'.'.$request->photo->extension();
+            $final_name = 'testimonial_' . time() . '.' . $request->photo->extension();
             $request->photo->move(public_path('uploads'), $final_name);
             $testimonial->photo = $final_name;
         }
@@ -75,7 +92,7 @@ class AdminTestimonialController extends Controller
         $testimonial->comment = $request->comment;
         $testimonial->save();
 
-        return redirect()->route('admin_testimonial_index')->with('success','Testimonial is Updated Successfully');
+        return redirect()->route('admin_testimonial_index')->with('success','Testimonial je uspešno ažuriran!');
     }
 
     public function delete($id)
@@ -83,6 +100,6 @@ class AdminTestimonialController extends Controller
         $testimonial = Testimonial::where('id',$id)->first();
         unlink(public_path('uploads/'.$testimonial->photo));
         $testimonial->delete();
-        return redirect()->route('admin_testimonial_index')->with('success','Testimonial is Deleted Successfully');
+        return redirect()->route('admin_testimonial_index')->with('success','Testimonial je uspešno obrisan!');
     }
 }

@@ -9,8 +9,8 @@
                 <h2>{{ $team_member->name }}</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('team_members') }}">Team Members</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('team_members') }}">Tim</a></li>
                         <li class="breadcrumb-item active">{{ $team_member->name }}</li>
                     </ol>
                 </div>
@@ -18,7 +18,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="team-single pt_70 pb_70 bg_f3f3f3">
     <div class="container">
@@ -32,28 +31,28 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tr>
-                            <td>Name</td>
+                            <td>Ime</td>
                             <td>{{ $team_member->name }}</td>
                         </tr>
                         <tr>
-                            <td>Designation</td>
+                            <td>Pozicija</td>
                             <td>{{ $team_member->designation }}</td>
                         </tr>
                         <tr>
-                            <td>Address</td>
+                            <td>Adresa</td>
                             <td>{{ $team_member->address }}</td>
                         </tr>
                         <tr>
-                            <td>Email Address</td>
+                            <td>Email adresa</td>
                             <td>{{ $team_member->email }}</td>
                         </tr>
                         <tr>
-                            <td>Phone</td>
+                            <td>Telefon</td>
                             <td>{{ $team_member->phone }}</td>
                         </tr>
                         @if($team_member->facebook != '' || $team_member->twitter != '' || $team_member->linkedin != '' || $team_member->instagram != '')
                         <tr>
-                            <td>Social Media</td>
+                            <td>Društvene mreže</td>
                             <td>
                                 <ul>
                                     @if($team_member->facebook != '')
@@ -77,7 +76,7 @@
             </div>
         
             <div class="col-md-12 mt_30">
-                <h4>Biography</h4>
+                <h4>Biografija</h4>
                 <div class="description">
                     {!! $team_member->biography !!}
                 </div>

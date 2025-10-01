@@ -5,11 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>About Us</h2>
+                <h2>O nama</h2>
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">About Us</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Početna</a></li>
+                        <li class="breadcrumb-item active">O nama</li>
                     </ol>
                 </div>
             </div>

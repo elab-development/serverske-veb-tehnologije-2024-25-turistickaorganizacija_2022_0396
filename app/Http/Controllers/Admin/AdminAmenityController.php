@@ -24,13 +24,16 @@ class AdminAmenityController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:amenities,name',
+        ],[
+            'name.required' => 'Naziv pogodnosti je obavezan.',
+            'name.unique'   => 'Ova pogodnost već postoji.',
         ]);
 
         $obj = new Amenity();
         $obj->name = $request->name;
         $obj->save();
 
-        return redirect()->route('admin_amenity_index')->with('success','Amenity is Created Successfully');
+        return redirect()->route('admin_amenity_index')->with('success','Pogodnost je uspešno dodata.');
     }
 
     public function edit($id)
@@ -45,24 +48,27 @@ class AdminAmenityController extends Controller
         
         $request->validate([
             'name' => 'required|unique:amenities,name,'.$id,
+        ],[
+            'name.required' => 'Naziv pogodnosti je obavezan.',
+            'name.unique'   => 'Ova pogodnost već postoji.',
         ]);
 
         $obj->name = $request->name;
         $obj->save();
 
-        return redirect()->route('admin_amenity_index')->with('success','Amenity is Updated Successfully');
+        return redirect()->route('admin_amenity_index')->with('success','Pogodnost je uspešno ažurirana.');
     }
 
     public function delete($id)
     {
         $total = PackageAmenity::where('amenity_id',$id)->count();
-        if($total>0)
+        if($total > 0)
         {
-            return redirect()->back()->with('error','Amenity is Assigned to Package(s), So it can not be deleted');
+            return redirect()->back()->with('error','Ova pogodnost je dodeljena paketu(pa) i ne može biti obrisana.');
         }
 
         $obj = Amenity::where('id',$id)->first();
         $obj->delete();
-        return redirect()->route('admin_amenity_index')->with('success','Amenity is Deleted Successfully');
+        return redirect()->route('admin_amenity_index')->with('success','Pogodnost je uspešno obrisana.');
     }
 }
