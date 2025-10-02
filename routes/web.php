@@ -118,13 +118,14 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::post('/testimonial/edit/{id}',[AdminTestimonialController::class,'edit_submit'])->name('admin_testimonial_edit_submit');
     Route::get('/testimonial/delete/{id}',[AdminTestimonialController::class,'delete'])->name('admin_testimonial_delete');
 
-    // Team Member Section
-    Route::get('/team-member/index',[AdminTeamMemberController::class,'index'])->name('admin_team_member_index');
-    Route::get('/team-member/create',[AdminTeamMemberController::class,'create'])->name('admin_team_member_create');
-    Route::post('/team-member/create',[AdminTeamMemberController::class,'create_submit'])->name('admin_team_member_create_submit');
-    Route::get('/team-member/edit/{id}',[AdminTeamMemberController::class,'edit'])->name('admin_team_member_edit');
-    Route::post('/team-member/edit/{id}',[AdminTeamMemberController::class,'edit_submit'])->name('admin_team_member_edit_submit');
-    Route::get('/team-member/delete/{id}',[AdminTeamMemberController::class,'delete'])->name('admin_team_member_delete');
+    // Team Member Section 
+    Route::get('/team-member',                 [AdminTeamMemberController::class, 'index'])->name('admin_team_member_index');
+    Route::get('/team-member/create',          [AdminTeamMemberController::class, 'create'])->name('admin_team_member_create');
+    Route::post('/team-member/store',          [AdminTeamMemberController::class, 'create_submit'])->name('admin_team_member_store');
+    Route::get('/team-member/edit/{id}',       [AdminTeamMemberController::class, 'edit'])->name('admin_team_member_edit');
+    Route::put('/team-member/update/{id}',     [AdminTeamMemberController::class, 'edit_submit'])->name('admin_team_member_update');
+    Route::delete('/team-member/delete/{id}',  [AdminTeamMemberController::class, 'delete'])->name('admin_team_member_delete');
+
 
     // FAQ Section
     Route::get('/faq/index',[AdminFaqController::class,'index'])->name('admin_faq_index');
