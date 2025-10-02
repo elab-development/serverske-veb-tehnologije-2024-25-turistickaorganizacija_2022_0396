@@ -228,4 +228,20 @@ class AdminDestinationController extends Controller
         $destination_video->delete();
         return redirect()->back()->with('success','Video je uspešno obrisan.');
     }
+    public function show($id)
+{
+    $destination = Destination::findOrFail($id);
+
+    // Pretraga na Unsplash prema imenu destinacije
+    $query = urlencode($destination->name);
+    $response = Http::get("https://api.unsplash.com/search/photos", [
+        'query' => $query,
+        'per_page' => 6,
+        'client_id' => env('UNSPLASH_ACCESS_KEY')
+    ]);
+
+    $photos = $response->json()['results'] ?? [];
+
+    return view('destination.show', compact('destination', 'photos'));
+}
 }

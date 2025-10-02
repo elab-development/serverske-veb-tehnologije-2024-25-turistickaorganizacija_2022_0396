@@ -63,6 +63,9 @@ Route::get('/subscriber_verify/{email}/{token}', [FrontController::class, 'subsc
 Route::get('/terms-of-use',[FrontController::class,'terms'])->name('terms');
 Route::get('/privacy-policy',[FrontController::class,'privacy'])->name('privacy');
 
+// Nova ruta za kursnu listu
+Route::get('/currency', [App\Http\Controllers\Front\FrontController::class, 'currency'])->name('currency');
+
 // Payment
 Route::post('/payment',[FrontController::class,'payment'])->name('payment');
 

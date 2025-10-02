@@ -37,21 +37,56 @@ use App\Models\TermPrivacyItem;
 use App\Mail\Websitemail;
 use Hash;
 use Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class FrontController extends Controller
 {
-    public function home(){
-        $sliders = Slider::get();
-        $welcome_item = WelcomeItem::where('id',1)->first();
-        $features = Feature::get();
-        $testimonials = Testimonial::get(); 
-        $destinations = Destination::orderBy('view_count','desc')->get()->take(8);       
-        $posts = Post::with('blog_category')->orderBy('id','desc')->get()->take(3);
-        $packages = Package::with(['destination','package_amenities','package_itineraries','tours','reviews'])->orderBy('id','desc')->get()->take(3);
+    public function home()
+{
+    $sliders = Slider::get();
+    $welcome_item = WelcomeItem::where('id', 1)->first();
+    $features = Feature::get();
+    $testimonials = Testimonial::get();
+    $destinations = Destination::orderBy('view_count', 'desc')->get()->take(8);
+    $posts = Post::with('blog_category')->orderBy('id', 'desc')->get()->take(3);
+    $packages = Package::with(['destination', 'package_amenities', 'package_itineraries', 'tours', 'reviews'])
+        ->orderBy('id', 'desc')->get()->take(3);
 
-        return view('front.home',  compact('sliders', 'welcome_item', 'features', 'testimonials', 'posts', 'destinations', 'packages'));
-    }
+    // >>> DODATO: kursna lista (Frankfurter API)
+    $base = 'EUR';
+    $symbols = 'RSD,USD,CHF,JPY,IDR'; // dodali RSD, USD, franak, jen i rupiju (Bali)
+
+    $fxKey = "fx:latest:{$base}:{$symbols}";
+    $fx = Cache::remember($fxKey, now()->addMinutes(30), function () use ($base, $symbols) {
+        $resp = Http::timeout(10)->get('https://api.frankfurter.app/latest', [
+            'from' => $base,
+            'to'   => $symbols
+        ]);
+        return $resp->successful() ? $resp->json() : null;
+    });
+
+    $rates = $fx['rates'] ?? [];
+    $date  = $fx['date']  ?? null;
+    // <<< DODATO
+
+    return view('front.home', compact(
+        'sliders',
+        'welcome_item',
+        'features',
+        'testimonials',
+        'posts',
+        'destinations',
+        'packages',
+        'rates',
+        'base',
+        'symbols',
+        'date'
+    ));
+}
+
 
     public function about()
     {
@@ -659,4 +694,73 @@ class FrontController extends Controller
 
         return redirect()->back()->with('success', 'Pretplata je uspešno potvrđena.');
     }
+    public function show($slug)
+{
+    $destination = Destination::where('slug', $slug)->firstOrFail();
+
+    // ... tvoj postojeći kod za $packages, $destination_photos, $destination_videos
+
+    // 1) Odredi query za Unsplash (može ime destinacije ili posebna kolona)
+    $query = $destination->unsplash_query ?: $destination->name;
+
+    // 2) Keširaj 60 min da ne „biješ” API na svaki refresh
+    $unsplashPhotos = Cache::remember("unsplash:{$destination->id}:{$query}", 60, function () use ($query) {
+        $response = Http::get('https://api.unsplash.com/search/photos', [
+            'query'     => $query,
+            'per_page'  => 8,
+            'client_id' => env('UNSPLASH_ACCESS_KEY'),
+        ]);
+
+        if (!$response->successful()) {
+            return [];
+        }
+
+        $results = $response->json('results') ?? [];
+        // Spakuj samo šta ti treba u view-u
+        return collect($results)->map(function ($p) {
+            return [
+                'thumb'        => $p['urls']['small'] ?? null,
+                'full'         => $p['urls']['regular'] ?? null,
+                'alt'          => $p['alt_description'] ?? '',
+                'author_name'  => $p['user']['name'] ?? 'Unknown',
+                'author_link'  => $p['user']['links']['html'] ?? '#',
+                'unsplash_link'=> $p['links']['html'] ?? '#',
+            ];
+        })->all();
+    });
+
+    return view('front.destination', compact(
+        'destination',
+        'packages',
+        'destination_photos',
+        'destination_videos',
+        'unsplashPhotos'
+    ));
+}
+public function currency(Request $request)
+{
+    // Bazna valuta i koje valute da prikažemo (možeš menjati preko URL-a)
+    $base    = strtoupper($request->get('base', 'EUR'));          // npr. ?base=EUR
+    $symbols = strtoupper($request->get('symbols', 'USD,RSD'));   // npr. ?symbols=USD,RSD,GBP
+
+    // Keširaj odgovor 30 minuta da ne udaraš API stalno
+    $cacheKey = "fx:latest:{$base}:{$symbols}";
+    $data = Cache::remember($cacheKey, now()->addMinutes(30), function () use ($base, $symbols) {
+        $resp = Http::get('https://api.exchangerate.host/latest', [
+            'base'    => $base,
+            'symbols' => $symbols
+        ]);
+
+        if (!$resp->successful()) {
+            return null;
+        }
+        return $resp->json();
+    });
+
+    // Ako API padne, pošalji prazan niz da view prikaže poruku
+    $rates = $data['rates'] ?? [];
+    $date  = $data['date']  ?? null;
+
+    return view('front.currency', compact('rates', 'base', 'symbols', 'date'));
+}
 }

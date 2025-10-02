@@ -208,6 +208,35 @@
                     </div>
                 </div>
                 @endif
+                {{-- UNSPLASH DINAMIČKA GALERIJA (javni web servis) --}}
+@if(!empty($unsplashPhotos))
+<div class="main-item mb_50">
+    <h2>Fotografije (Unsplash)</h2>
+    <div class="photo-all">
+        <div class="row">
+            @foreach($unsplashPhotos as $p)
+            <div class="col-md-6 col-lg-3">
+                <div class="item">
+                    <a href="{{ $p['full'] }}" class="magnific" target="_blank" rel="noopener nofollow">
+                        <img src="{{ $p['thumb'] }}" alt="{{ $p['alt'] ?? 'Unsplash photo' }}">
+                    </a>
+                    <div class="mt-2" style="font-size: 12px; opacity:.8;">
+                        Photo by
+                        <a href="{{ $p['author_link'] }}" target="_blank" rel="noopener nofollow">
+                            {{ $p['author_name'] }}
+                        </a>
+                        on
+                        <a href="{{ $p['unsplash_link'] }}" target="_blank" rel="noopener nofollow">
+                            Unsplash
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
 
                 @if($destination_videos->count() > 0)
                 <div class="main-item mb_50">

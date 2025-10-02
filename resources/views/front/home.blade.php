@@ -14,9 +14,7 @@
                             <div class="text-wrapper">
                                 <div class="text-content">
                                     <h2>{{ $slider->heading }}</h2>
-                                    <p>
-                                        {!! $slider->text !!}
-                                    </p>
+                                    <p>{!! $slider->text !!}</p>
                                     @if($slider->button_text!='')
                                     <div class="button-style-1 mt_20">
                                         <a href="{{ $slider->button_url }}" target="_blank">{{ $slider->button_text }}</a>
@@ -72,9 +70,7 @@
             <div class="col-md-12">
                 <div class="heading">
                     <h2>Popularne destinacije</h2>
-                    <p>
-                        Istražite naše najpopularnije destinacije širom sveta!
-                    </p>
+                    <p>Istražite naše najpopularnije destinacije širom sveta!</p>
                 </div>
             </div>
         </div>
@@ -117,9 +113,7 @@
                     </div>
                     <div class="text">
                         <h2>{{ $feature->heading }}</h2>
-                        <p>
-                            {!! $feature->description !!}
-                        </p>
+                        <p>{!! $feature->description !!}</p>
                     </div>
                 </div>
             </div>
@@ -134,9 +128,7 @@
             <div class="col-md-12">
                 <div class="heading">
                     <h2>Popularni paketi</h2>
-                    <p>
-                        Izabrani aranžmani sa najboljim odnosom cene i kvaliteta.
-                    </p>
+                    <p>Izabrani aranžmani sa najboljim odnosom cene i kvaliteta.</p>
                 </div>
             </div>
         </div>
@@ -151,15 +143,11 @@
                         <div class="price">
                             ${{ $item->price }} @if($item->old_price != '')<del>${{ $item->old_price }}</del>@endif
                         </div>
-                        <h2>
-                            <a href="{{ route('package',$item->slug) }}">{{ $item->name }}</a>
-                        </h2>
+                        <h2><a href="{{ route('package',$item->slug) }}">{{ $item->name }}</a></h2>
 
                         @if($item->total_score || $item->total_rating)
                         <div class="review">
-                            @php
-                            $rating = $item->total_score/$item->total_rating;
-                            @endphp
+                            @php $rating = $item->total_score/$item->total_rating; @endphp
                             @for($i=1; $i<=5; $i++)
                                 @if($i <= $rating)
                                     <i class="fas fa-star"></i>
@@ -173,12 +161,11 @@
                         </div>
                         @else
                         <div class="review">
-                            @for($i=1; $i<=5; $i++)
-                                <i class="far fa-star"></i>
-                            @endfor
+                            @for($i=1; $i<=5; $i++) <i class="far fa-star"></i> @endfor
                             ({{ $item->reviews->count() }} recenzija)
                         </div>
                         @endif
+
                         <div class="element">
                             <div class="element-left">
                                 <i class="fas fa-plane-departure"></i> {{ $item->destination->name }}
@@ -218,9 +205,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class="main-header">Utisci klijenata</h2>
-                <h3 class="sub-header">
-                    Pogledajte šta naši klijenti kažu o iskustvu sa nama
-                </h3>
+                <h3 class="sub-header">Pogledajte šta naši klijenti kažu o iskustvu sa nama</h3>
             </div>
         </div>
         <div class="row">
@@ -235,14 +220,8 @@
                             <h4>{{ $testimonial->name }}</h4>
                             <p>{{ $testimonial->designation }}</p>
                         </div>
-                        <div class="quote">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="description">
-                            <p>
-                                {!! $testimonial->comment !!}
-                            </p>
-                        </div>
+                        <div class="quote"><i class="fas fa-quote-left"></i></div>
+                        <div class="description"><p>{!! $testimonial->comment !!}</p></div>
                     </div>
                     @endforeach
                 </div>
@@ -251,43 +230,46 @@
     </div>
 </div>
 
-<div class="blog pt_70">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="heading">
-                    <h2>Blog</h2>
-                    <p>
-                        Naši postovi
-                    </p>
-                </div>
-            </div>
+{{-- ===================== KURSNA LISTA (Frankfurter API) ===================== --}}
+@php
+    $fxBase = $base ?? null;
+    $fxRates = $rates ?? [];
+    $fxDate = $date ?? null;
+
+    // RSD na vrh liste
+    if (!empty($fxRates) && isset($fxRates['RSD'])) {
+        $fxRates = array_merge(['RSD' => $fxRates['RSD']], array_diff_key($fxRates, ['RSD' => '']));
+    }
+@endphp
+
+@if($fxBase && !empty($fxRates))
+<div class="container my-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0">💱 Kursna lista (baza: {{ $fxBase }})</h4>
+            @if(!empty($fxDate))
+                <small class="d-block">Ažurirano: {{ $fxDate }}</small>
+            @endif
         </div>
-        <div class="row">
-            @foreach($posts as $post)
-            <div class="col-lg-4 col-md-6">
-                <div class="item pb_70">
-                    <div class="photo">
-                        <img src="{{ asset('uploads/'.$post->photo) }}" alt="">
-                    </div>
-                    <div class="text">
-                        <h2>
-                            <a href="{{ route('post',$post->slug) }}">{{ $post->title }}</a>
-                        </h2>
-                        <div class="short-des">
-                            <p>
-                                {!! $post->short_description !!}
-                            </p>
-                        </div>
-                        <div class="button-style-2 mt_20">
-                            <a href="{{ route('post',$post->slug) }}">Pročitaj više</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <ul class="list-group list-group-flush">
+            @foreach($fxRates as $currency => $value)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">1 {{ $fxBase }}</span>
+                    <span>{{ number_format($value, 2, '.', ',') }} {{ $currency }}</span>
+                </li>
             @endforeach
-        </div>
+        </ul>
     </div>
 </div>
+@else
+<div class="container my-5">
+    <div class="alert alert-info text-center shadow-sm">
+        Trenutno nije moguće dohvatiti kursnu listu. Pokušajte kasnije.
+    </div>
+</div>
+@endif
+{{-- ======================================================================== --}}
+
+
 
 @endsection
