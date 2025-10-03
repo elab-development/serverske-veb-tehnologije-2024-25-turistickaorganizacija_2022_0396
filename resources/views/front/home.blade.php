@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="row">
-            @foreach($destinations as $destination)
+            @foreach($destinations->take(4) as $destination)
             <div class="col-lg-3 col-md-6">
                 <div class="item pb_25">
                     <div class="photo">

@@ -1,66 +1,222 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Turistička agencija — Laravel aplikacija
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikacija za prezentaciju tura/destinacija i osnovni booking/workflow. Sadrži javni web deo, administratorski panel i jednostavan javni API.
 
-## About Laravel
+🚀 Funkcionalnosti
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Javni sajt
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Prikaz popularnih destinacija, paketa i blog objava
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Detalji destinacije/aranžmana sa galerijom, videima i itinerarom
 
-## Learning Laravel
+Pretraga, filtriranje i paginacija listi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Administracija
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+CRUD nad destinacijama, paketima, itinerarima, medijima
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Upravljanje članovima tima
 
-## Laravel Sponsors
+Upravljanje korisnicima i ulogama (npr. admin, user, guest)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Korisnici
 
-### Premium Partners
+Registracija, login, logout, reset lozinke (email)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+API (primeri)
 
-## Contributing
+GET /api/team?per_page=10 ili per_page=all
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+(moguće dalje rute: destinacije, paketi, pretraga…)
 
-## Code of Conduct
+Dodatno
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Upload fajlova (storage), keširanje, sortiranje, TinyMCE/Editor za opise
 
-## Security Vulnerabilities
+SEO-friendly slug-ovi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+🧰 Tehnologije
 
-## License
+PHP ^8.1, Laravel 10/11
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MySQL/MariaDB (može i SQLite za razvoj)
+
+Node.js ^18 i NPM (Vite za assete)
+
+Composer
+
+📦 Zahtevi
+
+PHP ekstenzije: openssl, pdo, mbstring, tokenizer, xml, ctype, json, fileinfo
+
+MySQL/MariaDB baza napravljenog naziva (npr. travel_agency)
+
+Mail servis (za reset lozinke) — u razvojnoj fazi može mailhog ili smtp.gmail.com
+
+⚙️ Instalacija (lokalno)
+# 1) Kloniranje
+git clone https://github.com/USERNAME/REPO.git
+cd REPO
+
+# 2) PHP zavisnosti
+composer install
+
+# 3) JS zavisnosti
+npm install
+
+# 4) .env fajl
+cp .env.example .env
+
+# 5) App key
+php artisan key:generate
+
+Podesi .env
+
+Otvorite .env i podesite konekciju ka bazi i mail-u:
+
+APP_NAME="Travel Agency"
+APP_ENV=local
+APP_KEY=base64:GENERISANO
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
+
+# Baza
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=travel_agency
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Mail (primer za Gmail SMTP ili Mailhog)
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=vas.email@gmail.com
+MAIL_PASSWORD=lozinka_ili_app_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="noreply@travel-agency.test"
+MAIL_FROM_NAME="${APP_NAME}"
+
+Migracije & seed
+# 6) Migracije i seederi (kreira osnovne podatke, uloge i demo sadržaj)
+php artisan migrate --seed
+
+# 7) Storage symlink (za uploadovane fotografije)
+php artisan storage:link
+
+
+Ako u seed-ovima postoji admin korisnik, tipično kredencijali budu:
+email: admin@example.com
+ • lozinka: password
+(Ako nije tako u tvom projektu, izmeni u database/seeders/... ili kreiraj preko Tinker-a.)
+
+Pokretanje
+
+Uključiti PHP server i Vite:
+
+# Backend
+php artisan serve
+# Frontend assets (Vite)
+npm run dev
+
+
+Aplikacija je dostupna na: http://127.0.0.1:8000
+
+Produkcijski build (po izboru)
+npm run build
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+🔌 API – brzi pregled
+Članovi tima
+
+GET /api/team?per_page=10 — vraća paginiranu listu
+
+GET /api/team?per_page=all — vraća sve (bez paginacije)
+
+Primer odgovora (422 validacija kod POST-a, ako dodaš kreiranje):
+
+{
+  "errors": {
+    "slug": ["Slug mora biti jedinstven."],
+    "name": ["Naziv je obavezan."]
+  }
+}
+
+
+Napomena: U kodu postoji transformacija izlaza — proveri TeamApiController i transform() metodu.
+
+🔐 Uloge i pristup
+
+Admin: Puni pristup admin panelu i svim CRUD operacijama.
+
+Korisnik: Pristup korisničkim funkcijama (profil, rezervacije, komentari… po potrebi).
+
+Gost: Javni deo sajta.
+
+Uloge/permissions obično su seed-ovane (proveri RolesSeeder). Ako treba, možeš dodeliti ručno:
+
+php artisan tinker
+>>> $u = \App\Models\User::where('email','admin@example.com')->first();
+>>> $u->assignRole('admin');
+
+🧭 Navigacija (ključne rute)
+
+Početna: /
+
+Destinacije (lista): /destinations
+
+Destinacija (detalj): /destination/{slug}
+
+Login/Registracija: /login, /register
+
+Admin dashboard: npr. /admin (zavisi od tvoje rute/middleware-a)
+
+🧑‍💻 Razvojne napomene
+
+Uploadovi se nalaze u storage/app/public i služe se preko public/storage (zato je potreban storage:link).
+
+Slike koje dolaze iz admina često se čuvaju pod public/uploads (ako tako želiš — uskladi sa kontrolerima).
+
+Za TinyMCE/Editor proveri inicijalizaciju u Blade-u (npr. resources/views/...).
+
+🧪 Testovi (opciono)
+
+Ako imaš testove:
+
+php artisan test
+# ili
+./vendor/bin/phpunit
+
+🩺 Troubleshooting
+
+Blank strana / 500
+Očisti keš:
+
+php artisan optimize:clear
+
+
+Slike se ne prikazuju
+Uradi:
+
+php artisan storage:link
+
+
+i proveri da li putanje idu na asset('storage/...') ili asset('uploads/...') — uskladi sa kontrolerom.
+
+NPM/Vite ne učitava stilove
+Pokreni npm run dev ili npm run build i osveži stranu.
+
+Migracije padaju
+Proveri kredencijale baze u .env i da li baza postoji.
+
+📄 Licenca
+
+MIT (ili dodaj svoju licencu po potrebi).
+
+✉️ Kontakt
+
+Za pitanja i predloge: putkrozsvet@gmail.com ili otvori Issue u repozitorijumu.
