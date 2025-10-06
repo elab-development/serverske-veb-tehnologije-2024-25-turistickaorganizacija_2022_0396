@@ -468,7 +468,7 @@
                                                             <label for=""><b>Izaberite način plaćanja</b></label>
                                                             <select name="payment_method" class="form-select">
                                                                 <option value="PayPal">PayPal</option>
-                                                                <option value="Stripe">Stripe</option>
+                                                                <option value="Stripe">Kartica</option>
                                                                 <option value="Cash">Gotovina</option>
                                                             </select>
                                                         </td>
